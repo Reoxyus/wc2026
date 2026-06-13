@@ -1777,13 +1777,14 @@ const ROUND_META = {
   const formatDateTR = (iso) => {
     const d = new Date(iso + 'T00:00:00');
     const days = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+      const dayShorts = ['Paz','Pzt','Sal','Çar','Per','Cum','Cmt'];
     const months = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
     return {
       day: d.getDate(),
       month: months[d.getMonth()],
       monthShort: months[d.getMonth()].slice(0, 3),
       dow: days[d.getDay()],
-      dowShort: days[d.getDay()].slice(0, 3),
+      dowShort: dayShorts[d.getDay()],
       iso
     };
   };
