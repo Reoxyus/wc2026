@@ -1054,7 +1054,7 @@ body::after {
   letter-spacing: 0.08em;
 }
 
-/* ===== Knockout / TBD ===== */
+/* ===== Knockout / Belirlenecek ===== */
 .knockout-round {
   border-color: rgba(255, 184, 0, 0.25);
   background: linear-gradient(160deg, rgba(40, 30, 10, 0.6) 0%, rgba(15, 22, 50, 0.85) 100%);
@@ -1296,70 +1296,70 @@ function v3(a, b, c) { return svgToUri('<svg xmlns="http://www.w3.org/2000/svg" 
 
 /* Her ülke için basit ama tanımlayıcı bayrak */
 const FLAGS = {
-  'Mexico':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="20" height="40" fill="#006847"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ce1126"/><circle cx="30" cy="20" r="4" fill="none" stroke="#8a4d12" stroke-width="0.6"/></svg>'),
-  'South Africa':      svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#007749"/><polygon points="0,0 24,20 0,40" fill="#000"/><polygon points="0,4 20,20 0,36" fill="#ffb81c"/><polygon points="0,8 16,20 0,32" fill="#007749"/><polygon points="0,12 12,20 0,28" fill="#000"/><rect y="0" width="60" height="6" fill="#de3831"/><rect y="34" width="60" height="6" fill="#002395"/></svg>'),
-  'Korea Republic':    svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="8" fill="#cd2e3a"/><path d="M30,12 a4,4 0 0 1 0,8 a4,4 0 0 1 0,-8" fill="#0047a0" transform="rotate(180 30 20)"/></svg>'),
-  'Czechia':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#d7141a"/><polygon points="0,0 24,20 0,40" fill="#11457e"/></svg>'),
+  'Meksika':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="20" height="40" fill="#006847"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ce1126"/><circle cx="30" cy="20" r="4" fill="none" stroke="#8a4d12" stroke-width="0.6"/></svg>'),
+  'Güney Afrika':      svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#007749"/><polygon points="0,0 24,20 0,40" fill="#000"/><polygon points="0,4 20,20 0,36" fill="#ffb81c"/><polygon points="0,8 16,20 0,32" fill="#007749"/><polygon points="0,12 12,20 0,28" fill="#000"/><rect y="0" width="60" height="6" fill="#de3831"/><rect y="34" width="60" height="6" fill="#002395"/></svg>'),
+  'Güney Kore':    svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="8" fill="#cd2e3a"/><path d="M30,12 a4,4 0 0 1 0,8 a4,4 0 0 1 0,-8" fill="#0047a0" transform="rotate(180 30 20)"/></svg>'),
+  'Çekya':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#d7141a"/><polygon points="0,0 24,20 0,40" fill="#11457e"/></svg>'),
 
-  'Canada':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="15" height="40" fill="#d52b1e"/><rect x="15" width="30" height="40" fill="#fff"/><rect x="45" width="15" height="40" fill="#d52b1e"/><path d="M30,8 L31,12 L33,11 L31.5,13.5 L34,14 L31.5,14.5 L33,17 L31,16 L30,20 L29,16 L27,17 L28.5,14.5 L26,14 L28.5,13.5 L27,11 L29,12 Z" fill="#d52b1e"/></svg>'),
-  'Bosnia and Herzegovina': svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#002395"/><polygon points="20,0 30,8 40,0 40,40 30,32 20,40" fill="#fecb00"/><polygon points="24,0 30,5 36,0 36,40 30,35 24,40" fill="#002395"/><g fill="#fff"><circle cx="30" cy="11" r="1"/><polygon points="27,12 28,16 30,15 30,12"/><polygon points="33,12 32,16 30,15"/><polygon points="30,17 30,22 28,21"/><polygon points="30,17 30,22 32,21"/><polygon points="28,22 30,21 32,22 30,25"/></g></svg>'),
-  'Switzerland':       svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#d52b1e"/><rect x="26" y="11" width="8" height="18" fill="#fff"/><rect x="20" y="17" width="20" height="6" fill="#fff"/></svg>'),
-  'Qatar':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#8d1b3d"/><polygon points="0,0 18,0 8,20 0,20" fill="#fff"/><polygon points="0,40 18,40 8,20 0,20" fill="#fff"/></svg>'),
+  'Kanada':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="15" height="40" fill="#d52b1e"/><rect x="15" width="30" height="40" fill="#fff"/><rect x="45" width="15" height="40" fill="#d52b1e"/><path d="M30,8 L31,12 L33,11 L31.5,13.5 L34,14 L31.5,14.5 L33,17 L31,16 L30,20 L29,16 L27,17 L28.5,14.5 L26,14 L28.5,13.5 L27,11 L29,12 Z" fill="#d52b1e"/></svg>'),
+  'Bosna Hersek': svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#002395"/><polygon points="20,0 30,8 40,0 40,40 30,32 20,40" fill="#fecb00"/><polygon points="24,0 30,5 36,0 36,40 30,35 24,40" fill="#002395"/><g fill="#fff"><circle cx="30" cy="11" r="1"/><polygon points="27,12 28,16 30,15 30,12"/><polygon points="33,12 32,16 30,15"/><polygon points="30,17 30,22 28,21"/><polygon points="30,17 30,22 32,21"/><polygon points="28,22 30,21 32,22 30,25"/></g></svg>'),
+  'İsviçre':       svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#d52b1e"/><rect x="26" y="11" width="8" height="18" fill="#fff"/><rect x="20" y="17" width="20" height="6" fill="#fff"/></svg>'),
+  'Katar':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#8d1b3d"/><polygon points="0,0 18,0 8,20 0,20" fill="#fff"/><polygon points="0,40 18,40 8,20 0,20" fill="#fff"/></svg>'),
 
-  'Brazil':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#009c3b"/><polygon points="30,6 54,20 30,34 6,20" fill="#fedf00"/><circle cx="30" cy="20" r="6" fill="#002776"/><rect x="22" y="19" width="16" height="2" fill="#fff" transform="rotate(-10 30 20)"/></svg>'),
-  'Morocco':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#c1272d"/><polygon points="30,10 32,18 40,18 33.5,22.5 36,30 30,25 24,30 26.5,22.5 20,18 28,18" fill="none" stroke="#006233" stroke-width="1.5"/></svg>'),
+  'Brezilya':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#009c3b"/><polygon points="30,6 54,20 30,34 6,20" fill="#fedf00"/><circle cx="30" cy="20" r="6" fill="#002776"/><rect x="22" y="19" width="16" height="2" fill="#fff" transform="rotate(-10 30 20)"/></svg>'),
+  'Fas':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#c1272d"/><polygon points="30,10 32,18 40,18 33.5,22.5 36,30 30,25 24,30 26.5,22.5 20,18 28,18" fill="none" stroke="#006233" stroke-width="1.5"/></svg>'),
   'Haiti':             h3('#00209f', '#fff', '#d21034'),
-  'Scotland':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#0065bd"/><rect x="20" y="0" width="20" height="40" fill="#fff"/><rect x="0" y="16" width="60" height="8" fill="#fff"/><rect x="28" y="0" width="4" height="40" fill="#0065bd"/><rect x="0" y="18" width="60" height="4" fill="#0065bd"/></svg>'),
+  'İskoçya':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#0065bd"/><rect x="20" y="0" width="20" height="40" fill="#fff"/><rect x="0" y="16" width="60" height="8" fill="#fff"/><rect x="28" y="0" width="4" height="40" fill="#0065bd"/><rect x="0" y="18" width="60" height="4" fill="#0065bd"/></svg>'),
 
-  'USA':               svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#b22234"/><g fill="#fff"><rect y="3.08" width="60" height="3.08"/><rect y="9.23" width="60" height="3.08"/><rect y="15.38" width="60" height="3.08"/><rect y="21.54" width="60" height="3.08"/><rect y="27.69" width="60" height="3.08"/><rect y="33.85" width="60" height="3.08"/></g><rect width="24" height="21.54" fill="#3c3b6e"/><g fill="#fff" font-size="3" font-family="Arial">★ ★ ★ ★ ★ ★</g></svg>'),
-  'Australia':         svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#00008b"/><rect width="30" height="20" fill="#00008b"/><rect width="15" height="10" fill="#fff"/><rect y="10" width="15" height="10" fill="#fff"/><polygon points="7,2 8,4 7,6 6,4" fill="#cf142b"/><polygon points="7,2 8,4 7,6 6,4" fill="#fff"/><g fill="#fff" font-size="2.5" font-family="Arial">★ ★ ★ ★ ★</g></svg>'),
+  'ABD':               svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#b22234"/><g fill="#fff"><rect y="3.08" width="60" height="3.08"/><rect y="9.23" width="60" height="3.08"/><rect y="15.38" width="60" height="3.08"/><rect y="21.54" width="60" height="3.08"/><rect y="27.69" width="60" height="3.08"/><rect y="33.85" width="60" height="3.08"/></g><rect width="24" height="21.54" fill="#3c3b6e"/><g fill="#fff" font-size="3" font-family="Arial">★ ★ ★ ★ ★ ★</g></svg>'),
+  'Avustralya':         svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#00008b"/><rect width="30" height="20" fill="#00008b"/><rect width="15" height="10" fill="#fff"/><rect y="10" width="15" height="10" fill="#fff"/><polygon points="7,2 8,4 7,6 6,4" fill="#cf142b"/><polygon points="7,2 8,4 7,6 6,4" fill="#fff"/><g fill="#fff" font-size="2.5" font-family="Arial">★ ★ ★ ★ ★</g></svg>'),
   'Paraguay':          h3('#d52b1e', '#fff', '#0038a8'),
   'Türkiye':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#e30a17"/><circle cx="24" cy="20" r="8" fill="#fff"/><circle cx="26" cy="20" r="6.5" fill="#e30a17"/><polygon points="37,13 38,16 41,16 38.5,18 39.5,21 37,19 34.5,21 35.5,18 33,16 36,16" fill="#fff"/></svg>'),
 
-  'Germany':           h3('#000', '#dd0000', '#ffce00'),
+  'Almanya':           h3('#000', '#dd0000', '#ffce00'),
   'Curaçao':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#002b7f"/><rect y="13.33" width="60" height="13.34" fill="#fff"/><rect y="26.67" width="60" height="13.33" fill="#de3831"/><g fill="#fecb00"><polygon points="14,4 15,7 18,7 16,9 17,12 14,10 11,12 12,9 10,7 13,7"/><polygon points="20,8 21,11 24,11 22,13 23,16 20,14 17,16 18,13 16,11 19,11"/></g></svg>'),
-  'Cote dIvoire':      v3('#f77f00', '#fff', '#009e60'),
-  'Ecuador':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fcd116"/><rect y="20" width="60" height="10" fill="#003893"/><rect y="30" width="60" height="10" fill="#ce1126"/><circle cx="30" cy="20" r="6" fill="#003893"/><circle cx="30" cy="20" r="4.5" fill="#fcd116"/></svg>'),
+  'Fildişi Sahili':      v3('#f77f00', '#fff', '#009e60'),
+  'Ekvador':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fcd116"/><rect y="20" width="60" height="10" fill="#003893"/><rect y="30" width="60" height="10" fill="#ce1126"/><circle cx="30" cy="20" r="6" fill="#003893"/><circle cx="30" cy="20" r="4.5" fill="#fcd116"/></svg>'),
 
-  'Netherlands':       h3('#ae1c28', '#fff', '#21468b'),
-  'Japan':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="10" fill="#bc002d"/></svg>'),
-  'Tunisia':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#e70013"/><circle cx="30" cy="20" r="9" fill="#fff"/><circle cx="30" cy="20" r="7" fill="#e70013"/><polygon points="30,14 32,20 38,20 33,23 35,29 30,25 25,29 27,23 22,20 28,20" fill="#fff" opacity="0"/></svg>'),
-  'Sweden':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006aa7"/><rect x="18" width="6" height="40" fill="#fecc00"/><rect y="17" width="60" height="6" fill="#fecc00"/></svg>'),
+  'Hollanda':       h3('#ae1c28', '#fff', '#21468b'),
+  'Japonya':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="10" fill="#bc002d"/></svg>'),
+  'Tunus':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#e70013"/><circle cx="30" cy="20" r="9" fill="#fff"/><circle cx="30" cy="20" r="7" fill="#e70013"/><polygon points="30,14 32,20 38,20 33,23 35,29 30,25 25,29 27,23 22,20 28,20" fill="#fff" opacity="0"/></svg>'),
+  'İsveç':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006aa7"/><rect x="18" width="6" height="40" fill="#fecc00"/><rect y="17" width="60" height="6" fill="#fecc00"/></svg>'),
 
-  'Belgium':           v3('#000', '#fdda24', '#ef3340'),
-  'Iran':              h3('#239f40', '#fff', '#da0000'),
-  'Egypt':             h3('#ce1126', '#fff', '#000'),
-  'New Zealand':       svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#00247d"/><rect width="30" height="20" fill="#00247d"/><rect width="15" height="10" fill="#fff"/><rect y="10" width="15" height="10" fill="#fff"/><polygon points="7,2 8,4 7,6 6,4" fill="#cf142b"/><g fill="#cc142b"><polygon points="44,5 46,9 50,9 47,12 48,16 44,13 40,16 41,12 38,9 42,9"/><polygon points="52,15 53.5,18 56,18 54,20 54.5,23 52,21 49.5,23 50,20 48,18 50.5,18"/><polygon points="50,22 51.5,25 54,25 52,27 52.5,30 50,28 47.5,30 48,27 46,25 48.5,25"/><polygon points="46,18 47.5,21 50,21 48,23 48.5,26 46,24 43.5,26 44,23 42,21 44.5,21"/></g></svg>'),
+  'Belçika':           v3('#000', '#fdda24', '#ef3340'),
+  'İran':              h3('#239f40', '#fff', '#da0000'),
+  'Mısır':             h3('#ce1126', '#fff', '#000'),
+  'Yeni Zelanda':       svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#00247d"/><rect width="30" height="20" fill="#00247d"/><rect width="15" height="10" fill="#fff"/><rect y="10" width="15" height="10" fill="#fff"/><polygon points="7,2 8,4 7,6 6,4" fill="#cf142b"/><g fill="#cc142b"><polygon points="44,5 46,9 50,9 47,12 48,16 44,13 40,16 41,12 38,9 42,9"/><polygon points="52,15 53.5,18 56,18 54,20 54.5,23 52,21 49.5,23 50,20 48,18 50.5,18"/><polygon points="50,22 51.5,25 54,25 52,27 52.5,30 50,28 47.5,30 48,27 46,25 48.5,25"/><polygon points="46,18 47.5,21 50,21 48,23 48.5,26 46,24 43.5,26 44,23 42,21 44.5,21"/></g></svg>'),
 
-  'Spain':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="10" fill="#aa151b"/><rect y="10" width="60" height="20" fill="#f1bf00"/><rect y="30" width="60" height="10" fill="#aa151b"/><rect x="20" y="14" width="8" height="12" fill="#aa151b"/></svg>'),
+  'İspanya':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="10" fill="#aa151b"/><rect y="10" width="60" height="20" fill="#f1bf00"/><rect y="30" width="60" height="10" fill="#aa151b"/><rect x="20" y="14" width="8" height="12" fill="#aa151b"/></svg>'),
   'Uruguay':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect y="4" width="60" height="5.33" fill="#0035ad"/><rect y="14.67" width="60" height="5.33" fill="#0035ad"/><rect y="25.33" width="60" height="5.33" fill="#0035ad"/><rect y="36" width="60" height="4" fill="#0035ad"/><circle cx="20" cy="20" r="6" fill="#fff"/><circle cx="22" cy="20" r="5" fill="#0035ad"/><circle cx="22" cy="20" r="3.5" fill="#fcd116" opacity="0.4"/></svg>'),
-  'Saudi Arabia':      svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006c35"/><text x="30" y="22" text-anchor="middle" font-size="10" fill="#fff" font-family="Arial">لا إله إلا الله</text><rect y="0" width="8" height="40" fill="#fff"/></svg>'),
+  'Suudi Arabistan':      svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006c35"/><text x="30" y="22" text-anchor="middle" font-size="10" fill="#fff" font-family="Arial">لا إله إلا الله</text><rect y="0" width="8" height="40" fill="#fff"/></svg>'),
   'Cabo Verde':        svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#003893"/><rect y="10" width="60" height="20" fill="#fff"/><rect y="13" width="60" height="14" fill="#cf2027"/><g fill="#003893"><polygon points="14,5 15,8 18,8 16,10 17,13 14,11 11,13 12,10 10,8 13,8"/><polygon points="22,4 23,7 26,7 24,9 25,12 22,10 19,12 20,9 18,7 21,7"/><polygon points="30,3 31,6 34,6 32,8 33,11 30,9 27,11 28,8 26,6 29,6"/><polygon points="38,4 39,7 42,7 40,9 41,12 38,10 35,12 36,9 34,7 37,7"/><polygon points="46,5 47,8 50,8 48,10 49,13 46,11 43,13 44,10 42,8 45,8"/></g></svg>'),
 
-  'France':            v3('#0055a4', '#fff', '#ef4135'),
+  'Fransa':            v3('#0055a4', '#fff', '#ef4135'),
   'Senegal':           v3('#00853f', '#fdef42', '#e31b23'),
-  'Norway':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#ef2b2d"/><rect x="16" width="8" height="40" fill="#fff"/><rect y="16" width="60" height="8" fill="#fff"/><rect x="20" width="4" height="40" fill="#002868"/><rect y="18" width="60" height="4" fill="#002868"/></svg>'),
-  'Iraq':              h3('#ce1126', '#fff', '#000'),
+  'Norveç':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#ef2b2d"/><rect x="16" width="8" height="40" fill="#fff"/><rect y="16" width="60" height="8" fill="#fff"/><rect x="20" width="4" height="40" fill="#002868"/><rect y="18" width="60" height="4" fill="#002868"/></svg>'),
+  'Irak':              h3('#ce1126', '#fff', '#000'),
 
-  'Argentina':         svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#74acdf"/><rect y="13.33" width="60" height="13.34" fill="#fff"/><rect y="26.67" width="60" height="13.33" fill="#74acdf"/><circle cx="30" cy="20" r="4" fill="#f6b40e" stroke="#963" stroke-width="0.4"/></svg>'),
-  'Austria':           h3('#ed2939', '#fff', '#ed2939'),
-  'Algeria':           v3('#006633', '#fff', '#d21034'),
-  'Jordan':            h3('#000', '#fff', '#007a3d'),
+  'Arjantin':         svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#74acdf"/><rect y="13.33" width="60" height="13.34" fill="#fff"/><rect y="26.67" width="60" height="13.33" fill="#74acdf"/><circle cx="30" cy="20" r="4" fill="#f6b40e" stroke="#963" stroke-width="0.4"/></svg>'),
+  'Avusturya':           h3('#ed2939', '#fff', '#ed2939'),
+  'Cezayir':           v3('#006633', '#fff', '#d21034'),
+  'Ürdün':            h3('#000', '#fff', '#007a3d'),
 
-  'Portugal':          v3('#006600', '#ff0000', '#ff0000'),
-  'Colombia':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fcd116"/><rect y="20" width="60" height="10" fill="#003893"/><rect y="30" width="60" height="10" fill="#ce1126"/></svg>'),
-  'Uzbekistan':        h3('#1eb53a', '#fff', '#0099b5'),
-  'DR Congo':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#007fff"/><rect y="13.33" width="60" height="13.34" fill="#f7d518"/><rect y="26.67" width="60" height="13.33" fill="#ce1021"/><polygon points="20,20 24,12 28,20 36,16 32,24 36,32 28,28 24,36 20,28 12,32 16,24 12,16" fill="#ce1021" stroke="#f7d518" stroke-width="0.5"/></svg>'),
+  'Portekiz':          v3('#006600', '#ff0000', '#ff0000'),
+  'Kolombiya':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fcd116"/><rect y="20" width="60" height="10" fill="#003893"/><rect y="30" width="60" height="10" fill="#ce1126"/></svg>'),
+  'Özbekistan':        h3('#1eb53a', '#fff', '#0099b5'),
+  'Kongo DC':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#007fff"/><rect y="13.33" width="60" height="13.34" fill="#f7d518"/><rect y="26.67" width="60" height="13.33" fill="#ce1021"/><polygon points="20,20 24,12 28,20 36,16 32,24 36,32 28,28 24,36 20,28 12,32 16,24 12,16" fill="#ce1021" stroke="#f7d518" stroke-width="0.5"/></svg>'),
 
-  'England':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect x="26" y="0" width="8" height="40" fill="#ce1124"/><rect y="16" width="60" height="8" fill="#ce1124"/><polygon points="30,4 32,9 37,9 33,12 35,17 30,14 25,17 27,12 23,9 28,9" fill="#ce1124"/></svg>'),
-  'Croatia':           h3('#ff0000', '#fff', '#171796'),
-  'Ghana':             h3('#ce1126', '#fcd116', '#006b3f'),
+  'İngiltere':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect x="26" y="0" width="8" height="40" fill="#ce1124"/><rect y="16" width="60" height="8" fill="#ce1124"/><polygon points="30,4 32,9 37,9 33,12 35,17 30,14 25,17 27,12 23,9 28,9" fill="#ce1124"/></svg>'),
+  'Hırvatistan':           h3('#ff0000', '#fff', '#171796'),
+  'Gana':             h3('#ce1126', '#fcd116', '#006b3f'),
   'Panama':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#005aa7"/><rect y="20" width="60" height="10" fill="#d21034"/><polygon points="20,8 24,4 28,8 24,12" fill="#005aa7"/><polygon points="36,8 32,4 28,8 32,12" fill="#005aa7"/></svg>'),
   'Wales':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#00b140"/><polygon points="0,0 24,20 0,40" fill="#d30731"/><polygon points="60,0 36,20 60,40" fill="#d30731"/></svg>')
 };
 
-/* TBD placeholder */
-const TBD_FLAG = svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2348"/><stop offset="1" stop-color="#0a1230"/></linearGradient></defs><rect width="60" height="40" fill="url(#g)"/><text x="30" y="24" text-anchor="middle" fill="#6b7396" font-size="14" font-weight="700" font-family="Arial">?</text></svg>');
+/* Belirlenecek placeholder */
+const Belirlenecek_FLAG = svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2348"/><stop offset="1" stop-color="#0a1230"/></linearGradient></defs><rect width="60" height="40" fill="url(#g)"/><text x="30" y="24" text-anchor="middle" fill="#6b7396" font-size="14" font-weight="700" font-family="Arial">?</text></svg>');
 
 /* ============================================
    FIFA 2026 WC Fixture — Match Data
@@ -1380,87 +1380,87 @@ const MANUAL_SCORES = {
 };
 
 const FLAG_CODES = {
-  'Mexico': 'mx', 'South Africa': 'za', 'Korea Republic': 'kr', 'Czechia': 'cz',
-  'Canada': 'ca', 'Bosnia and Herzegovina': 'ba', 'Switzerland': 'ch', 'Qatar': 'qa',
-  'Brazil': 'br', 'Morocco': 'ma', 'Haiti': 'ht', 'Scotland': 'gb-sct',
-  'USA': 'us', 'Australia': 'au', 'Paraguay': 'py', 'Türkiye': 'tr',
-  'Germany': 'de', 'Curaçao': 'cw', 'Cote dIvoire': 'ci', 'Ecuador': 'ec',
-  'Netherlands': 'nl', 'Japan': 'jp', 'Tunisia': 'tn', 'Sweden': 'se',
-  'Belgium': 'be', 'Iran': 'ir', 'Egypt': 'eg', 'New Zealand': 'nz',
-  'Spain': 'es', 'Uruguay': 'uy', 'Saudi Arabia': 'sa', 'Cabo Verde': 'cv',
-  'France': 'fr', 'Senegal': 'sn', 'Norway': 'no', 'Iraq': 'iq',
-  'Argentina': 'ar', 'Austria': 'at', 'Algeria': 'dz', 'Jordan': 'jo',
-  'Portugal': 'pt', 'Colombia': 'co', 'Uzbekistan': 'uz', 'DR Congo': 'cd',
-  'England': 'gb-eng', 'Croatia': 'hr', 'Ghana': 'gh', 'Panama': 'pa',
+  'Meksika': 'mx', 'Güney Afrika': 'za', 'Güney Kore': 'kr', 'Çekya': 'cz',
+  'Kanada': 'ca', 'Bosna Hersek': 'ba', 'İsviçre': 'ch', 'Katar': 'qa',
+  'Brezilya': 'br', 'Fas': 'ma', 'Haiti': 'ht', 'İskoçya': 'gb-sct',
+  'ABD': 'us', 'Avustralya': 'au', 'Paraguay': 'py', 'Türkiye': 'tr',
+  'Almanya': 'de', 'Curaçao': 'cw', 'Fildişi Sahili': 'ci', 'Ekvador': 'ec',
+  'Hollanda': 'nl', 'Japonya': 'jp', 'Tunus': 'tn', 'İsveç': 'se',
+  'Belçika': 'be', 'İran': 'ir', 'Mısır': 'eg', 'Yeni Zelanda': 'nz',
+  'İspanya': 'es', 'Uruguay': 'uy', 'Suudi Arabistan': 'sa', 'Cabo Verde': 'cv',
+  'Fransa': 'fr', 'Senegal': 'sn', 'Norveç': 'no', 'Irak': 'iq',
+  'Arjantin': 'ar', 'Avusturya': 'at', 'Cezayir': 'dz', 'Ürdün': 'jo',
+  'Portekiz': 'pt', 'Kolombiya': 'co', 'Özbekistan': 'uz', 'Kongo DC': 'cd',
+  'İngiltere': 'gb-eng', 'Hırvatistan': 'hr', 'Gana': 'gh', 'Panama': 'pa',
   'Wales': 'gb-wls'
 };
 
 // Konfederasyon (kısa)
 const CONF = {
-  'Mexico':'CONCACAF','South Africa':'CAF','Korea Republic':'AFC','Czechia':'UEFA',
-  'Canada':'CONCACAF','Bosnia and Herzegovina':'UEFA','Switzerland':'UEFA','Qatar':'AFC',
-  'Brazil':'CONMEBOL','Morocco':'CAF','Haiti':'CONCACAF','Scotland':'UEFA',
-  'USA':'CONCACAF','Australia':'AFC','Paraguay':'CONMEBOL','Türkiye':'UEFA',
-  'Germany':'UEFA','Curaçao':'CONCACAF','Cote dIvoire':'CAF','Ecuador':'CONMEBOL',
-  'Netherlands':'UEFA','Japan':'AFC','Tunisia':'CAF','Sweden':'UEFA',
-  'Belgium':'UEFA','Iran':'AFC','Egypt':'CAF','New Zealand':'OFC',
-  'Spain':'UEFA','Uruguay':'CONMEBOL','Saudi Arabia':'AFC','Cabo Verde':'CAF',
-  'France':'UEFA','Senegal':'CAF','Norway':'UEFA','Iraq':'AFC',
-  'Argentina':'CONMEBOL','Austria':'UEFA','Algeria':'CAF','Jordan':'AFC',
-  'Portugal':'UEFA','Colombia':'CONMEBOL','Uzbekistan':'AFC','DR Congo':'CAF',
-  'England':'UEFA','Croatia':'UEFA','Ghana':'CAF','Panama':'CONCACAF',
+  'Meksika':'CONCACAF','Güney Afrika':'CAF','Güney Kore':'AFC','Çekya':'UEFA',
+  'Kanada':'CONCACAF','Bosna Hersek':'UEFA','İsviçre':'UEFA','Katar':'AFC',
+  'Brezilya':'CONMEBOL','Fas':'CAF','Haiti':'CONCACAF','İskoçya':'UEFA',
+  'ABD':'CONCACAF','Avustralya':'AFC','Paraguay':'CONMEBOL','Türkiye':'UEFA',
+  'Almanya':'UEFA','Curaçao':'CONCACAF','Fildişi Sahili':'CAF','Ekvador':'CONMEBOL',
+  'Hollanda':'UEFA','Japonya':'AFC','Tunus':'CAF','İsveç':'UEFA',
+  'Belçika':'UEFA','İran':'AFC','Mısır':'CAF','Yeni Zelanda':'OFC',
+  'İspanya':'UEFA','Uruguay':'CONMEBOL','Suudi Arabistan':'AFC','Cabo Verde':'CAF',
+  'Fransa':'UEFA','Senegal':'CAF','Norveç':'UEFA','Irak':'AFC',
+  'Arjantin':'CONMEBOL','Avusturya':'UEFA','Cezayir':'CAF','Ürdün':'AFC',
+  'Portekiz':'UEFA','Kolombiya':'CONMEBOL','Özbekistan':'AFC','Kongo DC':'CAF',
+  'İngiltere':'UEFA','Hırvatistan':'UEFA','Gana':'CAF','Panama':'CONCACAF',
   'Wales':'UEFA'
 };
 
 // Takım bilgi kutusu
 const TEAM_INFO = {
-  'Mexico':          { fifa: 11,  pop: '~130M', capital: 'Mexico City', nickname: 'El Tri', coach: 'Javier Aguirre', stars: 4, funFacts: ['Üçüncü kez Dünya Kupası ev sahibi (1970, 1986, 2026).','Daha önce çeyrek finale 2 kez çıktı (1970, 1986).','2026 açılış maçını Aztek Stadyumu\'nda oynayacak.'] },
-  'South Africa':    { fifa: 60,  pop: '~60M',  capital: 'Pretoria',    nickname: 'Bafana Bafana', coach: 'Hugo Broos',   stars: 1, funFacts: ['2010 ev sahibiydi, grup aşamasında elendi.','Tek Dünya Kupası golünü 2010\'da Danimarka\'ya atmıştı (Bernard Parker, skor 1-0).','1996 Afrika Şampiyonu.'] },
-  'Korea Republic':  { fifa: 23,  pop: '~52M',  capital: 'Seul',        nickname: 'Taihan',        coach: 'Hong Myung-bo',stars: 1, funFacts: ['2002\'de yarı final oynadı (ev sahibi avantajı).','Son 10 Dünya Kupası\'nın 11\'inde yer aldı (1945 sonrası tüm turnuvalarda var).','Son dünya kupasında 2-1\'lik bir geri dönüş galibiyeti aldı.'] },
-  'Czechia':         { fifa: 38,  pop: '~11M',  capital: 'Prag',        nickname: 'Národní tým',   coach: 'Ivan Hašek',   stars: 0, funFacts: ['Çek Cumhuriyeti olarak 2006\'da gruptan çıkamadı.','Çekoslovakya 1962 finalinde SSCB\'ye yenildi.','Avrupa Şampiyonası 1996 ve 2004 finalist.'] },
-  'Canada':          { fifa: 27,  pop: '~40M',  capital: 'Ottawa',      nickname: 'Canucks',       coach: 'Jesse Marsch', stars: 0, funFacts: ['İlk kez üst üste iki Dünya Kupası\'na katılıyor (2022, 2026).','1986 ve 1990\'da grup aşamasında elendi.','2026 ev sahibi olarak ilk kez açılış maçı oynayacak.'] },
-  'Bosnia and Herzegovina': { fifa: 71, pop: '~3.3M', capital: 'Saraybosna', nickname: 'Zmajevi', coach: 'Sergej Barbarez', stars: 0, funFacts: ['2014\'teki ilk Dünya Kupası\'nda 1-0 kazandı (İran\'a karşı).','Avrupa Şampiyonası\'na hiç katılamadı.','Edin Džeko tarihin en golcü Bosna-Hersek oyuncusu.'] },
-  'Switzerland':     { fifa: 19,  pop: '~9M',   capital: 'Bern',        nickname: 'Nati',          coach: 'Murat Yakin',  stars: 0, funFacts: ['Son 6 büyük turnuvanın 5\'inde son 16 turuna çıktı.','2024 Avrupa Şampiyonası çeyrek finali.','Xherdan Shaqiri tüm dünya kupalarında gol atan tek İsviçreli.'] },
-  'Qatar':           { fifa: 51,  pop: '~3M',   capital: 'Doha',        nickname: 'Al-Annabi',     coach: 'Julen Lopetegui', stars: 0, funFacts: ['2022 ev sahibi olarak ilk kez Dünya Kupası oynadı.','2019 Asya Kupası şampiyonu.','Akram Afif yıldız golcü.'] },
-  'Brazil':          { fifa: 5,   pop: '~215M', capital: 'Brasilia',    nickname: 'Seleção',       coach: 'Dorival Júnior', stars: 5, funFacts: ['5 kez Dünya Kupası şampiyonu (en çok).','Tek takım tüm Dünya Kupaları\'na katılan.','Pelé 3 dünya kupası kazanan tek oyuncu.'] },
-  'Morocco':         { fifa: 14,  pop: '~37M',  capital: 'Rabat',       nickname: 'Atlas Lions',   coach: 'Walid Regragui', stars: 0, funFacts: ['2022\'de yarı final oynadı (ilk Afrika takımı).','2022\'de Belçika, Portekiz, İspanya\'yı eledi.','Hakimi, Ziyech, En-Nesyri yıldız üçlüsü.'] },
+  'Meksika':          { fifa: 11,  pop: '~130M', capital: 'Meksika City', nickname: 'El Tri', coach: 'Javier Aguirre', stars: 4, funFacts: ['Üçüncü kez Dünya Kupası ev sahibi (1970, 1986, 2026).','Daha önce çeyrek finale 2 kez çıktı (1970, 1986).','2026 açılış maçını Aztek Stadyumu\'nda oynayacak.'] },
+  'Güney Afrika':    { fifa: 60,  pop: '~60M',  capital: 'Pretoria',    nickname: 'Bafana Bafana', coach: 'Hugo Broos',   stars: 1, funFacts: ['2010 ev sahibiydi, grup aşamasında elendi.','Tek Dünya Kupası golünü 2010\'da Danimarka\'ya atmıştı (Bernard Parker, skor 1-0).','1996 Afrika Şampiyonu.'] },
+  'Güney Kore':  { fifa: 23,  pop: '~52M',  capital: 'Seul',        nickname: 'Taihan',        coach: 'Hong Myung-bo',stars: 1, funFacts: ['2002\'de yarı final oynadı (ev sahibi avantajı).','Son 10 Dünya Kupası\'nın 11\'inde yer aldı (1945 sonrası tüm turnuvalarda var).','Son dünya kupasında 2-1\'lik bir geri dönüş galibiyeti aldı.'] },
+  'Çekya':         { fifa: 38,  pop: '~11M',  capital: 'Prag',        nickname: 'Národní tým',   coach: 'Ivan Hašek',   stars: 0, funFacts: ['Çek Cumhuriyeti olarak 2006\'da gruptan çıkamadı.','Çekoslovakya 1962 finalinde SSCB\'ye yenildi.','Avrupa Şampiyonası 1996 ve 2004 finalist.'] },
+  'Kanada':          { fifa: 27,  pop: '~40M',  capital: 'Ottawa',      nickname: 'Canucks',       coach: 'Jesse Marsch', stars: 0, funFacts: ['İlk kez üst üste iki Dünya Kupası\'na katılıyor (2022, 2026).','1986 ve 1990\'da grup aşamasında elendi.','2026 ev sahibi olarak ilk kez açılış maçı oynayacak.'] },
+  'Bosna Hersek': { fifa: 71, pop: '~3.3M', capital: 'Saraybosna', nickname: 'Zmajevi', coach: 'Sergej Barbarez', stars: 0, funFacts: ['2014\'teki ilk Dünya Kupası\'nda 1-0 kazandı (İran\'a karşı).','Avrupa Şampiyonası\'na hiç katılamadı.','Edin Džeko tarihin en golcü Bosna-Hersek oyuncusu.'] },
+  'İsviçre':     { fifa: 19,  pop: '~9M',   capital: 'Bern',        nickname: 'Nati',          coach: 'Murat Yakin',  stars: 0, funFacts: ['Son 6 büyük turnuvanın 5\'inde son 16 turuna çıktı.','2024 Avrupa Şampiyonası çeyrek finali.','Xherdan Shaqiri tüm dünya kupalarında gol atan tek İsviçreli.'] },
+  'Katar':           { fifa: 51,  pop: '~3M',   capital: 'Doha',        nickname: 'Al-Annabi',     coach: 'Julen Lopetegui', stars: 0, funFacts: ['2022 ev sahibi olarak ilk kez Dünya Kupası oynadı.','2019 Asya Kupası şampiyonu.','Akram Afif yıldız golcü.'] },
+  'Brezilya':          { fifa: 5,   pop: '~215M', capital: 'Brasilia',    nickname: 'Seleção',       coach: 'Dorival Júnior', stars: 5, funFacts: ['5 kez Dünya Kupası şampiyonu (en çok).','Tek takım tüm Dünya Kupaları\'na katılan.','Pelé 3 dünya kupası kazanan tek oyuncu.'] },
+  'Fas':         { fifa: 14,  pop: '~37M',  capital: 'Rabat',       nickname: 'Atlas Lions',   coach: 'Walid Regragui', stars: 0, funFacts: ['2022\'de yarı final oynadı (ilk Afrika takımı).','2022\'de Belçika, Portekiz, İspanya\'yı eledi.','Hakimi, Ziyech, En-Nesyri yıldız üçlüsü.'] },
   'Haiti':           { fifa: 86,  pop: '~11M',  capital: 'Port-au-Prince', nickname: 'Les Grenadiers', coach: 'Sébastien Migné', stars: 0, funFacts: ['1974\'ten beri ilk Dünya Kupası.','2024 CONCACAF Nations League yarı finali.','Birçok oyuncusu Fransız liginde forma giyiyor.'] },
-  'Scotland':        { fifa: 45,  pop: '~5.5M', capital: 'Edinburgh',   nickname: 'Tartan Army',   coach: 'Steve Clarke',  stars: 0, funFacts: ['1998 sonrası ilk Dünya Kupası.','2024 Euro\'da grup aşamasında İsviçre ile berabere kaldı.','En iyi derece 1974 (grup aşaması).'] },
-  'USA':             { fifa: 16,  pop: '~335M', capital: 'Washington DC', nickname: 'USMNT',       coach: 'Mauricio Pochettino', stars: 0, funFacts: ['2026 ev sahibi.','1994\'te ev sahibi olarak son 16 turuna çıktı.','Christian Pulisic takımın yıldızı.'] },
-  'Australia':       { fifa: 24,  pop: '~26M',  capital: 'Canberra',    nickname: 'Socceroos',     coach: 'Tony Popovic',  stars: 0, funFacts: ['2006\'da son 16 turuna çıktı (en iyi derece).','2022\'de Arjantin\'i 2-1 yenip grubu geçti.','Mathew Ryan uzun yıllar kalecilik yaptı.'] },
+  'İskoçya':        { fifa: 45,  pop: '~5.5M', capital: 'Edinburgh',   nickname: 'Tartan Army',   coach: 'Steve Clarke',  stars: 0, funFacts: ['1998 sonrası ilk Dünya Kupası.','2024 Euro\'da grup aşamasında İsviçre ile berabere kaldı.','En iyi derece 1974 (grup aşaması).'] },
+  'ABD':             { fifa: 16,  pop: '~335M', capital: 'Washington DC', nickname: 'USMNT',       coach: 'Mauricio Pochettino', stars: 0, funFacts: ['2026 ev sahibi.','1994\'te ev sahibi olarak son 16 turuna çıktı.','Christian Pulisic takımın yıldızı.'] },
+  'Avustralya':       { fifa: 24,  pop: '~26M',  capital: 'Canberra',    nickname: 'Socceroos',     coach: 'Tony Popovic',  stars: 0, funFacts: ['2006\'da son 16 turuna çıktı (en iyi derece).','2022\'de Arjantin\'i 2-1 yenip grubu geçti.','Mathew Ryan uzun yıllar kalecilik yaptı.'] },
   'Paraguay':        { fifa: 42,  pop: '~7.5M', capital: 'Asunción',    nickname: 'La Albirroja',  coach: 'Alfaro',        stars: 0, funFacts: ['2010 son 16 turu, 1998 son 16 turu.','Roque Santa Cruz efsanesi.','2011 Copa America finalist.'] },
   'Türkiye':         { fifa: 26,  pop: '~85M',  capital: 'Ankara',      nickname: 'Ay-Yıldızlılar', coach: 'Vincenzo Montella', stars: 0, funFacts: ['2002 Dünya Kupası 3.\'lüğü (en iyi derece).','2008 Avrupa Şampiyonası yarı finali.','2002 sonrası ilk Dünya Kupası (24 yıl).'] },
-  'Germany':         { fifa: 9,   pop: '~84M',  capital: 'Berlin',      nickname: 'Die Mannschaft', coach: 'Julian Nagelsmann', stars: 4, funFacts: ['4 kez Dünya Kupası şampiyonu.','2014\'ten beri her turnuvada üst turda (?).','2018\'de grupta elendi (büyük sürpriz).'] },
+  'Almanya':         { fifa: 9,   pop: '~84M',  capital: 'Berlin',      nickname: 'Die Mannschaft', coach: 'Julian Nagelsmann', stars: 4, funFacts: ['4 kez Dünya Kupası şampiyonu.','2014\'ten beri her turnuvada üst turda (?).','2018\'de grupta elendi (büyük sürpriz).'] },
   'Curaçao':         { fifa: 82,  pop: '~150K', capital: 'Willemstad',  nickname: 'Blaublau',      coach: 'Dick Advocaat', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','Hollanda\'ya bağlı küçük ada.','2023 CONCACAF Gold Cup yarı finali.'] },
-  'Cote dIvoire':    { fifa: 46,  pop: '~28M',  capital: 'Yamoussoukro', nickname: 'Les Éléphants', coach: 'Emerse Faé', stars: 0, funFacts: ['2010 ve 2014\'te Dünya Kupası\'nda.','2015 Afrika Uluslar Kupası şampiyonu.','Didier Drogba efsanesi.'] },
-  'Ecuador':         { fifa: 30,  pop: '~18M',  capital: 'Quito',       nickname: 'La Tri',        coach: 'Sebastián Beccacece', stars: 0, funFacts: ['2006\'da son 16 turuna çıktı.','Deniz seviyesinden yüksek Quito\'da ev maçları oynuyor.','Enner Valencia gol kralı.'] },
-  'Netherlands':     { fifa: 7,   pop: '~18M',  capital: 'Amsterdam',   nickname: 'Oranje',        coach: 'Ronald Koeman', stars: 0, funFacts: ['3 kez finalist (1974, 1978, 2010) hiç kazanamadı.','2014 üçüncülük, 2022 çeyrek final.','Total Football\'un doğduğu ülke.'] },
-  'Japan':           { fifa: 18,  pop: '~124M', capital: 'Tokyo',       nickname: 'Samurai Blue',  coach: 'Hajime Moriyasu', stars: 0, funFacts: ['2018 ve 2022\'de son 16 turuna çıktı.','2022\'de Almanya ve İspanya\'yı 2-1\'lik skorlarla yendi.','2022 Dünya Kupası sürpriz takımı.'] },
-  'Tunisia':         { fifa: 41,  pop: '~12M',  capital: 'Tunus',       nickname: 'Carthage Eagles', coach: 'Faouzi Benzarti', stars: 0, funFacts: ['1978\'de Meksika\'yı 3-1 yendi (tarihi galibiyet).','2006\'da grup aşamasında elendi ama İspanya\'yı zorladı.','2022\'de Fransa ile 1-0 gerideyken maç kaçırdı.'] },
-  'Sweden':          { fifa: 31,  pop: '~10.5M', capital: 'Stockholm',  nickname: 'Blågult',       coach: 'Jon Dahl Tomasson', stars: 0, funFacts: ['1958\'de ev sahibi olarak finalist.','2018 çeyrek finali.','Zlatan\'ın yokluğunda yeni dönem.'] },
-  'Belgium':         { fifa: 3,   pop: '~12M',  capital: 'Brüksel',     nickname: 'Red Devils',    coach: 'Domenico Tedesco', stars: 0, funFacts: ['2018 üçüncüsü, 2022 grup elemesi (kötü sürpriz).','2014-2022 arası uzun altın jenerasyon.','Lukaku, De Bruyne, Hazard.'] },
-  'Iran':            { fifa: 21,  pop: '~89M',  capital: 'Tahran',      nickname: 'Team Melli',    coach: 'Amir Ghalenoei', stars: 0, funFacts: ['2014, 2018, 2022\'de Dünya Kupası.','2022\'de Galler\'i 2-0 yendi.','ABD vizesi sorunları nedeniyle Meksika\'da kamp yaptı.'] },
-  'Egypt':           { fifa: 36,  pop: '~110M', capital: 'Kahire',      nickname: 'Pharaohs',      coach: 'Hossam Hassan', stars: 0, funFacts: ['3 kez Afrika Uluslar Kupası üst üste.','2018\'de son Dünya Kupası (Suarez ile Salah sakatlığı).','Salah dünya starı.'] },
-  'New Zealand':     { fifa: 89,  pop: '~5.2M', capital: 'Wellington',  nickname: 'All Whites',    coach: 'Darren Bazeley', stars: 0, funFacts: ['2010\'da grup aşamasında Şili ve İspanya ile berabere kaldı.','2022\'de Playoff\'ta kaybetti.','OFC bölgesinin dünya kupası geleneği.'] },
-  'Spain':           { fifa: 8,   pop: '~48M',  capital: 'Madrid',      nickname: 'La Furia Roja', coach: 'Luis de la Fuente', stars: 1, funFacts: ['2010 Dünya Kupası şampiyonu.','2008-2012 üst üste 3 büyük turnuva şampiyonu.','Tiki-taka futbolun anavatanı.'] },
+  'Fildişi Sahili':    { fifa: 46,  pop: '~28M',  capital: 'Yamoussoukro', nickname: 'Les Éléphants', coach: 'Emerse Faé', stars: 0, funFacts: ['2010 ve 2014\'te Dünya Kupası\'nda.','2015 Afrika Uluslar Kupası şampiyonu.','Didier Drogba efsanesi.'] },
+  'Ekvador':         { fifa: 30,  pop: '~18M',  capital: 'Quito',       nickname: 'La Tri',        coach: 'Sebastián Beccacece', stars: 0, funFacts: ['2006\'da son 16 turuna çıktı.','Deniz seviyesinden yüksek Quito\'da ev maçları oynuyor.','Enner Valencia gol kralı.'] },
+  'Hollanda':     { fifa: 7,   pop: '~18M',  capital: 'Amsterdam',   nickname: 'Oranje',        coach: 'Ronald Koeman', stars: 0, funFacts: ['3 kez finalist (1974, 1978, 2010) hiç kazanamadı.','2014 üçüncülük, 2022 çeyrek final.','Total Football\'un doğduğu ülke.'] },
+  'Japonya':           { fifa: 18,  pop: '~124M', capital: 'Tokyo',       nickname: 'Samurai Blue',  coach: 'Hajime Moriyasu', stars: 0, funFacts: ['2018 ve 2022\'de son 16 turuna çıktı.','2022\'de Almanya ve İspanya\'yı 2-1\'lik skorlarla yendi.','2022 Dünya Kupası sürpriz takımı.'] },
+  'Tunus':         { fifa: 41,  pop: '~12M',  capital: 'Tunus',       nickname: 'Carthage Eagles', coach: 'Faouzi Benzarti', stars: 0, funFacts: ['1978\'de Meksika\'yı 3-1 yendi (tarihi galibiyet).','2006\'da grup aşamasında elendi ama İspanya\'yı zorladı.','2022\'de Fransa ile 1-0 gerideyken maç kaçırdı.'] },
+  'İsveç':          { fifa: 31,  pop: '~10.5M', capital: 'Stockholm',  nickname: 'Blågult',       coach: 'Jon Dahl Tomasson', stars: 0, funFacts: ['1958\'de ev sahibi olarak finalist.','2018 çeyrek finali.','Zlatan\'ın yokluğunda yeni dönem.'] },
+  'Belçika':         { fifa: 3,   pop: '~12M',  capital: 'Brüksel',     nickname: 'Red Devils',    coach: 'Domenico Tedesco', stars: 0, funFacts: ['2018 üçüncüsü, 2022 grup elemesi (kötü sürpriz).','2014-2022 arası uzun altın jenerasyon.','Lukaku, De Bruyne, Hazard.'] },
+  'İran':            { fifa: 21,  pop: '~89M',  capital: 'Tahran',      nickname: 'Team Melli',    coach: 'Amir Ghalenoei', stars: 0, funFacts: ['2014, 2018, 2022\'de Dünya Kupası.','2022\'de Galler\'i 2-0 yendi.','ABD vizesi sorunları nedeniyle Meksika\'da kamp yaptı.'] },
+  'Mısır':           { fifa: 36,  pop: '~110M', capital: 'Kahire',      nickname: 'Pharaohs',      coach: 'Hossam Hassan', stars: 0, funFacts: ['3 kez Afrika Uluslar Kupası üst üste.','2018\'de son Dünya Kupası (Suarez ile Salah sakatlığı).','Salah dünya starı.'] },
+  'Yeni Zelanda':     { fifa: 89,  pop: '~5.2M', capital: 'Wellington',  nickname: 'All Whites',    coach: 'Darren Bazeley', stars: 0, funFacts: ['2010\'da grup aşamasında Şili ve İspanya ile berabere kaldı.','2022\'de Playoff\'ta kaybetti.','OFC bölgesinin dünya kupası geleneği.'] },
+  'İspanya':           { fifa: 8,   pop: '~48M',  capital: 'Madrid',      nickname: 'La Furia Roja', coach: 'Luis de la Fuente', stars: 1, funFacts: ['2010 Dünya Kupası şampiyonu.','2008-2012 üst üste 3 büyük turnuva şampiyonu.','Tiki-taka futbolun anavatanı.'] },
   'Uruguay':         { fifa: 13,  pop: '~3.4M', capital: 'Montevideo',  nickname: 'La Celeste',    coach: 'Marcelo Bielsa', stars: 2, funFacts: ['2 kez Dünya Kupası şampiyonu (1930, 1950).','2022 çeyrek finali.','Suárez ve Cavani efsaneleri.'] },
-  'Saudi Arabia':    { fifa: 56,  pop: '~36M',  capital: 'Riyad',       nickname: 'The Green Falcons', coach: 'Hervé Renard', stars: 0, funFacts: ['2022\'de Arjantin\'i 2-1 yendi (büyük sürpriz).','1994 son 16 turu.','Al-Hilal, Al-Ahli gibi kulüpler.'] },
+  'Suudi Arabistan':    { fifa: 56,  pop: '~36M',  capital: 'Riyad',       nickname: 'The Green Falcons', coach: 'Hervé Renard', stars: 0, funFacts: ['2022\'de Arjantin\'i 2-1 yendi (büyük sürpriz).','1994 son 16 turu.','Al-Hilal, Al-Ahli gibi kulüpler.'] },
   'Cabo Verde':      { fifa: 67,  pop: '~600K', capital: 'Praia',       nickname: 'Tubarões Azuis', coach: 'Pedro Leitão',  stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2024 AFCON çeyrek finali.','Avrupa\'da oynayan çok sayıda oyuncusu var.'] },
-  'France':          { fifa: 2,   pop: '~68M',  capital: 'Paris',       nickname: 'Les Bleus',     coach: 'Didier Deschamps', stars: 2, funFacts: ['2 kez şampiyon (1998, 2018).','2022 finalist.','Mbappé, Griezmann, Kanté yıldızları.'] },
+  'Fransa':          { fifa: 2,   pop: '~68M',  capital: 'Paris',       nickname: 'Les Bleus',     coach: 'Didier Deschamps', stars: 2, funFacts: ['2 kez şampiyon (1998, 2018).','2022 finalist.','Mbappé, Griezmann, Kanté yıldızları.'] },
   'Senegal':         { fifa: 19,  pop: '~17M',  capital: 'Dakar',       nickname: 'Lions of Teranga', coach: 'Aliou Cissé', stars: 0, funFacts: ['2022 son 16 turu.','2002 çeyrek finali (ilk turda Fransa\'yı yendi).','Mané takımın efsanesi.'] },
-  'Norway':          { fifa: 32,  pop: '~5.5M', capital: 'Oslo',        nickname: 'Drillos',       coach: 'Ståle Solbakken', stars: 0, funFacts: ['1998 grup aşaması son Dünya Kupası.','Erling Haaland bu turnuvada yok.','1994-2000 döneminde altın jenerasyon.'] },
-  'Iraq':            { fifa: 56,  pop: '~45M',  capital: 'Bağdat',      nickname: 'Lions of Mesopotamia', coach: 'Jesus Casas', stars: 0, funFacts: ['2007 Asya Kupası şampiyonu.','1986\'da tek Dünya Kupası (Meksika).','2022 playoff maçı kaçırdı.'] },
-  'Argentina':       { fifa: 1,   pop: '~46M',  capital: 'Buenos Aires', nickname: 'La Albiceleste', coach: 'Lionel Scaloni', stars: 3, funFacts: ['2022 Dünya Kupası şampiyonu.','3 kez şampiyon (1978, 1986, 2022).','Messi son turnuvası.'] },
-  'Austria':         { fifa: 25,  pop: '~9.1M', capital: 'Viyana',      nickname: 'Das Team',      coach: 'Ralf Rangnick', stars: 0, funFacts: ['1954 3.lüğü (Wunderteam).','2024 Euro son 16 turu.','David Alaba efsanesi.'] },
-  'Algeria':         { fifa: 37,  pop: '~45M',  capital: 'Cezayir',     nickname: 'Les Fennecs',   coach: 'Vladimir Petković', stars: 0, funFacts: ['2014 son 16 turu (Almanya\'yı zorladı).','2019 Afrika Uluslar Kupası şampiyonu.','Mahrez takımın yıldızı.'] },
-  'Jordan':          { fifa: 64,  pop: '~11M',  capital: 'Amman',       nickname: 'The Chivalrous', coach: 'Hussein Ammouta', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2023 Asya Kupası finalist.','AFC bölgesi sürprizi.'] },
-  'Portugal':        { fifa: 6,   pop: '~10.4M', capital: 'Lizbon',     nickname: 'A Seleção',     coach: 'Roberto Martínez', stars: 0, funFacts: ['2016 Avrupa şampiyonu.','2022 çeyrek finali.','Cristiano Ronaldo\'nun son Dünya Kupası.'] },
-  'Colombia':        { fifa: 12,  pop: '~52M',  capital: 'Bogota',      nickname: 'Los Cafeteros', coach: 'Néstor Lorenzo', stars: 0, funFacts: ['2014 çeyrek finali.','2014\'te Brezilya\'yı zorladı.','James Rodríguez 2014 altın ayakkabı.'] },
-  'Uzbekistan':      { fifa: 58,  pop: '~36M',  capital: 'Taşkent',     nickname: 'White Wolves',  coach: 'Srečko Katanec', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2024 AFCON yarı finali.','Orta Asya futbolunun yükseleni.'] },
-  'DR Congo':        { fifa: 60,  pop: '~105M', capital: 'Kinşasa',     nickname: 'Léopards',      coach: 'Sébastien Desabre', stars: 0, funFacts: ['1974\'te Zaire olarak Dünya Kupası.','2019 AFCON üçüncüsü.','Asya ve Avrupa\'da oynayan yıldızlar.'] },
-  'England':         { fifa: 4,   pop: '~57M',  capital: 'Londra',      nickname: 'Three Lions',   coach: 'Thomas Tuchel',  stars: 1, funFacts: ['1966 şampiyonu (son şampiyonluk).','2018 ve 2024 yarı finali.','Bellingham, Saka, Foden genç yıldızlar.'] },
-  'Croatia':         { fifa: 10,  pop: '~3.9M', capital: 'Zagreb',      nickname: 'Vatreni',       coach: 'Zlatko Dalić',  stars: 0, funFacts: ['2018 finalist, 2022 üçüncü.','2018 sonrası çıta yükseldi.','Modrić 2018 Ballon d\'Or.'] },
-  'Ghana':           { fifa: 76,  pop: '~33M',  capital: 'Akra',        nickname: 'Black Stars',   coach: 'Otto Addo',     stars: 0, funFacts: ['2010 çeyrek finali (Uruguay elendi).','2014\'te ABD karşısında dramatik maç.','Asamoah Gyan efsanesi.'] },
+  'Norveç':          { fifa: 32,  pop: '~5.5M', capital: 'Oslo',        nickname: 'Drillos',       coach: 'Ståle Solbakken', stars: 0, funFacts: ['1998 grup aşaması son Dünya Kupası.','Erling Haaland bu turnuvada yok.','1994-2000 döneminde altın jenerasyon.'] },
+  'Irak':            { fifa: 56,  pop: '~45M',  capital: 'Bağdat',      nickname: 'Lions of Mesopotamia', coach: 'Jesus Casas', stars: 0, funFacts: ['2007 Asya Kupası şampiyonu.','1986\'da tek Dünya Kupası (Meksika).','2022 playoff maçı kaçırdı.'] },
+  'Arjantin':       { fifa: 1,   pop: '~46M',  capital: 'Buenos Aires', nickname: 'La Albiceleste', coach: 'Lionel Scaloni', stars: 3, funFacts: ['2022 Dünya Kupası şampiyonu.','3 kez şampiyon (1978, 1986, 2022).','Messi son turnuvası.'] },
+  'Avusturya':         { fifa: 25,  pop: '~9.1M', capital: 'Viyana',      nickname: 'Das Team',      coach: 'Ralf Rangnick', stars: 0, funFacts: ['1954 3.lüğü (Wunderteam).','2024 Euro son 16 turu.','David Alaba efsanesi.'] },
+  'Cezayir':         { fifa: 37,  pop: '~45M',  capital: 'Cezayir',     nickname: 'Les Fennecs',   coach: 'Vladimir Petković', stars: 0, funFacts: ['2014 son 16 turu (Almanya\'yı zorladı).','2019 Afrika Uluslar Kupası şampiyonu.','Mahrez takımın yıldızı.'] },
+  'Ürdün':          { fifa: 64,  pop: '~11M',  capital: 'Amman',       nickname: 'The Chivalrous', coach: 'Hussein Ammouta', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2023 Asya Kupası finalist.','AFC bölgesi sürprizi.'] },
+  'Portekiz':        { fifa: 6,   pop: '~10.4M', capital: 'Lizbon',     nickname: 'A Seleção',     coach: 'Roberto Martínez', stars: 0, funFacts: ['2016 Avrupa şampiyonu.','2022 çeyrek finali.','Cristiano Ronaldo\'nun son Dünya Kupası.'] },
+  'Kolombiya':        { fifa: 12,  pop: '~52M',  capital: 'Bogota',      nickname: 'Los Cafeteros', coach: 'Néstor Lorenzo', stars: 0, funFacts: ['2014 çeyrek finali.','2014\'te Brezilya\'yı zorladı.','James Rodríguez 2014 altın ayakkabı.'] },
+  'Özbekistan':      { fifa: 58,  pop: '~36M',  capital: 'Taşkent',     nickname: 'White Wolves',  coach: 'Srečko Katanec', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2024 AFCON yarı finali.','Orta Asya futbolunun yükseleni.'] },
+  'Kongo DC':        { fifa: 60,  pop: '~105M', capital: 'Kinşasa',     nickname: 'Léopards',      coach: 'Sébastien Desabre', stars: 0, funFacts: ['1974\'te Zaire olarak Dünya Kupası.','2019 AFCON üçüncüsü.','Asya ve Avrupa\'da oynayan yıldızlar.'] },
+  'İngiltere':         { fifa: 4,   pop: '~57M',  capital: 'Londra',      nickname: 'Three Lions',   coach: 'Thomas Tuchel',  stars: 1, funFacts: ['1966 şampiyonu (son şampiyonluk).','2018 ve 2024 yarı finali.','Bellingham, Saka, Foden genç yıldızlar.'] },
+  'Hırvatistan':         { fifa: 10,  pop: '~3.9M', capital: 'Zagreb',      nickname: 'Vatreni',       coach: 'Zlatko Dalić',  stars: 0, funFacts: ['2018 finalist, 2022 üçüncü.','2018 sonrası çıta yükseldi.','Modrić 2018 Ballon d\'Or.'] },
+  'Gana':           { fifa: 76,  pop: '~33M',  capital: 'Akra',        nickname: 'Black Stars',   coach: 'Otto Addo',     stars: 0, funFacts: ['2010 çeyrek finali (Uruguay elendi).','2014\'te ABD karşısında dramatik maç.','Asamoah Gyan efsanesi.'] },
   'Panama':          { fifa: 41,  pop: '~4.4M', capital: 'Panama City', nickname: 'Los Canaleros', coach: 'Thomas Christiansen', stars: 0, funFacts: ['2018\'deki ilk Dünya Kupası.','2018\'de İngiltere\'ye 6-1 kaybetti.','2024 Copa America yarı finali.'] },
   'Wales':           { fifa: 26,  pop: '~3.1M', capital: 'Cardiff',     nickname: 'Dragons',       coach: 'Craig Bellamy', stars: 0, funFacts: ['1958 son Dünya Kupası (yeni nesil için 2022 vardı ama playoff kaybetti).','2016 Avrupa yarı finali.','Gareth Bale efsanesi.'] }
 };
@@ -1472,153 +1472,153 @@ const TEAM_INFO = {
 const MATCHES = [
   // ----- A GRUBU -----
   // 11 Haziran 22:00 açılış. 12 Haziran 05:00 Kore-Çekya. Dikkat: TSİ programı 11 Haziran'da başlıyor.
-  { id: 1,  group: 'A', date: '2026-06-11', time: '22:00', home: 'Mexico',            away: 'South Africa',   venue: 'Estadio Azteca, Mexico City' },
-  { id: 2,  group: 'A', date: '2026-06-12', time: '05:00', home: 'Korea Republic',    away: 'Czechia',         venue: 'Estadio Akron, Guadalajara' },
-  { id: 3,  group: 'A', date: '2026-06-18', time: '19:00', home: 'Czechia',           away: 'South Africa',   venue: 'Mercedes-Benz Stadium, Atlanta' },
-  { id: 4,  group: 'A', date: '2026-06-19', time: '04:00', home: 'Mexico',            away: 'Korea Republic',  venue: 'Estadio Akron, Guadalajara' },
-  { id: 5,  group: 'A', date: '2026-06-25', time: '04:00', home: 'South Africa',      away: 'Korea Republic',  venue: 'Estadio BBVA, Monterrey' },
-  { id: 6,  group: 'A', date: '2026-06-25', time: '04:00', home: 'Czechia',           away: 'Mexico',          venue: 'Estadio Azteca, Mexico City' },
+  { id: 1,  group: 'A', date: '2026-06-11', time: '22:00', home: 'Meksika',            away: 'Güney Afrika',   venue: 'Estadio Azteca, Meksika City' },
+  { id: 2,  group: 'A', date: '2026-06-12', time: '05:00', home: 'Güney Kore',    away: 'Çekya',         venue: 'Estadio Akron, Guadalajara' },
+  { id: 3,  group: 'A', date: '2026-06-18', time: '19:00', home: 'Çekya',           away: 'Güney Afrika',   venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 4,  group: 'A', date: '2026-06-19', time: '04:00', home: 'Meksika',            away: 'Güney Kore',  venue: 'Estadio Akron, Guadalajara' },
+  { id: 5,  group: 'A', date: '2026-06-25', time: '04:00', home: 'Güney Afrika',      away: 'Güney Kore',  venue: 'Estadio BBVA, Monterrey' },
+  { id: 6,  group: 'A', date: '2026-06-25', time: '04:00', home: 'Çekya',           away: 'Meksika',          venue: 'Estadio Azteca, Meksika City' },
 
   // ----- B GRUBU -----
-  { id: 7,  group: 'B', date: '2026-06-12', time: '22:00', home: 'Canada',            away: 'Bosnia and Herzegovina', venue: 'BMO Field, Toronto' },
-  { id: 8,  group: 'B', date: '2026-06-13', time: '22:00', home: 'Qatar',             away: 'Switzerland',     venue: "Levi's Stadium, San Francisco" },
-  { id: 9,  group: 'B', date: '2026-06-18', time: '22:00', home: 'Switzerland',       away: 'Bosnia and Herzegovina', venue: 'SoFi Stadium, Los Angeles' },
-  { id: 10, group: 'B', date: '2026-06-19', time: '01:00', home: 'Canada',            away: 'Qatar',           venue: 'BC Place, Vancouver' },
-  { id: 11, group: 'B', date: '2026-06-24', time: '22:00', home: 'Canada',            away: 'Switzerland',     venue: 'BC Place, Vancouver' },
-  { id: 12, group: 'B', date: '2026-06-24', time: '22:00', home: 'Bosnia and Herzegovina', away: 'Qatar',       venue: 'Lumen Field, Seattle' },
+  { id: 7,  group: 'B', date: '2026-06-12', time: '22:00', home: 'Kanada',            away: 'Bosna Hersek', venue: 'BMO Field, Toronto' },
+  { id: 8,  group: 'B', date: '2026-06-13', time: '22:00', home: 'Katar',             away: 'İsviçre',     venue: "Levi's Stadium, San Francisco" },
+  { id: 9,  group: 'B', date: '2026-06-18', time: '22:00', home: 'İsviçre',       away: 'Bosna Hersek', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 10, group: 'B', date: '2026-06-19', time: '01:00', home: 'Kanada',            away: 'Katar',           venue: 'BC Place, Vancouver' },
+  { id: 11, group: 'B', date: '2026-06-24', time: '22:00', home: 'Kanada',            away: 'İsviçre',     venue: 'BC Place, Vancouver' },
+  { id: 12, group: 'B', date: '2026-06-24', time: '22:00', home: 'Bosna Hersek', away: 'Katar',       venue: 'Lumen Field, Seattle' },
 
   // ----- C GRUBU -----
-  { id: 13, group: 'C', date: '2026-06-14', time: '01:00', home: 'Brazil',            away: 'Morocco',         venue: 'MetLife Stadium, New York/NJ' },
-  { id: 14, group: 'C', date: '2026-06-14', time: '04:00', home: 'Haiti',             away: 'Scotland',        venue: 'Gillette Stadium, Boston' },
-  { id: 15, group: 'C', date: '2026-06-20', time: '01:00', home: 'Scotland',          away: 'Morocco',         venue: 'Gillette Stadium, Boston' },
-  { id: 16, group: 'C', date: '2026-06-20', time: '03:30', home: 'Brazil',            away: 'Haiti',           venue: 'Lincoln Financial Field, Philadelphia' },
-  { id: 17, group: 'C', date: '2026-06-25', time: '01:00', home: 'Scotland',          away: 'Brazil',          venue: 'Hard Rock Stadium, Miami' },
-  { id: 18, group: 'C', date: '2026-06-25', time: '01:00', home: 'Morocco',           away: 'Haiti',           venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 13, group: 'C', date: '2026-06-14', time: '01:00', home: 'Brezilya',            away: 'Fas',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 14, group: 'C', date: '2026-06-14', time: '04:00', home: 'Haiti',             away: 'İskoçya',        venue: 'Gillette Stadium, Boston' },
+  { id: 15, group: 'C', date: '2026-06-20', time: '01:00', home: 'İskoçya',          away: 'Fas',         venue: 'Gillette Stadium, Boston' },
+  { id: 16, group: 'C', date: '2026-06-20', time: '03:30', home: 'Brezilya',            away: 'Haiti',           venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 17, group: 'C', date: '2026-06-25', time: '01:00', home: 'İskoçya',          away: 'Brezilya',          venue: 'Hard Rock Stadium, Miami' },
+  { id: 18, group: 'C', date: '2026-06-25', time: '01:00', home: 'Fas',           away: 'Haiti',           venue: 'Mercedes-Benz Stadium, Atlanta' },
 
   // ----- D GRUBU -----
-  { id: 19, group: 'D', date: '2026-06-13', time: '04:00', home: 'USA',               away: 'Paraguay',        venue: 'SoFi Stadium, Los Angeles' },
-  { id: 20, group: 'D', date: '2026-06-14', time: '07:00', home: 'Australia',         away: 'Türkiye',         venue: 'BC Place, Vancouver' },
+  { id: 19, group: 'D', date: '2026-06-13', time: '04:00', home: 'ABD',               away: 'Paraguay',        venue: 'SoFi Stadium, Los Angeles' },
+  { id: 20, group: 'D', date: '2026-06-14', time: '07:00', home: 'Avustralya',         away: 'Türkiye',         venue: 'BC Place, Vancouver' },
   { id: 21, group: 'D', date: '2026-06-20', time: '06:00', home: 'Türkiye',           away: 'Paraguay',        venue: "Levi's Stadium, San Francisco" },
-  { id: 22, group: 'D', date: '2026-06-19', time: '22:00', home: 'USA',               away: 'Australia',       venue: 'Lumen Field, Seattle' },
-  { id: 23, group: 'D', date: '2026-06-26', time: '05:00', home: 'Türkiye',           away: 'USA',             venue: 'SoFi Stadium, Los Angeles' },
-  { id: 24, group: 'D', date: '2026-06-26', time: '05:00', home: 'Paraguay',          away: 'Australia',       venue: "Levi's Stadium, San Francisco" },
+  { id: 22, group: 'D', date: '2026-06-19', time: '22:00', home: 'ABD',               away: 'Avustralya',       venue: 'Lumen Field, Seattle' },
+  { id: 23, group: 'D', date: '2026-06-26', time: '05:00', home: 'Türkiye',           away: 'ABD',             venue: 'SoFi Stadium, Los Angeles' },
+  { id: 24, group: 'D', date: '2026-06-26', time: '05:00', home: 'Paraguay',          away: 'Avustralya',       venue: "Levi's Stadium, San Francisco" },
 
   // ----- E GRUBU (Ölüm Grubu) -----
-  { id: 25, group: 'E', date: '2026-06-14', time: '20:00', home: 'Germany',           away: 'Curaçao',         venue: 'NRG Stadium, Houston' },
-  { id: 26, group: 'E', date: '2026-06-15', time: '02:00', home: 'Cote dIvoire',      away: 'Ecuador',         venue: 'Lincoln Financial Field, Philadelphia' },
-  { id: 27, group: 'E', date: '2026-06-20', time: '23:00', home: 'Germany',           away: 'Cote dIvoire',    venue: 'BMO Field, Toronto' },
-  { id: 28, group: 'E', date: '2026-06-21', time: '03:00', home: 'Ecuador',           away: 'Curaçao',         venue: 'Arrowhead Stadium, Kansas City' },
-  { id: 29, group: 'E', date: '2026-06-25', time: '23:00', home: 'Curaçao',           away: 'Cote dIvoire',    venue: 'Lincoln Financial Field, Philadelphia' },
-  { id: 30, group: 'E', date: '2026-06-25', time: '23:00', home: 'Ecuador',           away: 'Germany',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 25, group: 'E', date: '2026-06-14', time: '20:00', home: 'Almanya',           away: 'Curaçao',         venue: 'NRG Stadium, Houston' },
+  { id: 26, group: 'E', date: '2026-06-15', time: '02:00', home: 'Fildişi Sahili',      away: 'Ekvador',         venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 27, group: 'E', date: '2026-06-20', time: '23:00', home: 'Almanya',           away: 'Fildişi Sahili',    venue: 'BMO Field, Toronto' },
+  { id: 28, group: 'E', date: '2026-06-21', time: '03:00', home: 'Ekvador',           away: 'Curaçao',         venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 29, group: 'E', date: '2026-06-25', time: '23:00', home: 'Curaçao',           away: 'Fildişi Sahili',    venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 30, group: 'E', date: '2026-06-25', time: '23:00', home: 'Ekvador',           away: 'Almanya',         venue: 'MetLife Stadium, New York/NJ' },
 
   // ----- F GRUBU -----
-  { id: 31, group: 'F', date: '2026-06-14', time: '23:00', home: 'Netherlands',       away: 'Japan',           venue: 'AT&T Stadium, Dallas' },
-  { id: 32, group: 'F', date: '2026-06-15', time: '05:00', home: 'Sweden',            away: 'Tunisia',         venue: 'Estadio BBVA, Monterrey' },
-  { id: 33, group: 'F', date: '2026-06-20', time: '20:00', home: 'Netherlands',       away: 'Sweden',          venue: 'NRG Stadium, Houston' },
-  { id: 34, group: 'F', date: '2026-06-21', time: '07:00', home: 'Tunisia',           away: 'Japan',           venue: 'Estadio BBVA, Monterrey' },
-  { id: 35, group: 'F', date: '2026-06-26', time: '02:00', home: 'Japan',             away: 'Sweden',          venue: 'AT&T Stadium, Dallas' },
-  { id: 36, group: 'F', date: '2026-06-26', time: '02:00', home: 'Tunisia',           away: 'Netherlands',     venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 31, group: 'F', date: '2026-06-14', time: '23:00', home: 'Hollanda',       away: 'Japonya',           venue: 'AT&T Stadium, Dallas' },
+  { id: 32, group: 'F', date: '2026-06-15', time: '05:00', home: 'İsveç',            away: 'Tunus',         venue: 'Estadio BBVA, Monterrey' },
+  { id: 33, group: 'F', date: '2026-06-20', time: '20:00', home: 'Hollanda',       away: 'İsveç',          venue: 'NRG Stadium, Houston' },
+  { id: 34, group: 'F', date: '2026-06-21', time: '07:00', home: 'Tunus',           away: 'Japonya',           venue: 'Estadio BBVA, Monterrey' },
+  { id: 35, group: 'F', date: '2026-06-26', time: '02:00', home: 'Japonya',             away: 'İsveç',          venue: 'AT&T Stadium, Dallas' },
+  { id: 36, group: 'F', date: '2026-06-26', time: '02:00', home: 'Tunus',           away: 'Hollanda',     venue: 'Arrowhead Stadium, Kansas City' },
 
   // ----- G GRUBU -----
-  { id: 37, group: 'G', date: '2026-06-15', time: '22:00', home: 'Belgium',           away: 'Egypt',           venue: 'Lumen Field, Seattle' },
-  { id: 38, group: 'G', date: '2026-06-16', time: '04:00', home: 'Iran',              away: 'New Zealand',     venue: 'SoFi Stadium, Los Angeles' },
-  { id: 39, group: 'G', date: '2026-06-21', time: '22:00', home: 'Belgium',           away: 'Iran',            venue: 'SoFi Stadium, Los Angeles' },
-  { id: 40, group: 'G', date: '2026-06-22', time: '04:00', home: 'New Zealand',       away: 'Egypt',           venue: 'BC Place, Vancouver' },
-  { id: 41, group: 'G', date: '2026-06-27', time: '06:00', home: 'New Zealand',       away: 'Belgium',         venue: 'BC Place, Vancouver' },
-  { id: 42, group: 'G', date: '2026-06-27', time: '06:00', home: 'Egypt',             away: 'Iran',            venue: 'Lumen Field, Seattle' },
+  { id: 37, group: 'G', date: '2026-06-15', time: '22:00', home: 'Belçika',           away: 'Mısır',           venue: 'Lumen Field, Seattle' },
+  { id: 38, group: 'G', date: '2026-06-16', time: '04:00', home: 'İran',              away: 'Yeni Zelanda',     venue: 'SoFi Stadium, Los Angeles' },
+  { id: 39, group: 'G', date: '2026-06-21', time: '22:00', home: 'Belçika',           away: 'İran',            venue: 'SoFi Stadium, Los Angeles' },
+  { id: 40, group: 'G', date: '2026-06-22', time: '04:00', home: 'Yeni Zelanda',       away: 'Mısır',           venue: 'BC Place, Vancouver' },
+  { id: 41, group: 'G', date: '2026-06-27', time: '06:00', home: 'Yeni Zelanda',       away: 'Belçika',         venue: 'BC Place, Vancouver' },
+  { id: 42, group: 'G', date: '2026-06-27', time: '06:00', home: 'Mısır',             away: 'İran',            venue: 'Lumen Field, Seattle' },
 
   // ----- H GRUBU -----
-  { id: 43, group: 'H', date: '2026-06-15', time: '19:00', home: 'Spain',             away: 'Cabo Verde',      venue: 'Mercedes-Benz Stadium, Atlanta' },
-  { id: 44, group: 'H', date: '2026-06-16', time: '01:00', home: 'Saudi Arabia',      away: 'Uruguay',         venue: 'Hard Rock Stadium, Miami' },
-  { id: 45, group: 'H', date: '2026-06-21', time: '19:00', home: 'Spain',             away: 'Saudi Arabia',    venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 43, group: 'H', date: '2026-06-15', time: '19:00', home: 'İspanya',             away: 'Cabo Verde',      venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 44, group: 'H', date: '2026-06-16', time: '01:00', home: 'Suudi Arabistan',      away: 'Uruguay',         venue: 'Hard Rock Stadium, Miami' },
+  { id: 45, group: 'H', date: '2026-06-21', time: '19:00', home: 'İspanya',             away: 'Suudi Arabistan',    venue: 'Mercedes-Benz Stadium, Atlanta' },
   { id: 46, group: 'H', date: '2026-06-22', time: '01:00', home: 'Uruguay',           away: 'Cabo Verde',      venue: 'Hard Rock Stadium, Miami' },
-  { id: 47, group: 'H', date: '2026-06-27', time: '03:00', home: 'Cabo Verde',        away: 'Saudi Arabia',    venue: 'NRG Stadium, Houston' },
-  { id: 48, group: 'H', date: '2026-06-27', time: '03:00', home: 'Uruguay',           away: 'Spain',           venue: 'Estadio Akron, Guadalajara' },
+  { id: 47, group: 'H', date: '2026-06-27', time: '03:00', home: 'Cabo Verde',        away: 'Suudi Arabistan',    venue: 'NRG Stadium, Houston' },
+  { id: 48, group: 'H', date: '2026-06-27', time: '03:00', home: 'Uruguay',           away: 'İspanya',           venue: 'Estadio Akron, Guadalajara' },
 
   // ----- I GRUBU -----
-  { id: 49, group: 'I', date: '2026-06-16', time: '22:00', home: 'France',            away: 'Senegal',         venue: 'MetLife Stadium, New York/NJ' },
-  { id: 50, group: 'I', date: '2026-06-17', time: '01:00', home: 'Iraq',              away: 'Norway',          venue: 'Gillette Stadium, Boston' },
-  { id: 51, group: 'I', date: '2026-06-23', time: '00:00', home: 'France',            away: 'Iraq',            venue: 'Lincoln Financial Field, Philadelphia' },
-  { id: 52, group: 'I', date: '2026-06-23', time: '03:00', home: 'Norway',            away: 'Senegal',         venue: 'MetLife Stadium, New York/NJ' },
-  { id: 53, group: 'I', date: '2026-06-26', time: '22:00', home: 'Norway',            away: 'France',          venue: 'Gillette Stadium, Boston' },
-  { id: 54, group: 'I', date: '2026-06-26', time: '22:00', home: 'Senegal',           away: 'Iraq',            venue: 'BMO Field, Toronto' },
+  { id: 49, group: 'I', date: '2026-06-16', time: '22:00', home: 'Fransa',            away: 'Senegal',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 50, group: 'I', date: '2026-06-17', time: '01:00', home: 'Irak',              away: 'Norveç',          venue: 'Gillette Stadium, Boston' },
+  { id: 51, group: 'I', date: '2026-06-23', time: '00:00', home: 'Fransa',            away: 'Irak',            venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 52, group: 'I', date: '2026-06-23', time: '03:00', home: 'Norveç',            away: 'Senegal',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 53, group: 'I', date: '2026-06-26', time: '22:00', home: 'Norveç',            away: 'Fransa',          venue: 'Gillette Stadium, Boston' },
+  { id: 54, group: 'I', date: '2026-06-26', time: '22:00', home: 'Senegal',           away: 'Irak',            venue: 'BMO Field, Toronto' },
 
   // ----- J GRUBU -----
-  { id: 55, group: 'J', date: '2026-06-17', time: '04:00', home: 'Argentina',         away: 'Algeria',         venue: 'Arrowhead Stadium, Kansas City' },
-  { id: 56, group: 'J', date: '2026-06-17', time: '07:00', home: 'Austria',           away: 'Jordan',          venue: "Levi's Stadium, San Francisco" },
-  { id: 57, group: 'J', date: '2026-06-22', time: '20:00', home: 'Argentina',         away: 'Austria',         venue: 'AT&T Stadium, Dallas' },
-  { id: 58, group: 'J', date: '2026-06-23', time: '06:00', home: 'Algeria',           away: 'Jordan',          venue: "Levi's Stadium, San Francisco" },
-  { id: 59, group: 'J', date: '2026-06-28', time: '05:00', home: 'Jordan',            away: 'Argentina',       venue: 'AT&T Stadium, Dallas' },
-  { id: 60, group: 'J', date: '2026-06-28', time: '05:00', home: 'Algeria',           away: 'Austria',         venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 55, group: 'J', date: '2026-06-17', time: '04:00', home: 'Arjantin',         away: 'Cezayir',         venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 56, group: 'J', date: '2026-06-17', time: '07:00', home: 'Avusturya',           away: 'Ürdün',          venue: "Levi's Stadium, San Francisco" },
+  { id: 57, group: 'J', date: '2026-06-22', time: '20:00', home: 'Arjantin',         away: 'Avusturya',         venue: 'AT&T Stadium, Dallas' },
+  { id: 58, group: 'J', date: '2026-06-23', time: '06:00', home: 'Cezayir',           away: 'Ürdün',          venue: "Levi's Stadium, San Francisco" },
+  { id: 59, group: 'J', date: '2026-06-28', time: '05:00', home: 'Ürdün',            away: 'Arjantin',       venue: 'AT&T Stadium, Dallas' },
+  { id: 60, group: 'J', date: '2026-06-28', time: '05:00', home: 'Cezayir',           away: 'Avusturya',         venue: 'Arrowhead Stadium, Kansas City' },
 
   // ----- K GRUBU -----
-  { id: 61, group: 'K', date: '2026-06-17', time: '20:00', home: 'Portugal',          away: 'DR Congo',        venue: 'NRG Stadium, Houston' },
-  { id: 62, group: 'K', date: '2026-06-18', time: '05:00', home: 'Uzbekistan',        away: 'Colombia',        venue: 'Estadio Azteca, Mexico City' },
-  { id: 63, group: 'K', date: '2026-06-23', time: '20:00', home: 'Portugal',          away: 'Uzbekistan',      venue: 'NRG Stadium, Houston' },
-  { id: 64, group: 'K', date: '2026-06-24', time: '05:00', home: 'Colombia',          away: 'DR Congo',        venue: 'Estadio Akron, Guadalajara' },
-  { id: 65, group: 'K', date: '2026-06-28', time: '02:30', home: 'DR Congo',          away: 'Uzbekistan',      venue: 'Mercedes-Benz Stadium, Atlanta' },
-  { id: 66, group: 'K', date: '2026-06-28', time: '02:30', home: 'Colombia',          away: 'Portugal',        venue: 'Hard Rock Stadium, Miami' },
+  { id: 61, group: 'K', date: '2026-06-17', time: '20:00', home: 'Portekiz',          away: 'Kongo DC',        venue: 'NRG Stadium, Houston' },
+  { id: 62, group: 'K', date: '2026-06-18', time: '05:00', home: 'Özbekistan',        away: 'Kolombiya',        venue: 'Estadio Azteca, Meksika City' },
+  { id: 63, group: 'K', date: '2026-06-23', time: '20:00', home: 'Portekiz',          away: 'Özbekistan',      venue: 'NRG Stadium, Houston' },
+  { id: 64, group: 'K', date: '2026-06-24', time: '05:00', home: 'Kolombiya',          away: 'Kongo DC',        venue: 'Estadio Akron, Guadalajara' },
+  { id: 65, group: 'K', date: '2026-06-28', time: '02:30', home: 'Kongo DC',          away: 'Özbekistan',      venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 66, group: 'K', date: '2026-06-28', time: '02:30', home: 'Kolombiya',          away: 'Portekiz',        venue: 'Hard Rock Stadium, Miami' },
 
   // ----- L GRUBU -----
-  { id: 67, group: 'L', date: '2026-06-17', time: '23:00', home: 'England',           away: 'Croatia',         venue: 'AT&T Stadium, Dallas' },
-  { id: 68, group: 'L', date: '2026-06-18', time: '02:00', home: 'Ghana',             away: 'Panama',          venue: 'BMO Field, Toronto' },
-  { id: 69, group: 'L', date: '2026-06-23', time: '23:00', home: 'England',           away: 'Ghana',           venue: 'Gillette Stadium, Boston' },
-  { id: 70, group: 'L', date: '2026-06-24', time: '02:00', home: 'Croatia',           away: 'Panama',          venue: 'BMO Field, Toronto' },
-  { id: 71, group: 'L', date: '2026-06-28', time: '00:00', home: 'Panama',            away: 'England',         venue: 'MetLife Stadium, New York/NJ' },
-  { id: 72, group: 'L', date: '2026-06-28', time: '00:00', home: 'Croatia',           away: 'Ghana',           venue: 'Lincoln Financial Field, Philadelphia' }
+  { id: 67, group: 'L', date: '2026-06-17', time: '23:00', home: 'İngiltere',           away: 'Hırvatistan',         venue: 'AT&T Stadium, Dallas' },
+  { id: 68, group: 'L', date: '2026-06-18', time: '02:00', home: 'Gana',             away: 'Panama',          venue: 'BMO Field, Toronto' },
+  { id: 69, group: 'L', date: '2026-06-23', time: '23:00', home: 'İngiltere',           away: 'Gana',           venue: 'Gillette Stadium, Boston' },
+  { id: 70, group: 'L', date: '2026-06-24', time: '02:00', home: 'Hırvatistan',           away: 'Panama',          venue: 'BMO Field, Toronto' },
+  { id: 71, group: 'L', date: '2026-06-28', time: '00:00', home: 'Panama',            away: 'İngiltere',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 72, group: 'L', date: '2026-06-28', time: '00:00', home: 'Hırvatistan',           away: 'Gana',           venue: 'Lincoln Financial Field, Philadelphia' }
 ];
 
 /* ============================================
    ELEME (KNOCKOUT) MAÇLARI — 32 maç
-   Takımlar grup aşaması sonrası belli olur (TBD).
+   Takımlar grup aşaması sonrası belli olur (Belirlenecek).
    Saatler FIFA ET programına göre TSİ'ye çevrildi (ET + 7 saat, EDT).
    Kaynak: FIFA / Yahoo Sports programı (Haziran 2026).
    ============================================ */
 
 const KNOCKOUT_MATCHES = [
   // ----- SON 32 (1/16 finali) — 16 maç -----
-  { id: 73,  round: 'R32', matchNo: '73',  home: 'TBD', away: 'TBD', pairing: 'A Grubu 2. vs B Grubu 2.',            date: '2026-06-28', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
-  { id: 74,  round: 'R32', matchNo: '74',  home: 'TBD', away: 'TBD', pairing: 'C Grubu 1. vs F Grubu 2.',            date: '2026-06-29', time: '20:00', venue: 'NRG Stadium, Houston' },
-  { id: 75,  round: 'R32', matchNo: '75',  home: 'TBD', away: 'TBD', pairing: 'E Grubu 1. vs En İyi 3. (A/B/C/D/F)', date: '2026-06-29', time: '23:30', venue: 'Gillette Stadium, Boston' },
-  { id: 76,  round: 'R32', matchNo: '76',  home: 'TBD', away: 'TBD', pairing: 'F Grubu 1. vs C Grubu 2.',            date: '2026-06-30', time: '04:00', venue: 'Estadio BBVA, Monterrey' },
-  { id: 77,  round: 'R32', matchNo: '77',  home: 'TBD', away: 'TBD', pairing: 'E Grubu 2. vs I Grubu 2.',            date: '2026-06-30', time: '20:00', venue: 'AT&T Stadium, Dallas' },
-  { id: 78,  round: 'R32', matchNo: '78',  home: 'TBD', away: 'TBD', pairing: 'I Grubu 1. vs En İyi 3. (C/D/F/G/H)', date: '2026-07-01', time: '00:00', venue: 'MetLife Stadium, New York/NJ' },
-  { id: 79,  round: 'R32', matchNo: '79',  home: 'TBD', away: 'TBD', pairing: 'A Grubu 1. vs En İyi 3. (C/E/F/H/I)', date: '2026-07-01', time: '04:00', venue: 'Estadio Azteca, Mexico City' },
-  { id: 80,  round: 'R32', matchNo: '80',  home: 'TBD', away: 'TBD', pairing: 'L Grubu 1. vs En İyi 3. (E/H/I/J/K)', date: '2026-07-01', time: '19:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
-  { id: 81,  round: 'R32', matchNo: '81',  home: 'TBD', away: 'TBD', pairing: 'G Grubu 1. vs En İyi 3. (A/E/H/I/J)', date: '2026-07-01', time: '23:00', venue: 'Lumen Field, Seattle' },
-  { id: 82,  round: 'R32', matchNo: '82',  home: 'TBD', away: 'TBD', pairing: 'D Grubu 1. vs En İyi 3. (B/E/F/I/J)', date: '2026-07-02', time: '03:00', venue: "Levi's Stadium, San Francisco" },
-  { id: 83,  round: 'R32', matchNo: '83',  home: 'TBD', away: 'TBD', pairing: 'H Grubu 1. vs J Grubu 2.',            date: '2026-07-02', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
-  { id: 84,  round: 'R32', matchNo: '84',  home: 'TBD', away: 'TBD', pairing: 'K Grubu 2. vs L Grubu 2.',            date: '2026-07-03', time: '02:00', venue: 'BMO Field, Toronto' },
-  { id: 85,  round: 'R32', matchNo: '85',  home: 'TBD', away: 'TBD', pairing: 'B Grubu 1. vs En İyi 3. (E/F/G/I/J)', date: '2026-07-03', time: '06:00', venue: 'BC Place, Vancouver' },
-  { id: 86,  round: 'R32', matchNo: '86',  home: 'TBD', away: 'TBD', pairing: 'D Grubu 2. vs G Grubu 2.',            date: '2026-07-03', time: '21:00', venue: 'AT&T Stadium, Dallas' },
-  { id: 87,  round: 'R32', matchNo: '87',  home: 'TBD', away: 'TBD', pairing: 'J Grubu 1. vs H Grubu 2.',            date: '2026-07-04', time: '01:00', venue: 'Hard Rock Stadium, Miami' },
-  { id: 88,  round: 'R32', matchNo: '88',  home: 'TBD', away: 'TBD', pairing: 'K Grubu 1. vs En İyi 3. (D/E/I/J/L)', date: '2026-07-04', time: '04:30', venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 73,  round: 'R32', matchNo: '73',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'A Grubu 2. vs B Grubu 2.',            date: '2026-06-28', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 74,  round: 'R32', matchNo: '74',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'C Grubu 1. vs F Grubu 2.',            date: '2026-06-29', time: '20:00', venue: 'NRG Stadium, Houston' },
+  { id: 75,  round: 'R32', matchNo: '75',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'E Grubu 1. vs En İyi 3. (A/B/C/D/F)', date: '2026-06-29', time: '23:30', venue: 'Gillette Stadium, Boston' },
+  { id: 76,  round: 'R32', matchNo: '76',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'F Grubu 1. vs C Grubu 2.',            date: '2026-06-30', time: '04:00', venue: 'Estadio BBVA, Monterrey' },
+  { id: 77,  round: 'R32', matchNo: '77',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'E Grubu 2. vs I Grubu 2.',            date: '2026-06-30', time: '20:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 78,  round: 'R32', matchNo: '78',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'I Grubu 1. vs En İyi 3. (C/D/F/G/H)', date: '2026-07-01', time: '00:00', venue: 'MetLife Stadium, New York/NJ' },
+  { id: 79,  round: 'R32', matchNo: '79',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'A Grubu 1. vs En İyi 3. (C/E/F/H/I)', date: '2026-07-01', time: '04:00', venue: 'Estadio Azteca, Meksika City' },
+  { id: 80,  round: 'R32', matchNo: '80',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'L Grubu 1. vs En İyi 3. (E/H/I/J/K)', date: '2026-07-01', time: '19:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 81,  round: 'R32', matchNo: '81',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'G Grubu 1. vs En İyi 3. (A/E/H/I/J)', date: '2026-07-01', time: '23:00', venue: 'Lumen Field, Seattle' },
+  { id: 82,  round: 'R32', matchNo: '82',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'D Grubu 1. vs En İyi 3. (B/E/F/I/J)', date: '2026-07-02', time: '03:00', venue: "Levi's Stadium, San Francisco" },
+  { id: 83,  round: 'R32', matchNo: '83',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'H Grubu 1. vs J Grubu 2.',            date: '2026-07-02', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 84,  round: 'R32', matchNo: '84',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'K Grubu 2. vs L Grubu 2.',            date: '2026-07-03', time: '02:00', venue: 'BMO Field, Toronto' },
+  { id: 85,  round: 'R32', matchNo: '85',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'B Grubu 1. vs En İyi 3. (E/F/G/I/J)', date: '2026-07-03', time: '06:00', venue: 'BC Place, Vancouver' },
+  { id: 86,  round: 'R32', matchNo: '86',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'D Grubu 2. vs G Grubu 2.',            date: '2026-07-03', time: '21:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 87,  round: 'R32', matchNo: '87',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'J Grubu 1. vs H Grubu 2.',            date: '2026-07-04', time: '01:00', venue: 'Hard Rock Stadium, Miami' },
+  { id: 88,  round: 'R32', matchNo: '88',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'K Grubu 1. vs En İyi 3. (D/E/I/J/L)', date: '2026-07-04', time: '04:30', venue: 'Arrowhead Stadium, Kansas City' },
 
   // ----- SON 16 (1/8 finali) — 8 maç -----
-  { id: 89,  round: 'R16', matchNo: '89',  home: 'TBD', away: 'TBD', pairing: '74. maç galibi vs 77. maç galibi',     date: '2026-07-05', time: '00:00', venue: 'Lincoln Financial Field, Philadelphia' },
-  { id: 90,  round: 'R16', matchNo: '90',  home: 'TBD', away: 'TBD', pairing: '73. maç galibi vs 75. maç galibi',     date: '2026-07-04', time: '20:00', venue: 'NRG Stadium, Houston' },
-  { id: 91,  round: 'R16', matchNo: '91',  home: 'TBD', away: 'TBD', pairing: '76. maç galibi vs 78. maç galibi',     date: '2026-07-05', time: '23:00', venue: 'MetLife Stadium, New York/NJ' },
-  { id: 92,  round: 'R16', matchNo: '92',  home: 'TBD', away: 'TBD', pairing: '79. maç galibi vs 80. maç galibi',     date: '2026-07-06', time: '03:00', venue: 'Estadio Azteca, Mexico City' },
-  { id: 93,  round: 'R16', matchNo: '93',  home: 'TBD', away: 'TBD', pairing: '83. maç galibi vs 84. maç galibi',     date: '2026-07-06', time: '22:00', venue: 'AT&T Stadium, Dallas' },
-  { id: 94,  round: 'R16', matchNo: '94',  home: 'TBD', away: 'TBD', pairing: '81. maç galibi vs 82. maç galibi',     date: '2026-07-07', time: '03:00', venue: 'Lumen Field, Seattle' },
-  { id: 95,  round: 'R16', matchNo: '95',  home: 'TBD', away: 'TBD', pairing: '86. maç galibi vs 88. maç galibi',     date: '2026-07-07', time: '19:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
-  { id: 96,  round: 'R16', matchNo: '96',  home: 'TBD', away: 'TBD', pairing: '85. maç galibi vs 87. maç galibi',     date: '2026-07-07', time: '23:00', venue: 'BC Place, Vancouver' },
+  { id: 89,  round: 'R16', matchNo: '89',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '74. maç galibi vs 77. maç galibi',     date: '2026-07-05', time: '00:00', venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 90,  round: 'R16', matchNo: '90',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '73. maç galibi vs 75. maç galibi',     date: '2026-07-04', time: '20:00', venue: 'NRG Stadium, Houston' },
+  { id: 91,  round: 'R16', matchNo: '91',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '76. maç galibi vs 78. maç galibi',     date: '2026-07-05', time: '23:00', venue: 'MetLife Stadium, New York/NJ' },
+  { id: 92,  round: 'R16', matchNo: '92',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '79. maç galibi vs 80. maç galibi',     date: '2026-07-06', time: '03:00', venue: 'Estadio Azteca, Meksika City' },
+  { id: 93,  round: 'R16', matchNo: '93',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '83. maç galibi vs 84. maç galibi',     date: '2026-07-06', time: '22:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 94,  round: 'R16', matchNo: '94',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '81. maç galibi vs 82. maç galibi',     date: '2026-07-07', time: '03:00', venue: 'Lumen Field, Seattle' },
+  { id: 95,  round: 'R16', matchNo: '95',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '86. maç galibi vs 88. maç galibi',     date: '2026-07-07', time: '19:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 96,  round: 'R16', matchNo: '96',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '85. maç galibi vs 87. maç galibi',     date: '2026-07-07', time: '23:00', venue: 'BC Place, Vancouver' },
 
   // ----- ÇEYREK FİNAL — 4 maç -----
-  { id: 97,  round: 'QF',  matchNo: '97',  home: 'TBD', away: 'TBD', pairing: '89. maç galibi vs 90. maç galibi',     date: '2026-07-09', time: '23:00', venue: 'Gillette Stadium, Boston' },
-  { id: 98,  round: 'QF',  matchNo: '98',  home: 'TBD', away: 'TBD', pairing: '93. maç galibi vs 94. maç galibi',     date: '2026-07-10', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
-  { id: 99,  round: 'QF',  matchNo: '99',  home: 'TBD', away: 'TBD', pairing: '91. maç galibi vs 92. maç galibi',     date: '2026-07-12', time: '00:00', venue: 'Hard Rock Stadium, Miami' },
-  { id: 100, round: 'QF',  matchNo: '100', home: 'TBD', away: 'TBD', pairing: '95. maç galibi vs 96. maç galibi',     date: '2026-07-12', time: '04:00', venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 97,  round: 'QF',  matchNo: '97',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '89. maç galibi vs 90. maç galibi',     date: '2026-07-09', time: '23:00', venue: 'Gillette Stadium, Boston' },
+  { id: 98,  round: 'QF',  matchNo: '98',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '93. maç galibi vs 94. maç galibi',     date: '2026-07-10', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 99,  round: 'QF',  matchNo: '99',  home: 'Belirlenecek', away: 'Belirlenecek', pairing: '91. maç galibi vs 92. maç galibi',     date: '2026-07-12', time: '00:00', venue: 'Hard Rock Stadium, Miami' },
+  { id: 100, round: 'QF',  matchNo: '100', home: 'Belirlenecek', away: 'Belirlenecek', pairing: '95. maç galibi vs 96. maç galibi',     date: '2026-07-12', time: '04:00', venue: 'Arrowhead Stadium, Kansas City' },
 
   // ----- YARI FİNAL — 2 maç -----
-  { id: 101, round: 'SF',  matchNo: '101', home: 'TBD', away: 'TBD', pairing: '97. maç galibi vs 98. maç galibi',     date: '2026-07-14', time: '22:00', venue: 'AT&T Stadium, Dallas' },
-  { id: 102, round: 'SF',  matchNo: '102', home: 'TBD', away: 'TBD', pairing: '99. maç galibi vs 100. maç galibi',    date: '2026-07-15', time: '22:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 101, round: 'SF',  matchNo: '101', home: 'Belirlenecek', away: 'Belirlenecek', pairing: '97. maç galibi vs 98. maç galibi',     date: '2026-07-14', time: '22:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 102, round: 'SF',  matchNo: '102', home: 'Belirlenecek', away: 'Belirlenecek', pairing: '99. maç galibi vs 100. maç galibi',    date: '2026-07-15', time: '22:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
 
   // ----- ÜÇÜNCÜLÜK -----
-  { id: 103, round: '3RD', matchNo: '103', home: 'TBD', away: 'TBD', pairing: 'Yarı final kaybedenleri',              date: '2026-07-19', time: '00:00', venue: 'Hard Rock Stadium, Miami' },
+  { id: 103, round: '3RD', matchNo: '103', home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'Yarı final kaybedenleri',              date: '2026-07-19', time: '00:00', venue: 'Hard Rock Stadium, Miami' },
 
   // ----- FİNAL -----
-  { id: 104, round: 'F',   matchNo: '104', home: 'TBD', away: 'TBD', pairing: 'Yarı final galibleri · Dünya Şampiyonu', date: '2026-07-19', time: '22:00', venue: 'MetLife Stadium, New York/NJ' }
+  { id: 104, round: 'F',   matchNo: '104', home: 'Belirlenecek', away: 'Belirlenecek', pairing: 'Yarı final galibleri · Dünya Şampiyonu', date: '2026-07-19', time: '22:00', venue: 'MetLife Stadium, New York/NJ' }
 ];
 
 /* Round meta bilgileri (görsel başlıklar için) */
@@ -1649,18 +1649,18 @@ const ROUND_META = {
 
   /* Takım adı normalleştirme: openfootball ↔ bizim map */
   const TEAM_ALIAS = {
-    'Korea Republic': 'South Korea',
+    'Güney Kore': 'South Korea',
     'Korea DPR': 'North Korea',
-    'USA': 'United States',
-    'Cote dIvoire': 'Ivory Coast',
+    'ABD': 'United States',
+    'Fildişi Sahili': 'Ivory Coast',
     'Cabo Verde': 'Cape Verde',
-    'DR Congo': 'Congo DR',
+    'Kongo DC': 'Congo DR',
     'Congo': 'Congo',
-    'Bosnia and Herzegovina': 'Bosnia-Herzegovina',
-    'Czechia': 'Czech Republic',
+    'Bosna Hersek': 'Bosnia-Herzegovina',
+    'Çekya': 'Czech Republic',
     'Wales': 'Wales',
-    'Scotland': 'Scotland',
-    'England': 'England',
+    'İskoçya': 'İskoçya',
+    'İngiltere': 'İngiltere',
     'Korea': 'South Korea'
   };
   const teamKey = (name) => {
@@ -1670,7 +1670,7 @@ const ROUND_META = {
   };
 
   const isKnockout = (m) => m.round != null;
-  const flagFor = (team) => (team === 'TBD' ? TBD_FLAG : FLAGS[team] || TBD_FLAG);
+  const flagFor = (team) => (team === 'Belirlenecek' ? Belirlenecek_FLAG : FLAGS[team] || Belirlenecek_FLAG);
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -2004,11 +2004,11 @@ const ROUND_META = {
     const roundMeta = isKnock ? ROUND_META[m.round] : null;
 
     if (isKnock) {
-      // TBD/Knockout modalı: takım bilgisi yok, sadece tur, eşleşme, yer
+      // Belirlenecek/Knockout modalı: takım bilgisi yok, sadece tur, eşleşme, yer
       return `
         <div class="modal-vs">
-          ${renderTBDTeamSide(m.home)}
-          ${renderTBDTeamSide(m.away)}
+          ${renderBelirlenecekTeamSide(m.home)}
+          ${renderBelirlenecekTeamSide(m.away)}
         </div>
         <div style="margin-top:6px;">
           <span style="background:linear-gradient(135deg, rgba(255,184,0,0.25), rgba(255,122,0,0.1)); color: var(--accent); padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; border: 1px solid rgba(255,184,0,0.4);">
@@ -2100,10 +2100,10 @@ const ROUND_META = {
     `;
   }
 
-  function renderTBDTeamSide(name) {
+  function renderBelirlenecekTeamSide(name) {
     return `
       <div class="modal-vs-side tbd-side">
-        <img class="flag" src="${TBD_FLAG}" alt="Belirlenecek" />
+        <img class="flag" src="${Belirlenecek_FLAG}" alt="Belirlenecek" />
         <div class="name">${name}</div>
         <div class="conf">Belirlenecek</div>
       </div>
@@ -2114,7 +2114,7 @@ const ROUND_META = {
     return `
       <div class="team-info-block">
         <div class="team-info-head">
-          <img class="team-info-flag" src="${flag || TBD_FLAG}" alt="${name}" />
+          <img class="team-info-flag" src="${flag || Belirlenecek_FLAG}" alt="${name}" />
           <div>
             <div class="team-info-name">${name}</div>
             <div class="team-info-conf">${CONF[name] || '—'}</div>
