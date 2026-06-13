@@ -665,9 +665,11 @@ body::after {
   font-weight: 700;
   font-size: 0.98rem;
   color: var(--text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
 }
 .team-rank {
   font-size: 0.7rem;
