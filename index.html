@@ -2152,16 +2152,11 @@ const ROUND_META = {
           if (!poll) {
             return '<div class="modal-fact" style="opacity:0.7;font-style:italic;">Bu maç için tahmin anketi henüz yok.</div>';
           }
-          const html = '<a href="' + poll.url + '" target="_blank" rel="noopener" class="poll-launch-button">' +
-              '<div class="poll-launch-icon">📊</div>' +
-              '<div class="poll-launch-text">' +
-                '<div class="poll-launch-title">StrawPoll\'da Oyla</div>' +
-                '<div class="poll-launch-sub">' + m.home + ' vs ' + m.away + ' · Topluluk tahminine katıl</div>' +
-              '</div>' +
-              '<div class="poll-launch-arrow">↗</div>' +
-            '</a>' +
-            '<div class="modal-fact" style="text-align:center;padding-top:10px;margin-top:6px;">' +
-              '<span style="opacity:0.65;font-size:0.82rem;">Canlı sonuçlar StrawPoll.com\'da</span>' +
+          const html = '<div class="poll-embed-wrapper" style="margin:8px 0;border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);display:flex;justify-content:center;">' +
+            '<iframe src="' + poll.embed_url + '" width="800" height="600" frameborder="0" style="display:block;max-width:100%;" loading="lazy" title="Tahmin: ' + m.home + ' vs ' + m.away + '"></iframe>' +
+            '</div>' +
+            '<div class="modal-fact" style="text-align:center;padding-top:6px;">' +
+              '<a href="' + poll.url + '" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:0.85rem;">↗ StrawPoll\'da tam ekran aç</a>' +
             '</div>';
           return html;
         })()}
