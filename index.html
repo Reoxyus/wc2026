@@ -1358,6 +1358,33 @@ const FLAGS = {
   'Wales':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#00b140"/><polygon points="0,0 24,20 0,40" fill="#d30731"/><polygon points="60,0 36,20 60,40" fill="#d30731"/></svg>')
 };
 
+    // Daha önce oynanan maçlar (head-to-head)
+    const h2hData = {
+      "Meksika-Güney Afrika": ["2010 Dünya Kupası: Güney Afrika 1-1 Meksika"],
+      "Güney Kore-Çekya": ["2016 Hazırlık Maçı: Çekya 1-2 Güney Kore", "2001 Hazırlık Maçı: Çekya 5-0 Güney Kore"],
+      "ABD-Paraguay": ["2016 Copa America: ABD 1-0 Paraguay", "2018 Hazırlık Maçı: ABD 1-0 Paraguay"],
+      "Brezilya-Fas": ["1998 Dünya Kupası: Brezilya 3-0 Fas", "2023 Hazırlık Maçı: Fas 2-1 Brezilya"],
+      "Avustralya-Türkiye": ["2006 Hazırlık Maçı: Türkiye 3-1 Avustralya", "2006 Hazırlık Maçı: Türkiye 1-0 Avustralya"],
+      "Hollanda-Japonya": ["2010 Dünya Kupası: Hollanda 1-0 Japonya"],
+      "İspanya-Suudi Arabistan": ["2006 Dünya Kupası: İspanya 1-0 Suudi Arabistan", "2012 Hazırlık Maçı: İspanya 5-0 Suudi Arabistan"],
+      "Fransa-Senegal": ["2002 Dünya Kupası: Senegal 1-0 Fransa (Tarihi Sürpriz)"],
+      "İngiltere-Hırvatistan": ["2018 D. Kupası Yarı Finali: Hırvatistan 2-1 İngiltere", "EURO 2020: İngiltere 1-0 Hırvatistan"],
+      "Meksika-Güney Kore": ["2018 Dünya Kupası: Meksika 2-1 Güney Kore", "1998 Dünya Kupası: Meksika 3-1 Güney Kore"],
+      "İskoçya-Brezilya": ["1998 Dünya Kupası Açılış Maçı: Brezilya 2-1 İskoçya", "1990 Dünya Kupası: Brezilya 1-0 İskoçya"],
+      "Türkiye-Paraguay": ["2002 Hazırlık Maçı: Türkiye 0-0 Paraguay"],
+      "Almanya-Fildişi Sahili": ["2009 Hazırlık Maçı: Almanya 2-2 Fildişi Sahili"],
+      "Uruguay-İspanya": ["2013 Konfederasyon Kupası: İspanya 2-1 Uruguay", "1990 Dünya Kupası: Uruguay 0-0 İspanya"],
+      "Türkiye-ABD": ["2003 Konfederasyon Kupası: Türkiye 2-1 ABD", "2010 Hazırlık Maçı: ABD 2-1 Türkiye"]
+    };
+
+    // Helper: hangi sırayla olursa olsun eşle
+    function getH2H(homeName, awayName) {
+      const key1 = `${homeName}-${awayName}`;
+      const key2 = `${awayName}-${homeName}`;
+      return h2hData[key1] || h2hData[key2] || null;
+    }
+
+
 /* Belirlenecek placeholder */
 const Belirlenecek_FLAG = svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2348"/><stop offset="1" stop-color="#0a1230"/></linearGradient></defs><rect width="60" height="40" fill="url(#g)"/><text x="30" y="24" text-anchor="middle" fill="#6b7396" font-size="14" font-weight="700" font-family="Arial">?</text></svg>');
 
@@ -2059,7 +2086,18 @@ const ROUND_META = {
       ${trBadge}
 
       <div class="modal-section">
-        <div class="modal-section-title">📊 Takım Bilgileri</div>
+        <div class="modal-section">
+        <div class="modal-section-title">🕰️ Önceki Maçlar</div>
+        ${(() => {
+          const h2h = getH2H(m.home, m.away);
+          if (!h2h || h2h.length === 0) {
+            return '<div class="modal-fact" style="opacity:0.75;font-style:italic;">Bu iki takım daha önce resmi maç oynamamış.</div>';
+          }
+          return h2h.map(line => `<div class="modal-fact">⚽ ${line}</div>`).join('');
+        })()}
+      </div>
+
+      <div class="modal-section-title">📊 Takım Bilgileri</div>
         ${renderTeamInfoBlock(m.home, home, FLAGS[m.home])}
         ${renderTeamInfoBlock(m.away, away, FLAGS[m.away])}
       </div>
