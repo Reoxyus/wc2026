@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIFA 2026 Dünya Kupası Fikstür · Türkiye Saati</title>
+  <meta name="description" content="FIFA 2026 Dünya Kupası grup aşaması fikstürü. Tüm maçlar Türkiye saatine göre, etkileşimli, bayraklı, mobil uyumlu." />
+  
+  
+  
+  
+  
+  
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="tournament-badge">
+        <div class="badge-ring"></div>
+        <div class="badge-trophy">🏆</div>
+      </div>
+      <h1 class="hero-title">
+        <span class="title-fifa">FIFA</span>
+        <span class="title-year">2026</span>
+        <span class="title-world">DÜNYA KUPASI</span>
+      </h1>
+      <p class="hero-sub">48 takım · 12 grup · 104 maç · 39 gün · 3 ülke</p>
+
+      <div class="hero-meta">
+        <div class="meta-pill">
+          <span class="meta-icon">📅</span>
+          <div>
+            <div class="meta-label">Açılış</div>
+            <div class="meta-value">11 Haziran 2026</div>
+          </div>
+        </div>
+        <div class="meta-pill">
+          <span class="meta-icon">🏁</span>
+          <div>
+            <div class="meta-label">Final</div>
+            <div class="meta-value">19 Temmuz 2026</div>
+          </div>
+        </div>
+        <div class="meta-pill">
+          <span class="meta-icon">🌎</span>
+          <div>
+            <div class="meta-label">Ev Sahibi</div>
+            <div class="meta-value">ABD · Meksika · Kanada</div>
+          </div>
+        </div>
+        <div class="meta-pill highlight">
+          <span class="meta-icon">⏰</span>
+          <div>
+            <div class="meta-label">Tüm saatler</div>
+            <div class="meta-value">Türkiye (UTC+3)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toolbar -->
+  <section class="toolbar">
+    <div class="toolbar-inner">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="text" placeholder="Takım ara (ör. Türkiye, Brezilya, Arjantin)..." />
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label">Görünüm:</label>
+        <div class="segmented" role="tablist" aria-label="Görünüm modu">
+          <button class="seg-btn" data-view="groups" role="tab" aria-selected="false">📊 Gruplar</button>
+          <button class="seg-btn active" data-view="timeline" role="tab" aria-selected="true">📅 Takvim</button>
+          <button class="seg-btn" data-view="knockout" role="tab" aria-selected="false">⚔️ Eleme</button>
+          <button class="seg-btn" data-view="türkiye" role="tab" aria-selected="false">🇹🇷 Türkiye</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="group-tabs" id="groupTabs" role="tablist" aria-label="Grup filtresi"></div>
+
+    <div class="stats-bar" id="statsBar">
+      <div class="stat"><span class="stat-num" id="statTotal">72</span><span class="stat-label">Toplam Maç</span></div>
+      <div class="stat"><span class="stat-num">12</span><span class="stat-label">Grup</span></div>
+      <div class="stat"><span class="stat-num">48</span><span class="stat-label">Takım</span></div>
+      <div class="stat"><span class="stat-num" id="statShown">72</span><span class="stat-label">Gösterilen</span></div>
+    </div>
+  </section>
+
+  <!-- Matches container -->
+  <main class="container" id="matchesContainer"></main>
+
+  <footer class="footer">
+    <div>⚽ Sağlıkla, keyifle izleyin · Veri FIFA resmi programına dayanmaktadır</div>
+    <div class="footer-sub">Türkiye saati (UTC+3) gösterilir. Yerel saat için lütfen stadyum saat dilimini kontrol edin.</div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Kapat">×</button>
+      <div class="modal-header" id="modalHeader">
+        <div class="modal-flags">
+          <img class="modal-flag" id="mFlagA" alt="" />
+          <span class="vs-pill">VS</span>
+          <img class="modal-flag" id="mFlagB" alt="" />
+        </div>
+        <h2 id="modalTitle" class="modal-title">Maç Detayı</h2>
+        <div class="modal-meta" id="modalMeta"></div>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  
+  
+<style>
+/* ============================================
+   FIFA 2026 WC Fixture — Styles
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-0: #050a18;
+  --bg-1: #0a1228;
+  --bg-2: #0e1830;
+  --surface: rgba(20, 28, 56, 0.55);
+  --surface-2: rgba(28, 38, 76, 0.7);
+  --border: rgba(120, 145, 220, 0.18);
+  --border-strong: rgba(120, 145, 220, 0.35);
+  --text: #e8ecff;
+  --text-dim: #9aa3c7;
+  --text-mute: #6b7396;
+  --accent: #ffd84d;       /* FIFA gold */
+  --accent-2: #00d4ff;     /* cyan glow */
+  --tr-red: #e30a17;
+  --tr-white: #ffffff;
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --grad-gold: linear-gradient(135deg, #ffd84d 0%, #ffaa00 50%, #ff7a00 100%);
+  --grad-night: linear-gradient(135deg, #0a1228 0%, #15225a 100%);
+  --grad-card: linear-gradient(160deg, rgba(28, 38, 76, 0.85) 0%, rgba(15, 22, 50, 0.85) 100%);
+}
+
+html, body {
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0, 100, 220, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(255, 170, 0, 0.12), transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(120, 0, 220, 0.18), transparent 60%),
+    var(--bg-0);
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  z-index: -1;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%);
+}
+
+/* ===== Animated background orbs ===== */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: float 18s ease-in-out infinite;
+}
+.orb-1 { width: 480px; height: 480px; background: #0064dc; top: -120px; left: -120px; }
+.orb-2 { width: 420px; height: 420px; background: #ffaa00; top: 30%; right: -120px; animation-delay: -6s; }
+.orb-3 { width: 380px; height: 380px; background: #c800dc; bottom: -100px; left: 30%; animation-delay: -12s; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -40px) scale(1.05); }
+  66%      { transform: translate(-30px, 30px) scale(0.95); }
+}
+
+/* ===== Hero ===== */
+.hero {
+  padding: 60px 24px 40px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tournament-badge {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 20px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.badge-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--grad-gold);
+  animation: spin 20s linear infinite;
+  box-shadow: 0 0 60px rgba(255, 184, 0, 0.6);
+}
+.badge-ring::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--bg-0);
+}
+.badge-trophy {
+  position: relative;
+  z-index: 1;
+  font-size: 48px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.hero-title {
+  font-family: 'Oswald', 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.title-fifa {
+  display: block;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(255, 184, 0, 0.5);
+  letter-spacing: 0.05em;
+}
+.title-year {
+  display: block;
+  font-size: clamp(4rem, 12vw, 8rem);
+  background: linear-gradient(180deg, #fff 0%, #b8c5ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(0, 200, 255, 0.3);
+}
+.title-world {
+  display: block;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--text-dim);
+  letter-spacing: 0.4em;
+  margin-top: 8px;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.meta-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+.meta-pill:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.meta-pill.highlight {
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.15), rgba(255, 122, 0, 0.08));
+  border-color: rgba(255, 184, 0, 0.35);
+}
+.meta-icon { font-size: 28px; }
+.meta-label { font-size: 0.75rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.1em; }
+.meta-value { font-size: 1rem; font-weight: 700; margin-top: 2px; }
+
+/* ===== Toolbar ===== */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(5, 10, 24, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+}
+
+.toolbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-wrap {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  opacity: 0.6;
+}
+#searchInput {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px 12px 46px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+#searchInput:focus {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  box-shadow: 0 0 0 4px rgba(255, 184, 0, 0.12);
+}
+#searchInput::placeholder { color: var(--text-mute); }
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.filter-label {
+  font-size: 0.85rem;
+  color: var(--text-mute);
+  font-weight: 600;
+}
+.segmented {
+  display: inline-flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+  gap: 2px;
+}
+.seg-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.seg-btn:hover { color: var(--text); }
+.seg-btn.active {
+  background: var(--grad-gold);
+  color: #1a1206;
+  box-shadow: 0 4px 14px rgba(255, 184, 0, 0.4);
+}
+
+/* Group tabs */
+.group-tabs {
+  max-width: 1200px;
+  margin: 14px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.group-tab {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+}
+.group-tab:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.group-tab.active {
+  background: var(--accent);
+  color: #1a1206;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(255, 184, 0, 0.35);
+}
+
+/* Stats bar */
+.stats-bar {
+  max-width: 1200px;
+  margin: 14px auto 0;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.stat-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Main container ===== */
+.container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 24px 60px;
+}
+
+/* ===== Group card ===== */
+.group-card {
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  margin-bottom: 28px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-md);
+  animation: fadeUp 0.6s ease backwards;
+}
+.group-card:nth-child(1) { animation-delay: 0.02s; }
+.group-card:nth-child(2) { animation-delay: 0.06s; }
+.group-card:nth-child(3) { animation-delay: 0.10s; }
+.group-card:nth-child(4) { animation-delay: 0.14s; }
+.group-card:nth-child(5) { animation-delay: 0.18s; }
+.group-card:nth-child(6) { animation-delay: 0.22s; }
+.group-card:nth-child(7) { animation-delay: 0.26s; }
+.group-card:nth-child(8) { animation-delay: 0.30s; }
+.group-card:nth-child(9) { animation-delay: 0.34s; }
+.group-card:nth-child(10) { animation-delay: 0.38s; }
+.group-card:nth-child(11) { animation-delay: 0.42s; }
+.group-card:nth-child(12) { animation-delay: 0.46s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.group-header {
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.15) 0%, transparent 100%);
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.group-letter {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  background: var(--grad-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+  margin-right: 12px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.group-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.group-teams {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.team-chip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px 4px 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.team-chip img {
+  width: 18px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.matches-list {
+  padding: 12px;
+}
+
+/* ===== Match card ===== */
+.match {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1px solid transparent;
+}
+.match::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 4px;
+  height: 0;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: translateY(-50%);
+  transition: height 0.25s ease;
+}
+.match:hover {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  transform: translateX(4px);
+}
+.match:hover::before { height: 60%; }
+
+.match-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.match-day {
+  font-size: 0.75rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.match-time {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.match-venue {
+  font-size: 0.72rem;
+  color: var(--text-mute);
+  margin-top: 2px;
+}
+
+.match-body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.team {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.team.team-b { flex-direction: row-reverse; text-align: right; }
+.team-flag {
+  width: 38px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+.team-name {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.team-rank {
+  font-size: 0.7rem;
+  color: var(--text-mute);
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.vs-block {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+.match-arrow {
+  align-self: center;
+  color: var(--text-mute);
+  font-size: 1.4rem;
+  transition: transform 0.25s ease;
+}
+.match:hover .match-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+/* ===== Live scores ===== */
+.vs-block.has-score {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+  background: rgba(255, 184, 0, 0.12);
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  border-radius: 10px;
+  padding: 4px 10px;
+  letter-spacing: 0.05em;
+}
+.status-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-family: 'Oswald', sans-serif;
+}
+.status-final {
+  background: rgba(120, 120, 120, 0.25);
+  color: var(--text-dim);
+  border: 1px solid rgba(120, 120, 120, 0.4);
+}
+.status-live {
+  background: rgba(220, 38, 38, 0.25);
+  color: #ff6b6b;
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  animation: live-pulse 1.5s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+  50%      { opacity: 0.7; box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+}
+.match.is-final {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  opacity: 0.85;
+}
+.match.is-final:hover { opacity: 1; }
+
+/* Türkiye highlight */
+.match.is-türkiye {
+  background: linear-gradient(90deg, rgba(227, 10, 23, 0.15) 0%, rgba(227, 10, 23, 0.05) 50%, rgba(0, 70, 173, 0.15) 100%);
+  border-color: rgba(227, 10, 23, 0.35);
+}
+.match.is-türkiye::before {
+  background: linear-gradient(180deg, #e30a17 0%, #fff 50%, #0046ad 100%);
+  width: 5px;
+  height: 70%;
+}
+.match.is-türkiye .match-time {
+  background: linear-gradient(90deg, #e30a17, #0046ad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.türkiye-stars {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 6px;
+}
+.türkiye-stars span {
+  font-size: 0.7rem;
+  filter: drop-shadow(0 0 4px rgba(255, 184, 0, 0.6));
+}
+
+/* Timeline view */
+.timeline-day {
+  background: var(--grad-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  animation: fadeUp 0.5s ease backwards;
+}
+.timeline-day-header {
+  background: linear-gradient(135deg, rgba(0, 100, 220, 0.2) 0%, transparent 100%);
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.timeline-date {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.timeline-dow {
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+}
+.timeline-count {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.timeline-list { padding: 10px; }
+
+/* Türkiye view */
+.türkiye-banner {
+  background: linear-gradient(135deg, rgba(227, 10, 23, 0.2) 0%, rgba(0, 70, 173, 0.2) 100%);
+  border: 1px solid rgba(227, 10, 23, 0.3);
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.türkiye-banner-flag {
+  width: 80px;
+  height: 60px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+.türkiye-banner-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.türkiye-banner-sub {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-mute);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+}
+.empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.6; }
+.empty-text { font-size: 1.05rem; }
+
+/* ===== Modal ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.modal-backdrop.open {
+  display: flex;
+  opacity: 1;
+}
+.modal {
+  background: var(--grad-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 24px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  animation: modalIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+  display: grid;
+  place-items: center;
+}
+.modal-close:hover {
+  background: var(--tr-red);
+  border-color: var(--tr-red);
+  transform: rotate(90deg);
+}
+.modal-header {
+  padding: 32px 24px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255, 184, 0, 0.1) 0%, transparent 100%);
+  border-bottom: 1px solid var(--border);
+}
+.modal-flags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.modal-flag {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+.vs-pill {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  background: var(--surface-2);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+}
+.modal-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.modal-meta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+.modal-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.modal-body {
+  padding: 24px;
+}
+.modal-section {
+  margin-bottom: 22px;
+}
+.modal-section:last-child { margin-bottom: 0; }
+.modal-section-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.modal-section-title::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.modal-fact {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+.modal-fact strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+.modal-fact-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+}
+.modal-fact-list li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+}
+.modal-fact-list li .label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+.modal-fact-list li .value {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.modal-vs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.modal-vs-side {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.modal-vs-side .flag {
+  width: 56px;
+  height: 42px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.modal-vs-side .name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+.modal-vs-side .conf {
+  font-size: 0.75rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ===== Knockout / TBD ===== */
+.knockout-round {
+  border-color: rgba(255, 184, 0, 0.25);
+  background: linear-gradient(160deg, rgba(40, 30, 10, 0.6) 0%, rgba(15, 22, 50, 0.85) 100%);
+}
+.knockout-round .group-header {
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.22) 0%, rgba(255, 122, 0, 0.06) 100%);
+  border-bottom-color: rgba(255, 184, 0, 0.25);
+}
+.match.is-knockout {
+  background: rgba(20, 14, 4, 0.4);
+  border-color: rgba(255, 184, 0, 0.12);
+}
+.match.is-knockout::before {
+  background: var(--accent);
+  height: 50%;
+  width: 3px;
+}
+.match.is-knockout:hover {
+  background: rgba(30, 20, 6, 0.6);
+  border-color: rgba(255, 184, 0, 0.35);
+}
+.match.is-knockout .match-time {
+  color: var(--accent);
+}
+.match.is-knockout .team-name {
+  color: var(--text-dim);
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+.match.is-knockout .team-rank {
+  font-size: 0.68rem;
+  line-height: 1.2;
+  white-space: normal;
+  max-width: 200px;
+}
+
+.tbd-side .flag {
+  filter: grayscale(0.3) brightness(0.85);
+  opacity: 0.7;
+}
+.tbd-side .name {
+  font-style: italic;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+.tbd-side .conf {
+  color: var(--text-mute);
+  font-style: italic;
+}
+
+/* ===== Match result (modal) ===== */
+.result-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(255,184,0,0.12), rgba(255,122,0,0.05));
+  border: 1px solid rgba(255,184,0,0.3);
+  border-radius: 14px;
+  padding: 18px 16px;
+  margin-bottom: 12px;
+}
+.result-team {
+  flex: 1;
+  text-align: center;
+}
+.result-flag {
+  width: 48px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  margin-bottom: 8px;
+}
+.result-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+.result-score {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.result-vs {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  color: var(--text-mute);
+  font-weight: 700;
+}
+.goals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.goals-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.goals-col-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-mute);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.goal-line {
+  font-size: 0.85rem;
+  padding: 3px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.goal-minute {
+  font-family: 'Oswald', sans-serif;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ===== Team info block (modal) ===== */
+.team-info-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.team-info-block:last-child { margin-bottom: 0; }
+.team-info-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.team-info-flag {
+  width: 42px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.team-info-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.team-info-conf {
+  font-size: 0.7rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 2px;
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 32px 24px 40px;
+  border-top: 1px solid var(--border);
+  color: var(--text-mute);
+  font-size: 0.88rem;
+}
+.footer-sub {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 720px) {
+  .hero { padding: 40px 16px 24px; }
+  .toolbar { padding: 12px 16px; }
+  .container { padding: 0 16px 40px; }
+
+  .match {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 8px;
+    padding: 14px;
+  }
+  .match-arrow { display: none; }
+  .match-date {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .match-time { font-size: 1.2rem; }
+  .match-venue {
+    margin-left: auto;
+    text-align: right;
+  }
+  .team-name { font-size: 0.9rem; }
+  .team-flag { width: 30px; height: 22px; }
+  .vs-block { font-size: 0.9rem; padding: 0 2px; }
+
+  .group-header { padding: 14px 16px; }
+  .group-teams { width: 100%; justify-content: flex-start; flex-wrap: wrap; }
+  .team-chip { font-size: 0.72rem; }
+
+  .stats-bar { gap: 16px; }
+  .stat-num { font-size: 1.3rem; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+</style>
+<script>
+/* ============================================
+   FLAGS — Inline SVG data-URI
+   Standard viewBox 60x40, sıkıştırılmış
+   ============================================ */
+
+function svgToUri(svg) {
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
+/* Yardımcı: 3 yatay şerit */
+function h3(a, b, c) { return svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="'+a+'"/><rect y="13.33" width="60" height="13.33" fill="'+b+'"/><rect y="26.66" width="60" height="13.34" fill="'+c+'"/></svg>'); }
+/* 3 dikey şerit */
+function v3(a, b, c) { return svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="20" height="40" fill="'+a+'"/><rect x="20" width="20" height="40" fill="'+b+'"/><rect x="40" width="20" height="40" fill="'+c+'"/></svg>'); }
+
+/* Her ülke için basit ama tanımlayıcı bayrak */
+const FLAGS = {
+  'Mexico':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="20" height="40" fill="#006847"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#ce1126"/><circle cx="30" cy="20" r="4" fill="none" stroke="#8a4d12" stroke-width="0.6"/></svg>'),
+  'South Africa':      svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#007749"/><polygon points="0,0 24,20 0,40" fill="#000"/><polygon points="0,4 20,20 0,36" fill="#ffb81c"/><polygon points="0,8 16,20 0,32" fill="#007749"/><polygon points="0,12 12,20 0,28" fill="#000"/><rect y="0" width="60" height="6" fill="#de3831"/><rect y="34" width="60" height="6" fill="#002395"/></svg>'),
+  'Korea Republic':    svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="8" fill="#cd2e3a"/><path d="M30,12 a4,4 0 0 1 0,8 a4,4 0 0 1 0,-8" fill="#0047a0" transform="rotate(180 30 20)"/></svg>'),
+  'Czechia':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#d7141a"/><polygon points="0,0 24,20 0,40" fill="#11457e"/></svg>'),
+
+  'Canada':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="15" height="40" fill="#d52b1e"/><rect x="15" width="30" height="40" fill="#fff"/><rect x="45" width="15" height="40" fill="#d52b1e"/><path d="M30,8 L31,12 L33,11 L31.5,13.5 L34,14 L31.5,14.5 L33,17 L31,16 L30,20 L29,16 L27,17 L28.5,14.5 L26,14 L28.5,13.5 L27,11 L29,12 Z" fill="#d52b1e"/></svg>'),
+  'Bosnia and Herzegovina': svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#002395"/><polygon points="20,0 30,8 40,0 40,40 30,32 20,40" fill="#fecb00"/><polygon points="24,0 30,5 36,0 36,40 30,35 24,40" fill="#002395"/><g fill="#fff"><circle cx="30" cy="11" r="1"/><polygon points="27,12 28,16 30,15 30,12"/><polygon points="33,12 32,16 30,15"/><polygon points="30,17 30,22 28,21"/><polygon points="30,17 30,22 32,21"/><polygon points="28,22 30,21 32,22 30,25"/></g></svg>'),
+  'Switzerland':       svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#d52b1e"/><rect x="26" y="11" width="8" height="18" fill="#fff"/><rect x="20" y="17" width="20" height="6" fill="#fff"/></svg>'),
+  'Qatar':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#8d1b3d"/><polygon points="0,0 18,0 8,20 0,20" fill="#fff"/><polygon points="0,40 18,40 8,20 0,20" fill="#fff"/></svg>'),
+
+  'Brazil':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#009c3b"/><polygon points="30,6 54,20 30,34 6,20" fill="#fedf00"/><circle cx="30" cy="20" r="6" fill="#002776"/><rect x="22" y="19" width="16" height="2" fill="#fff" transform="rotate(-10 30 20)"/></svg>'),
+  'Morocco':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#c1272d"/><polygon points="30,10 32,18 40,18 33.5,22.5 36,30 30,25 24,30 26.5,22.5 20,18 28,18" fill="none" stroke="#006233" stroke-width="1.5"/></svg>'),
+  'Haiti':             h3('#00209f', '#fff', '#d21034'),
+  'Scotland':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#0065bd"/><rect x="20" y="0" width="20" height="40" fill="#fff"/><rect x="0" y="16" width="60" height="8" fill="#fff"/><rect x="28" y="0" width="4" height="40" fill="#0065bd"/><rect x="0" y="18" width="60" height="4" fill="#0065bd"/></svg>'),
+
+  'USA':               svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#b22234"/><g fill="#fff"><rect y="3.08" width="60" height="3.08"/><rect y="9.23" width="60" height="3.08"/><rect y="15.38" width="60" height="3.08"/><rect y="21.54" width="60" height="3.08"/><rect y="27.69" width="60" height="3.08"/><rect y="33.85" width="60" height="3.08"/></g><rect width="24" height="21.54" fill="#3c3b6e"/><g fill="#fff" font-size="3" font-family="Arial">★ ★ ★ ★ ★ ★</g></svg>'),
+  'Australia':         svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#00008b"/><rect width="30" height="20" fill="#00008b"/><rect width="15" height="10" fill="#fff"/><rect y="10" width="15" height="10" fill="#fff"/><polygon points="7,2 8,4 7,6 6,4" fill="#cf142b"/><polygon points="7,2 8,4 7,6 6,4" fill="#fff"/><g fill="#fff" font-size="2.5" font-family="Arial">★ ★ ★ ★ ★</g></svg>'),
+  'Paraguay':          h3('#d52b1e', '#fff', '#0038a8'),
+  'Türkiye':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#e30a17"/><circle cx="24" cy="20" r="8" fill="#fff"/><circle cx="26" cy="20" r="6.5" fill="#e30a17"/><polygon points="37,13 38,16 41,16 38.5,18 39.5,21 37,19 34.5,21 35.5,18 33,16 36,16" fill="#fff"/></svg>'),
+
+  'Germany':           h3('#000', '#dd0000', '#ffce00'),
+  'Curaçao':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#002b7f"/><rect y="13.33" width="60" height="13.34" fill="#fff"/><rect y="26.67" width="60" height="13.33" fill="#de3831"/><g fill="#fecb00"><polygon points="14,4 15,7 18,7 16,9 17,12 14,10 11,12 12,9 10,7 13,7"/><polygon points="20,8 21,11 24,11 22,13 23,16 20,14 17,16 18,13 16,11 19,11"/></g></svg>'),
+  'Cote dIvoire':      v3('#f77f00', '#fff', '#009e60'),
+  'Ecuador':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fcd116"/><rect y="20" width="60" height="10" fill="#003893"/><rect y="30" width="60" height="10" fill="#ce1126"/><circle cx="30" cy="20" r="6" fill="#003893"/><circle cx="30" cy="20" r="4.5" fill="#fcd116"/></svg>'),
+
+  'Netherlands':       h3('#ae1c28', '#fff', '#21468b'),
+  'Japan':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="10" fill="#bc002d"/></svg>'),
+  'Tunisia':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#e70013"/><circle cx="30" cy="20" r="9" fill="#fff"/><circle cx="30" cy="20" r="7" fill="#e70013"/><polygon points="30,14 32,20 38,20 33,23 35,29 30,25 25,29 27,23 22,20 28,20" fill="#fff" opacity="0"/></svg>'),
+  'Sweden':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006aa7"/><rect x="18" width="6" height="40" fill="#fecc00"/><rect y="17" width="60" height="6" fill="#fecc00"/></svg>'),
+
+  'Belgium':           v3('#000', '#fdda24', '#ef3340'),
+  'Iran':              h3('#239f40', '#fff', '#da0000'),
+  'Egypt':             h3('#ce1126', '#fff', '#000'),
+  'New Zealand':       svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#00247d"/><rect width="30" height="20" fill="#00247d"/><rect width="15" height="10" fill="#fff"/><rect y="10" width="15" height="10" fill="#fff"/><polygon points="7,2 8,4 7,6 6,4" fill="#cf142b"/><g fill="#cc142b"><polygon points="44,5 46,9 50,9 47,12 48,16 44,13 40,16 41,12 38,9 42,9"/><polygon points="52,15 53.5,18 56,18 54,20 54.5,23 52,21 49.5,23 50,20 48,18 50.5,18"/><polygon points="50,22 51.5,25 54,25 52,27 52.5,30 50,28 47.5,30 48,27 46,25 48.5,25"/><polygon points="46,18 47.5,21 50,21 48,23 48.5,26 46,24 43.5,26 44,23 42,21 44.5,21"/></g></svg>'),
+
+  'Spain':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="10" fill="#aa151b"/><rect y="10" width="60" height="20" fill="#f1bf00"/><rect y="30" width="60" height="10" fill="#aa151b"/><rect x="20" y="14" width="8" height="12" fill="#aa151b"/></svg>'),
+  'Uruguay':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect y="4" width="60" height="5.33" fill="#0035ad"/><rect y="14.67" width="60" height="5.33" fill="#0035ad"/><rect y="25.33" width="60" height="5.33" fill="#0035ad"/><rect y="36" width="60" height="4" fill="#0035ad"/><circle cx="20" cy="20" r="6" fill="#fff"/><circle cx="22" cy="20" r="5" fill="#0035ad"/><circle cx="22" cy="20" r="3.5" fill="#fcd116" opacity="0.4"/></svg>'),
+  'Saudi Arabia':      svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#006c35"/><text x="30" y="22" text-anchor="middle" font-size="10" fill="#fff" font-family="Arial">لا إله إلا الله</text><rect y="0" width="8" height="40" fill="#fff"/></svg>'),
+  'Cabo Verde':        svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#003893"/><rect y="10" width="60" height="20" fill="#fff"/><rect y="13" width="60" height="14" fill="#cf2027"/><g fill="#003893"><polygon points="14,5 15,8 18,8 16,10 17,13 14,11 11,13 12,10 10,8 13,8"/><polygon points="22,4 23,7 26,7 24,9 25,12 22,10 19,12 20,9 18,7 21,7"/><polygon points="30,3 31,6 34,6 32,8 33,11 30,9 27,11 28,8 26,6 29,6"/><polygon points="38,4 39,7 42,7 40,9 41,12 38,10 35,12 36,9 34,7 37,7"/><polygon points="46,5 47,8 50,8 48,10 49,13 46,11 43,13 44,10 42,8 45,8"/></g></svg>'),
+
+  'France':            v3('#0055a4', '#fff', '#ef4135'),
+  'Senegal':           v3('#00853f', '#fdef42', '#e31b23'),
+  'Norway':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#ef2b2d"/><rect x="16" width="8" height="40" fill="#fff"/><rect y="16" width="60" height="8" fill="#fff"/><rect x="20" width="4" height="40" fill="#002868"/><rect y="18" width="60" height="4" fill="#002868"/></svg>'),
+  'Iraq':              h3('#ce1126', '#fff', '#000'),
+
+  'Argentina':         svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#74acdf"/><rect y="13.33" width="60" height="13.34" fill="#fff"/><rect y="26.67" width="60" height="13.33" fill="#74acdf"/><circle cx="30" cy="20" r="4" fill="#f6b40e" stroke="#963" stroke-width="0.4"/></svg>'),
+  'Austria':           h3('#ed2939', '#fff', '#ed2939'),
+  'Algeria':           v3('#006633', '#fff', '#d21034'),
+  'Jordan':            h3('#000', '#fff', '#007a3d'),
+
+  'Portugal':          v3('#006600', '#ff0000', '#ff0000'),
+  'Colombia':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fcd116"/><rect y="20" width="60" height="10" fill="#003893"/><rect y="30" width="60" height="10" fill="#ce1126"/></svg>'),
+  'Uzbekistan':        h3('#1eb53a', '#fff', '#0099b5'),
+  'DR Congo':          svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="13.33" fill="#007fff"/><rect y="13.33" width="60" height="13.34" fill="#f7d518"/><rect y="26.67" width="60" height="13.33" fill="#ce1021"/><polygon points="20,20 24,12 28,20 36,16 32,24 36,32 28,28 24,36 20,28 12,32 16,24 12,16" fill="#ce1021" stroke="#f7d518" stroke-width="0.5"/></svg>'),
+
+  'England':           svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect x="26" y="0" width="8" height="40" fill="#ce1124"/><rect y="16" width="60" height="8" fill="#ce1124"/><polygon points="30,4 32,9 37,9 33,12 35,17 30,14 25,17 27,12 23,9 28,9" fill="#ce1124"/></svg>'),
+  'Croatia':           h3('#ff0000', '#fff', '#171796'),
+  'Ghana':             h3('#ce1126', '#fcd116', '#006b3f'),
+  'Panama':            svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#005aa7"/><rect y="20" width="60" height="10" fill="#d21034"/><polygon points="20,8 24,4 28,8 24,12" fill="#005aa7"/><polygon points="36,8 32,4 28,8 32,12" fill="#005aa7"/></svg>'),
+  'Wales':             svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"><rect width="60" height="20" fill="#fff"/><rect y="20" width="60" height="20" fill="#00b140"/><polygon points="0,0 24,20 0,40" fill="#d30731"/><polygon points="60,0 36,20 60,40" fill="#d30731"/></svg>')
+};
+
+/* TBD placeholder */
+const TBD_FLAG = svgToUri('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" preserveAspectRatio="none"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2348"/><stop offset="1" stop-color="#0a1230"/></linearGradient></defs><rect width="60" height="40" fill="url(#g)"/><text x="30" y="24" text-anchor="middle" fill="#6b7396" font-size="14" font-weight="700" font-family="Arial">?</text></svg>');
+
+/* ============================================
+   FIFA 2026 WC Fixture — Match Data
+   Tüm saatler Türkiye (UTC+3) cinsinden.
+   ============================================ */
+
+const FLAGS_BASE = 'https://flagcdn.com/w160/';
+
+// Ülke → bayrak kodu (ISO 3166-1 alpha-2, küçük harf)
+/* Manuel skor verileri — API güncellenmediğinde fallback olarak kullanılır.
+   Yeni maç bittiğinde buraya ekle veya güncelle.
+   Format: { hg, ag, status, goals1: [{name, minute}], goals2: [{name, minute}] }
+*/
+const MANUAL_SCORES = {
+  1:  { hg: 2, ag: 0, status: 'FT', goals1: [{name: 'Julián Quiñones', minute: 9}, {name: 'Raúl Jiménez', minute: 67}], goals2: [] },
+  2:  { hg: 2, ag: 1, status: 'FT', goals1: [{name: 'Hwang In-Beom', minute: 67}, {name: 'Oh Hyeon-Gyu', minute: 80}], goals2: [{name: 'Ladislav Krejčí', minute: 59}] },
+  19: { hg: 2, ag: 1, status: 'FT', goals1: [{name: 'F. Adams', minute: 12}, {name: 'C. Pulisic', minute: 78}], goals2: [{name: 'A. Sánchez', minute: 90+3}] }
+};
+
+const FLAG_CODES = {
+  'Mexico': 'mx', 'South Africa': 'za', 'Korea Republic': 'kr', 'Czechia': 'cz',
+  'Canada': 'ca', 'Bosnia and Herzegovina': 'ba', 'Switzerland': 'ch', 'Qatar': 'qa',
+  'Brazil': 'br', 'Morocco': 'ma', 'Haiti': 'ht', 'Scotland': 'gb-sct',
+  'USA': 'us', 'Australia': 'au', 'Paraguay': 'py', 'Türkiye': 'tr',
+  'Germany': 'de', 'Curaçao': 'cw', 'Cote dIvoire': 'ci', 'Ecuador': 'ec',
+  'Netherlands': 'nl', 'Japan': 'jp', 'Tunisia': 'tn', 'Sweden': 'se',
+  'Belgium': 'be', 'Iran': 'ir', 'Egypt': 'eg', 'New Zealand': 'nz',
+  'Spain': 'es', 'Uruguay': 'uy', 'Saudi Arabia': 'sa', 'Cabo Verde': 'cv',
+  'France': 'fr', 'Senegal': 'sn', 'Norway': 'no', 'Iraq': 'iq',
+  'Argentina': 'ar', 'Austria': 'at', 'Algeria': 'dz', 'Jordan': 'jo',
+  'Portugal': 'pt', 'Colombia': 'co', 'Uzbekistan': 'uz', 'DR Congo': 'cd',
+  'England': 'gb-eng', 'Croatia': 'hr', 'Ghana': 'gh', 'Panama': 'pa',
+  'Wales': 'gb-wls'
+};
+
+// Konfederasyon (kısa)
+const CONF = {
+  'Mexico':'CONCACAF','South Africa':'CAF','Korea Republic':'AFC','Czechia':'UEFA',
+  'Canada':'CONCACAF','Bosnia and Herzegovina':'UEFA','Switzerland':'UEFA','Qatar':'AFC',
+  'Brazil':'CONMEBOL','Morocco':'CAF','Haiti':'CONCACAF','Scotland':'UEFA',
+  'USA':'CONCACAF','Australia':'AFC','Paraguay':'CONMEBOL','Türkiye':'UEFA',
+  'Germany':'UEFA','Curaçao':'CONCACAF','Cote dIvoire':'CAF','Ecuador':'CONMEBOL',
+  'Netherlands':'UEFA','Japan':'AFC','Tunisia':'CAF','Sweden':'UEFA',
+  'Belgium':'UEFA','Iran':'AFC','Egypt':'CAF','New Zealand':'OFC',
+  'Spain':'UEFA','Uruguay':'CONMEBOL','Saudi Arabia':'AFC','Cabo Verde':'CAF',
+  'France':'UEFA','Senegal':'CAF','Norway':'UEFA','Iraq':'AFC',
+  'Argentina':'CONMEBOL','Austria':'UEFA','Algeria':'CAF','Jordan':'AFC',
+  'Portugal':'UEFA','Colombia':'CONMEBOL','Uzbekistan':'AFC','DR Congo':'CAF',
+  'England':'UEFA','Croatia':'UEFA','Ghana':'CAF','Panama':'CONCACAF',
+  'Wales':'UEFA'
+};
+
+// Takım bilgi kutusu
+const TEAM_INFO = {
+  'Mexico':          { fifa: 11,  pop: '~130M', capital: 'Mexico City', nickname: 'El Tri', coach: 'Javier Aguirre', stars: 4, funFacts: ['Üçüncü kez Dünya Kupası ev sahibi (1970, 1986, 2026).','Daha önce çeyrek finale 2 kez çıktı (1970, 1986).','2026 açılış maçını Aztek Stadyumu\'nda oynayacak.'] },
+  'South Africa':    { fifa: 60,  pop: '~60M',  capital: 'Pretoria',    nickname: 'Bafana Bafana', coach: 'Hugo Broos',   stars: 1, funFacts: ['2010 ev sahibiydi, grup aşamasında elendi.','Tek Dünya Kupası golünü 2010\'da Danimarka\'ya atmıştı (Bernard Parker, skor 1-0).','1996 Afrika Şampiyonu.'] },
+  'Korea Republic':  { fifa: 23,  pop: '~52M',  capital: 'Seul',        nickname: 'Taihan',        coach: 'Hong Myung-bo',stars: 1, funFacts: ['2002\'de yarı final oynadı (ev sahibi avantajı).','Son 10 Dünya Kupası\'nın 11\'inde yer aldı (1945 sonrası tüm turnuvalarda var).','Son dünya kupasında 2-1\'lik bir geri dönüş galibiyeti aldı.'] },
+  'Czechia':         { fifa: 38,  pop: '~11M',  capital: 'Prag',        nickname: 'Národní tým',   coach: 'Ivan Hašek',   stars: 0, funFacts: ['Çek Cumhuriyeti olarak 2006\'da gruptan çıkamadı.','Çekoslovakya 1962 finalinde SSCB\'ye yenildi.','Avrupa Şampiyonası 1996 ve 2004 finalist.'] },
+  'Canada':          { fifa: 27,  pop: '~40M',  capital: 'Ottawa',      nickname: 'Canucks',       coach: 'Jesse Marsch', stars: 0, funFacts: ['İlk kez üst üste iki Dünya Kupası\'na katılıyor (2022, 2026).','1986 ve 1990\'da grup aşamasında elendi.','2026 ev sahibi olarak ilk kez açılış maçı oynayacak.'] },
+  'Bosnia and Herzegovina': { fifa: 71, pop: '~3.3M', capital: 'Saraybosna', nickname: 'Zmajevi', coach: 'Sergej Barbarez', stars: 0, funFacts: ['2014\'teki ilk Dünya Kupası\'nda 1-0 kazandı (İran\'a karşı).','Avrupa Şampiyonası\'na hiç katılamadı.','Edin Džeko tarihin en golcü Bosna-Hersek oyuncusu.'] },
+  'Switzerland':     { fifa: 19,  pop: '~9M',   capital: 'Bern',        nickname: 'Nati',          coach: 'Murat Yakin',  stars: 0, funFacts: ['Son 6 büyük turnuvanın 5\'inde son 16 turuna çıktı.','2024 Avrupa Şampiyonası çeyrek finali.','Xherdan Shaqiri tüm dünya kupalarında gol atan tek İsviçreli.'] },
+  'Qatar':           { fifa: 51,  pop: '~3M',   capital: 'Doha',        nickname: 'Al-Annabi',     coach: 'Julen Lopetegui', stars: 0, funFacts: ['2022 ev sahibi olarak ilk kez Dünya Kupası oynadı.','2019 Asya Kupası şampiyonu.','Akram Afif yıldız golcü.'] },
+  'Brazil':          { fifa: 5,   pop: '~215M', capital: 'Brasilia',    nickname: 'Seleção',       coach: 'Dorival Júnior', stars: 5, funFacts: ['5 kez Dünya Kupası şampiyonu (en çok).','Tek takım tüm Dünya Kupaları\'na katılan.','Pelé 3 dünya kupası kazanan tek oyuncu.'] },
+  'Morocco':         { fifa: 14,  pop: '~37M',  capital: 'Rabat',       nickname: 'Atlas Lions',   coach: 'Walid Regragui', stars: 0, funFacts: ['2022\'de yarı final oynadı (ilk Afrika takımı).','2022\'de Belçika, Portekiz, İspanya\'yı eledi.','Hakimi, Ziyech, En-Nesyri yıldız üçlüsü.'] },
+  'Haiti':           { fifa: 86,  pop: '~11M',  capital: 'Port-au-Prince', nickname: 'Les Grenadiers', coach: 'Sébastien Migné', stars: 0, funFacts: ['1974\'ten beri ilk Dünya Kupası.','2024 CONCACAF Nations League yarı finali.','Birçok oyuncusu Fransız liginde forma giyiyor.'] },
+  'Scotland':        { fifa: 45,  pop: '~5.5M', capital: 'Edinburgh',   nickname: 'Tartan Army',   coach: 'Steve Clarke',  stars: 0, funFacts: ['1998 sonrası ilk Dünya Kupası.','2024 Euro\'da grup aşamasında İsviçre ile berabere kaldı.','En iyi derece 1974 (grup aşaması).'] },
+  'USA':             { fifa: 16,  pop: '~335M', capital: 'Washington DC', nickname: 'USMNT',       coach: 'Mauricio Pochettino', stars: 0, funFacts: ['2026 ev sahibi.','1994\'te ev sahibi olarak son 16 turuna çıktı.','Christian Pulisic takımın yıldızı.'] },
+  'Australia':       { fifa: 24,  pop: '~26M',  capital: 'Canberra',    nickname: 'Socceroos',     coach: 'Tony Popovic',  stars: 0, funFacts: ['2006\'da son 16 turuna çıktı (en iyi derece).','2022\'de Arjantin\'i 2-1 yenip grubu geçti.','Mathew Ryan uzun yıllar kalecilik yaptı.'] },
+  'Paraguay':        { fifa: 42,  pop: '~7.5M', capital: 'Asunción',    nickname: 'La Albirroja',  coach: 'Alfaro',        stars: 0, funFacts: ['2010 son 16 turu, 1998 son 16 turu.','Roque Santa Cruz efsanesi.','2011 Copa America finalist.'] },
+  'Türkiye':         { fifa: 26,  pop: '~85M',  capital: 'Ankara',      nickname: 'Ay-Yıldızlılar', coach: 'Vincenzo Montella', stars: 0, funFacts: ['2002 Dünya Kupası 3.\'lüğü (en iyi derece).','2008 Avrupa Şampiyonası yarı finali.','2002 sonrası ilk Dünya Kupası (24 yıl).'] },
+  'Germany':         { fifa: 9,   pop: '~84M',  capital: 'Berlin',      nickname: 'Die Mannschaft', coach: 'Julian Nagelsmann', stars: 4, funFacts: ['4 kez Dünya Kupası şampiyonu.','2014\'ten beri her turnuvada üst turda (?).','2018\'de grupta elendi (büyük sürpriz).'] },
+  'Curaçao':         { fifa: 82,  pop: '~150K', capital: 'Willemstad',  nickname: 'Blaublau',      coach: 'Dick Advocaat', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','Hollanda\'ya bağlı küçük ada.','2023 CONCACAF Gold Cup yarı finali.'] },
+  'Cote dIvoire':    { fifa: 46,  pop: '~28M',  capital: 'Yamoussoukro', nickname: 'Les Éléphants', coach: 'Emerse Faé', stars: 0, funFacts: ['2010 ve 2014\'te Dünya Kupası\'nda.','2015 Afrika Uluslar Kupası şampiyonu.','Didier Drogba efsanesi.'] },
+  'Ecuador':         { fifa: 30,  pop: '~18M',  capital: 'Quito',       nickname: 'La Tri',        coach: 'Sebastián Beccacece', stars: 0, funFacts: ['2006\'da son 16 turuna çıktı.','Deniz seviyesinden yüksek Quito\'da ev maçları oynuyor.','Enner Valencia gol kralı.'] },
+  'Netherlands':     { fifa: 7,   pop: '~18M',  capital: 'Amsterdam',   nickname: 'Oranje',        coach: 'Ronald Koeman', stars: 0, funFacts: ['3 kez finalist (1974, 1978, 2010) hiç kazanamadı.','2014 üçüncülük, 2022 çeyrek final.','Total Football\'un doğduğu ülke.'] },
+  'Japan':           { fifa: 18,  pop: '~124M', capital: 'Tokyo',       nickname: 'Samurai Blue',  coach: 'Hajime Moriyasu', stars: 0, funFacts: ['2018 ve 2022\'de son 16 turuna çıktı.','2022\'de Almanya ve İspanya\'yı 2-1\'lik skorlarla yendi.','2022 Dünya Kupası sürpriz takımı.'] },
+  'Tunisia':         { fifa: 41,  pop: '~12M',  capital: 'Tunus',       nickname: 'Carthage Eagles', coach: 'Faouzi Benzarti', stars: 0, funFacts: ['1978\'de Meksika\'yı 3-1 yendi (tarihi galibiyet).','2006\'da grup aşamasında elendi ama İspanya\'yı zorladı.','2022\'de Fransa ile 1-0 gerideyken maç kaçırdı.'] },
+  'Sweden':          { fifa: 31,  pop: '~10.5M', capital: 'Stockholm',  nickname: 'Blågult',       coach: 'Jon Dahl Tomasson', stars: 0, funFacts: ['1958\'de ev sahibi olarak finalist.','2018 çeyrek finali.','Zlatan\'ın yokluğunda yeni dönem.'] },
+  'Belgium':         { fifa: 3,   pop: '~12M',  capital: 'Brüksel',     nickname: 'Red Devils',    coach: 'Domenico Tedesco', stars: 0, funFacts: ['2018 üçüncüsü, 2022 grup elemesi (kötü sürpriz).','2014-2022 arası uzun altın jenerasyon.','Lukaku, De Bruyne, Hazard.'] },
+  'Iran':            { fifa: 21,  pop: '~89M',  capital: 'Tahran',      nickname: 'Team Melli',    coach: 'Amir Ghalenoei', stars: 0, funFacts: ['2014, 2018, 2022\'de Dünya Kupası.','2022\'de Galler\'i 2-0 yendi.','ABD vizesi sorunları nedeniyle Meksika\'da kamp yaptı.'] },
+  'Egypt':           { fifa: 36,  pop: '~110M', capital: 'Kahire',      nickname: 'Pharaohs',      coach: 'Hossam Hassan', stars: 0, funFacts: ['3 kez Afrika Uluslar Kupası üst üste.','2018\'de son Dünya Kupası (Suarez ile Salah sakatlığı).','Salah dünya starı.'] },
+  'New Zealand':     { fifa: 89,  pop: '~5.2M', capital: 'Wellington',  nickname: 'All Whites',    coach: 'Darren Bazeley', stars: 0, funFacts: ['2010\'da grup aşamasında Şili ve İspanya ile berabere kaldı.','2022\'de Playoff\'ta kaybetti.','OFC bölgesinin dünya kupası geleneği.'] },
+  'Spain':           { fifa: 8,   pop: '~48M',  capital: 'Madrid',      nickname: 'La Furia Roja', coach: 'Luis de la Fuente', stars: 1, funFacts: ['2010 Dünya Kupası şampiyonu.','2008-2012 üst üste 3 büyük turnuva şampiyonu.','Tiki-taka futbolun anavatanı.'] },
+  'Uruguay':         { fifa: 13,  pop: '~3.4M', capital: 'Montevideo',  nickname: 'La Celeste',    coach: 'Marcelo Bielsa', stars: 2, funFacts: ['2 kez Dünya Kupası şampiyonu (1930, 1950).','2022 çeyrek finali.','Suárez ve Cavani efsaneleri.'] },
+  'Saudi Arabia':    { fifa: 56,  pop: '~36M',  capital: 'Riyad',       nickname: 'The Green Falcons', coach: 'Hervé Renard', stars: 0, funFacts: ['2022\'de Arjantin\'i 2-1 yendi (büyük sürpriz).','1994 son 16 turu.','Al-Hilal, Al-Ahli gibi kulüpler.'] },
+  'Cabo Verde':      { fifa: 67,  pop: '~600K', capital: 'Praia',       nickname: 'Tubarões Azuis', coach: 'Pedro Leitão',  stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2024 AFCON çeyrek finali.','Avrupa\'da oynayan çok sayıda oyuncusu var.'] },
+  'France':          { fifa: 2,   pop: '~68M',  capital: 'Paris',       nickname: 'Les Bleus',     coach: 'Didier Deschamps', stars: 2, funFacts: ['2 kez şampiyon (1998, 2018).','2022 finalist.','Mbappé, Griezmann, Kanté yıldızları.'] },
+  'Senegal':         { fifa: 19,  pop: '~17M',  capital: 'Dakar',       nickname: 'Lions of Teranga', coach: 'Aliou Cissé', stars: 0, funFacts: ['2022 son 16 turu.','2002 çeyrek finali (ilk turda Fransa\'yı yendi).','Mané takımın efsanesi.'] },
+  'Norway':          { fifa: 32,  pop: '~5.5M', capital: 'Oslo',        nickname: 'Drillos',       coach: 'Ståle Solbakken', stars: 0, funFacts: ['1998 grup aşaması son Dünya Kupası.','Erling Haaland bu turnuvada yok.','1994-2000 döneminde altın jenerasyon.'] },
+  'Iraq':            { fifa: 56,  pop: '~45M',  capital: 'Bağdat',      nickname: 'Lions of Mesopotamia', coach: 'Jesus Casas', stars: 0, funFacts: ['2007 Asya Kupası şampiyonu.','1986\'da tek Dünya Kupası (Meksika).','2022 playoff maçı kaçırdı.'] },
+  'Argentina':       { fifa: 1,   pop: '~46M',  capital: 'Buenos Aires', nickname: 'La Albiceleste', coach: 'Lionel Scaloni', stars: 3, funFacts: ['2022 Dünya Kupası şampiyonu.','3 kez şampiyon (1978, 1986, 2022).','Messi son turnuvası.'] },
+  'Austria':         { fifa: 25,  pop: '~9.1M', capital: 'Viyana',      nickname: 'Das Team',      coach: 'Ralf Rangnick', stars: 0, funFacts: ['1954 3.lüğü (Wunderteam).','2024 Euro son 16 turu.','David Alaba efsanesi.'] },
+  'Algeria':         { fifa: 37,  pop: '~45M',  capital: 'Cezayir',     nickname: 'Les Fennecs',   coach: 'Vladimir Petković', stars: 0, funFacts: ['2014 son 16 turu (Almanya\'yı zorladı).','2019 Afrika Uluslar Kupası şampiyonu.','Mahrez takımın yıldızı.'] },
+  'Jordan':          { fifa: 64,  pop: '~11M',  capital: 'Amman',       nickname: 'The Chivalrous', coach: 'Hussein Ammouta', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2023 Asya Kupası finalist.','AFC bölgesi sürprizi.'] },
+  'Portugal':        { fifa: 6,   pop: '~10.4M', capital: 'Lizbon',     nickname: 'A Seleção',     coach: 'Roberto Martínez', stars: 0, funFacts: ['2016 Avrupa şampiyonu.','2022 çeyrek finali.','Cristiano Ronaldo\'nun son Dünya Kupası.'] },
+  'Colombia':        { fifa: 12,  pop: '~52M',  capital: 'Bogota',      nickname: 'Los Cafeteros', coach: 'Néstor Lorenzo', stars: 0, funFacts: ['2014 çeyrek finali.','2014\'te Brezilya\'yı zorladı.','James Rodríguez 2014 altın ayakkabı.'] },
+  'Uzbekistan':      { fifa: 58,  pop: '~36M',  capital: 'Taşkent',     nickname: 'White Wolves',  coach: 'Srečko Katanec', stars: 0, funFacts: ['İlk kez Dünya Kupası\'nda.','2024 AFCON yarı finali.','Orta Asya futbolunun yükseleni.'] },
+  'DR Congo':        { fifa: 60,  pop: '~105M', capital: 'Kinşasa',     nickname: 'Léopards',      coach: 'Sébastien Desabre', stars: 0, funFacts: ['1974\'te Zaire olarak Dünya Kupası.','2019 AFCON üçüncüsü.','Asya ve Avrupa\'da oynayan yıldızlar.'] },
+  'England':         { fifa: 4,   pop: '~57M',  capital: 'Londra',      nickname: 'Three Lions',   coach: 'Thomas Tuchel',  stars: 1, funFacts: ['1966 şampiyonu (son şampiyonluk).','2018 ve 2024 yarı finali.','Bellingham, Saka, Foden genç yıldızlar.'] },
+  'Croatia':         { fifa: 10,  pop: '~3.9M', capital: 'Zagreb',      nickname: 'Vatreni',       coach: 'Zlatko Dalić',  stars: 0, funFacts: ['2018 finalist, 2022 üçüncü.','2018 sonrası çıta yükseldi.','Modrić 2018 Ballon d\'Or.'] },
+  'Ghana':           { fifa: 76,  pop: '~33M',  capital: 'Akra',        nickname: 'Black Stars',   coach: 'Otto Addo',     stars: 0, funFacts: ['2010 çeyrek finali (Uruguay elendi).','2014\'te ABD karşısında dramatik maç.','Asamoah Gyan efsanesi.'] },
+  'Panama':          { fifa: 41,  pop: '~4.4M', capital: 'Panama City', nickname: 'Los Canaleros', coach: 'Thomas Christiansen', stars: 0, funFacts: ['2018\'deki ilk Dünya Kupası.','2018\'de İngiltere\'ye 6-1 kaybetti.','2024 Copa America yarı finali.'] },
+  'Wales':           { fifa: 26,  pop: '~3.1M', capital: 'Cardiff',     nickname: 'Dragons',       coach: 'Craig Bellamy', stars: 0, funFacts: ['1958 son Dünya Kupası (yeni nesil için 2022 vardı ama playoff kaybetti).','2016 Avrupa yarı finali.','Gareth Bale efsanesi.'] }
+};
+
+/* ============================================
+   TÜM MAÇLAR — Türkiye saati (UTC+3)
+   ============================================ */
+
+const MATCHES = [
+  // ----- A GRUBU -----
+  // 11 Haziran 22:00 açılış. 12 Haziran 05:00 Kore-Çekya. Dikkat: TSİ programı 11 Haziran'da başlıyor.
+  { id: 1,  group: 'A', date: '2026-06-11', time: '22:00', home: 'Mexico',            away: 'South Africa',   venue: 'Estadio Azteca, Mexico City' },
+  { id: 2,  group: 'A', date: '2026-06-12', time: '05:00', home: 'Korea Republic',    away: 'Czechia',         venue: 'Estadio Akron, Guadalajara' },
+  { id: 3,  group: 'A', date: '2026-06-18', time: '19:00', home: 'Czechia',           away: 'South Africa',   venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 4,  group: 'A', date: '2026-06-19', time: '04:00', home: 'Mexico',            away: 'Korea Republic',  venue: 'Estadio Akron, Guadalajara' },
+  { id: 5,  group: 'A', date: '2026-06-25', time: '04:00', home: 'South Africa',      away: 'Korea Republic',  venue: 'Estadio BBVA, Monterrey' },
+  { id: 6,  group: 'A', date: '2026-06-25', time: '04:00', home: 'Czechia',           away: 'Mexico',          venue: 'Estadio Azteca, Mexico City' },
+
+  // ----- B GRUBU -----
+  { id: 7,  group: 'B', date: '2026-06-12', time: '22:00', home: 'Canada',            away: 'Bosnia and Herzegovina', venue: 'BMO Field, Toronto' },
+  { id: 8,  group: 'B', date: '2026-06-13', time: '22:00', home: 'Qatar',             away: 'Switzerland',     venue: "Levi's Stadium, San Francisco" },
+  { id: 9,  group: 'B', date: '2026-06-18', time: '22:00', home: 'Switzerland',       away: 'Bosnia and Herzegovina', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 10, group: 'B', date: '2026-06-19', time: '01:00', home: 'Canada',            away: 'Qatar',           venue: 'BC Place, Vancouver' },
+  { id: 11, group: 'B', date: '2026-06-24', time: '22:00', home: 'Canada',            away: 'Switzerland',     venue: 'BC Place, Vancouver' },
+  { id: 12, group: 'B', date: '2026-06-24', time: '22:00', home: 'Bosnia and Herzegovina', away: 'Qatar',       venue: 'Lumen Field, Seattle' },
+
+  // ----- C GRUBU -----
+  { id: 13, group: 'C', date: '2026-06-14', time: '01:00', home: 'Brazil',            away: 'Morocco',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 14, group: 'C', date: '2026-06-14', time: '04:00', home: 'Haiti',             away: 'Scotland',        venue: 'Gillette Stadium, Boston' },
+  { id: 15, group: 'C', date: '2026-06-20', time: '01:00', home: 'Scotland',          away: 'Morocco',         venue: 'Gillette Stadium, Boston' },
+  { id: 16, group: 'C', date: '2026-06-20', time: '03:30', home: 'Brazil',            away: 'Haiti',           venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 17, group: 'C', date: '2026-06-25', time: '01:00', home: 'Scotland',          away: 'Brazil',          venue: 'Hard Rock Stadium, Miami' },
+  { id: 18, group: 'C', date: '2026-06-25', time: '01:00', home: 'Morocco',           away: 'Haiti',           venue: 'Mercedes-Benz Stadium, Atlanta' },
+
+  // ----- D GRUBU -----
+  { id: 19, group: 'D', date: '2026-06-13', time: '04:00', home: 'USA',               away: 'Paraguay',        venue: 'SoFi Stadium, Los Angeles' },
+  { id: 20, group: 'D', date: '2026-06-14', time: '07:00', home: 'Australia',         away: 'Türkiye',         venue: 'BC Place, Vancouver' },
+  { id: 21, group: 'D', date: '2026-06-20', time: '06:00', home: 'Türkiye',           away: 'Paraguay',        venue: "Levi's Stadium, San Francisco" },
+  { id: 22, group: 'D', date: '2026-06-19', time: '22:00', home: 'USA',               away: 'Australia',       venue: 'Lumen Field, Seattle' },
+  { id: 23, group: 'D', date: '2026-06-26', time: '05:00', home: 'Türkiye',           away: 'USA',             venue: 'SoFi Stadium, Los Angeles' },
+  { id: 24, group: 'D', date: '2026-06-26', time: '05:00', home: 'Paraguay',          away: 'Australia',       venue: "Levi's Stadium, San Francisco" },
+
+  // ----- E GRUBU (Ölüm Grubu) -----
+  { id: 25, group: 'E', date: '2026-06-14', time: '20:00', home: 'Germany',           away: 'Curaçao',         venue: 'NRG Stadium, Houston' },
+  { id: 26, group: 'E', date: '2026-06-15', time: '02:00', home: 'Cote dIvoire',      away: 'Ecuador',         venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 27, group: 'E', date: '2026-06-20', time: '23:00', home: 'Germany',           away: 'Cote dIvoire',    venue: 'BMO Field, Toronto' },
+  { id: 28, group: 'E', date: '2026-06-21', time: '03:00', home: 'Ecuador',           away: 'Curaçao',         venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 29, group: 'E', date: '2026-06-25', time: '23:00', home: 'Curaçao',           away: 'Cote dIvoire',    venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 30, group: 'E', date: '2026-06-25', time: '23:00', home: 'Ecuador',           away: 'Germany',         venue: 'MetLife Stadium, New York/NJ' },
+
+  // ----- F GRUBU -----
+  { id: 31, group: 'F', date: '2026-06-14', time: '23:00', home: 'Netherlands',       away: 'Japan',           venue: 'AT&T Stadium, Dallas' },
+  { id: 32, group: 'F', date: '2026-06-15', time: '05:00', home: 'Sweden',            away: 'Tunisia',         venue: 'Estadio BBVA, Monterrey' },
+  { id: 33, group: 'F', date: '2026-06-20', time: '20:00', home: 'Netherlands',       away: 'Sweden',          venue: 'NRG Stadium, Houston' },
+  { id: 34, group: 'F', date: '2026-06-21', time: '07:00', home: 'Tunisia',           away: 'Japan',           venue: 'Estadio BBVA, Monterrey' },
+  { id: 35, group: 'F', date: '2026-06-26', time: '02:00', home: 'Japan',             away: 'Sweden',          venue: 'AT&T Stadium, Dallas' },
+  { id: 36, group: 'F', date: '2026-06-26', time: '02:00', home: 'Tunisia',           away: 'Netherlands',     venue: 'Arrowhead Stadium, Kansas City' },
+
+  // ----- G GRUBU -----
+  { id: 37, group: 'G', date: '2026-06-15', time: '22:00', home: 'Belgium',           away: 'Egypt',           venue: 'Lumen Field, Seattle' },
+  { id: 38, group: 'G', date: '2026-06-16', time: '04:00', home: 'Iran',              away: 'New Zealand',     venue: 'SoFi Stadium, Los Angeles' },
+  { id: 39, group: 'G', date: '2026-06-21', time: '22:00', home: 'Belgium',           away: 'Iran',            venue: 'SoFi Stadium, Los Angeles' },
+  { id: 40, group: 'G', date: '2026-06-22', time: '04:00', home: 'New Zealand',       away: 'Egypt',           venue: 'BC Place, Vancouver' },
+  { id: 41, group: 'G', date: '2026-06-27', time: '06:00', home: 'New Zealand',       away: 'Belgium',         venue: 'BC Place, Vancouver' },
+  { id: 42, group: 'G', date: '2026-06-27', time: '06:00', home: 'Egypt',             away: 'Iran',            venue: 'Lumen Field, Seattle' },
+
+  // ----- H GRUBU -----
+  { id: 43, group: 'H', date: '2026-06-15', time: '19:00', home: 'Spain',             away: 'Cabo Verde',      venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 44, group: 'H', date: '2026-06-16', time: '01:00', home: 'Saudi Arabia',      away: 'Uruguay',         venue: 'Hard Rock Stadium, Miami' },
+  { id: 45, group: 'H', date: '2026-06-21', time: '19:00', home: 'Spain',             away: 'Saudi Arabia',    venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 46, group: 'H', date: '2026-06-22', time: '01:00', home: 'Uruguay',           away: 'Cabo Verde',      venue: 'Hard Rock Stadium, Miami' },
+  { id: 47, group: 'H', date: '2026-06-27', time: '03:00', home: 'Cabo Verde',        away: 'Saudi Arabia',    venue: 'NRG Stadium, Houston' },
+  { id: 48, group: 'H', date: '2026-06-27', time: '03:00', home: 'Uruguay',           away: 'Spain',           venue: 'Estadio Akron, Guadalajara' },
+
+  // ----- I GRUBU -----
+  { id: 49, group: 'I', date: '2026-06-16', time: '22:00', home: 'France',            away: 'Senegal',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 50, group: 'I', date: '2026-06-17', time: '01:00', home: 'Iraq',              away: 'Norway',          venue: 'Gillette Stadium, Boston' },
+  { id: 51, group: 'I', date: '2026-06-23', time: '00:00', home: 'France',            away: 'Iraq',            venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 52, group: 'I', date: '2026-06-23', time: '03:00', home: 'Norway',            away: 'Senegal',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 53, group: 'I', date: '2026-06-26', time: '22:00', home: 'Norway',            away: 'France',          venue: 'Gillette Stadium, Boston' },
+  { id: 54, group: 'I', date: '2026-06-26', time: '22:00', home: 'Senegal',           away: 'Iraq',            venue: 'BMO Field, Toronto' },
+
+  // ----- J GRUBU -----
+  { id: 55, group: 'J', date: '2026-06-17', time: '04:00', home: 'Argentina',         away: 'Algeria',         venue: 'Arrowhead Stadium, Kansas City' },
+  { id: 56, group: 'J', date: '2026-06-17', time: '07:00', home: 'Austria',           away: 'Jordan',          venue: "Levi's Stadium, San Francisco" },
+  { id: 57, group: 'J', date: '2026-06-22', time: '20:00', home: 'Argentina',         away: 'Austria',         venue: 'AT&T Stadium, Dallas' },
+  { id: 58, group: 'J', date: '2026-06-23', time: '06:00', home: 'Algeria',           away: 'Jordan',          venue: "Levi's Stadium, San Francisco" },
+  { id: 59, group: 'J', date: '2026-06-28', time: '05:00', home: 'Jordan',            away: 'Argentina',       venue: 'AT&T Stadium, Dallas' },
+  { id: 60, group: 'J', date: '2026-06-28', time: '05:00', home: 'Algeria',           away: 'Austria',         venue: 'Arrowhead Stadium, Kansas City' },
+
+  // ----- K GRUBU -----
+  { id: 61, group: 'K', date: '2026-06-17', time: '20:00', home: 'Portugal',          away: 'DR Congo',        venue: 'NRG Stadium, Houston' },
+  { id: 62, group: 'K', date: '2026-06-18', time: '05:00', home: 'Uzbekistan',        away: 'Colombia',        venue: 'Estadio Azteca, Mexico City' },
+  { id: 63, group: 'K', date: '2026-06-23', time: '20:00', home: 'Portugal',          away: 'Uzbekistan',      venue: 'NRG Stadium, Houston' },
+  { id: 64, group: 'K', date: '2026-06-24', time: '05:00', home: 'Colombia',          away: 'DR Congo',        venue: 'Estadio Akron, Guadalajara' },
+  { id: 65, group: 'K', date: '2026-06-28', time: '02:30', home: 'DR Congo',          away: 'Uzbekistan',      venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 66, group: 'K', date: '2026-06-28', time: '02:30', home: 'Colombia',          away: 'Portugal',        venue: 'Hard Rock Stadium, Miami' },
+
+  // ----- L GRUBU -----
+  { id: 67, group: 'L', date: '2026-06-17', time: '23:00', home: 'England',           away: 'Croatia',         venue: 'AT&T Stadium, Dallas' },
+  { id: 68, group: 'L', date: '2026-06-18', time: '02:00', home: 'Ghana',             away: 'Panama',          venue: 'BMO Field, Toronto' },
+  { id: 69, group: 'L', date: '2026-06-23', time: '23:00', home: 'England',           away: 'Ghana',           venue: 'Gillette Stadium, Boston' },
+  { id: 70, group: 'L', date: '2026-06-24', time: '02:00', home: 'Croatia',           away: 'Panama',          venue: 'BMO Field, Toronto' },
+  { id: 71, group: 'L', date: '2026-06-28', time: '00:00', home: 'Panama',            away: 'England',         venue: 'MetLife Stadium, New York/NJ' },
+  { id: 72, group: 'L', date: '2026-06-28', time: '00:00', home: 'Croatia',           away: 'Ghana',           venue: 'Lincoln Financial Field, Philadelphia' }
+];
+
+/* ============================================
+   ELEME (KNOCKOUT) MAÇLARI — 32 maç
+   Takımlar grup aşaması sonrası belli olur (TBD).
+   Saatler FIFA ET programına göre TSİ'ye çevrildi (ET + 7 saat, EDT).
+   Kaynak: FIFA / Yahoo Sports programı (Haziran 2026).
+   ============================================ */
+
+const KNOCKOUT_MATCHES = [
+  // ----- SON 32 (1/16 finali) — 16 maç -----
+  { id: 73,  round: 'R32', matchNo: '73',  home: 'TBD', away: 'TBD', pairing: 'A Grubu 2. vs B Grubu 2.',            date: '2026-06-28', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 74,  round: 'R32', matchNo: '74',  home: 'TBD', away: 'TBD', pairing: 'C Grubu 1. vs F Grubu 2.',            date: '2026-06-29', time: '20:00', venue: 'NRG Stadium, Houston' },
+  { id: 75,  round: 'R32', matchNo: '75',  home: 'TBD', away: 'TBD', pairing: 'E Grubu 1. vs En İyi 3. (A/B/C/D/F)', date: '2026-06-29', time: '23:30', venue: 'Gillette Stadium, Boston' },
+  { id: 76,  round: 'R32', matchNo: '76',  home: 'TBD', away: 'TBD', pairing: 'F Grubu 1. vs C Grubu 2.',            date: '2026-06-30', time: '04:00', venue: 'Estadio BBVA, Monterrey' },
+  { id: 77,  round: 'R32', matchNo: '77',  home: 'TBD', away: 'TBD', pairing: 'E Grubu 2. vs I Grubu 2.',            date: '2026-06-30', time: '20:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 78,  round: 'R32', matchNo: '78',  home: 'TBD', away: 'TBD', pairing: 'I Grubu 1. vs En İyi 3. (C/D/F/G/H)', date: '2026-07-01', time: '00:00', venue: 'MetLife Stadium, New York/NJ' },
+  { id: 79,  round: 'R32', matchNo: '79',  home: 'TBD', away: 'TBD', pairing: 'A Grubu 1. vs En İyi 3. (C/E/F/H/I)', date: '2026-07-01', time: '04:00', venue: 'Estadio Azteca, Mexico City' },
+  { id: 80,  round: 'R32', matchNo: '80',  home: 'TBD', away: 'TBD', pairing: 'L Grubu 1. vs En İyi 3. (E/H/I/J/K)', date: '2026-07-01', time: '19:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 81,  round: 'R32', matchNo: '81',  home: 'TBD', away: 'TBD', pairing: 'G Grubu 1. vs En İyi 3. (A/E/H/I/J)', date: '2026-07-01', time: '23:00', venue: 'Lumen Field, Seattle' },
+  { id: 82,  round: 'R32', matchNo: '82',  home: 'TBD', away: 'TBD', pairing: 'D Grubu 1. vs En İyi 3. (B/E/F/I/J)', date: '2026-07-02', time: '03:00', venue: "Levi's Stadium, San Francisco" },
+  { id: 83,  round: 'R32', matchNo: '83',  home: 'TBD', away: 'TBD', pairing: 'H Grubu 1. vs J Grubu 2.',            date: '2026-07-02', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 84,  round: 'R32', matchNo: '84',  home: 'TBD', away: 'TBD', pairing: 'K Grubu 2. vs L Grubu 2.',            date: '2026-07-03', time: '02:00', venue: 'BMO Field, Toronto' },
+  { id: 85,  round: 'R32', matchNo: '85',  home: 'TBD', away: 'TBD', pairing: 'B Grubu 1. vs En İyi 3. (E/F/G/I/J)', date: '2026-07-03', time: '06:00', venue: 'BC Place, Vancouver' },
+  { id: 86,  round: 'R32', matchNo: '86',  home: 'TBD', away: 'TBD', pairing: 'D Grubu 2. vs G Grubu 2.',            date: '2026-07-03', time: '21:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 87,  round: 'R32', matchNo: '87',  home: 'TBD', away: 'TBD', pairing: 'J Grubu 1. vs H Grubu 2.',            date: '2026-07-04', time: '01:00', venue: 'Hard Rock Stadium, Miami' },
+  { id: 88,  round: 'R32', matchNo: '88',  home: 'TBD', away: 'TBD', pairing: 'K Grubu 1. vs En İyi 3. (D/E/I/J/L)', date: '2026-07-04', time: '04:30', venue: 'Arrowhead Stadium, Kansas City' },
+
+  // ----- SON 16 (1/8 finali) — 8 maç -----
+  { id: 89,  round: 'R16', matchNo: '89',  home: 'TBD', away: 'TBD', pairing: '74. maç galibi vs 77. maç galibi',     date: '2026-07-05', time: '00:00', venue: 'Lincoln Financial Field, Philadelphia' },
+  { id: 90,  round: 'R16', matchNo: '90',  home: 'TBD', away: 'TBD', pairing: '73. maç galibi vs 75. maç galibi',     date: '2026-07-04', time: '20:00', venue: 'NRG Stadium, Houston' },
+  { id: 91,  round: 'R16', matchNo: '91',  home: 'TBD', away: 'TBD', pairing: '76. maç galibi vs 78. maç galibi',     date: '2026-07-05', time: '23:00', venue: 'MetLife Stadium, New York/NJ' },
+  { id: 92,  round: 'R16', matchNo: '92',  home: 'TBD', away: 'TBD', pairing: '79. maç galibi vs 80. maç galibi',     date: '2026-07-06', time: '03:00', venue: 'Estadio Azteca, Mexico City' },
+  { id: 93,  round: 'R16', matchNo: '93',  home: 'TBD', away: 'TBD', pairing: '83. maç galibi vs 84. maç galibi',     date: '2026-07-06', time: '22:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 94,  round: 'R16', matchNo: '94',  home: 'TBD', away: 'TBD', pairing: '81. maç galibi vs 82. maç galibi',     date: '2026-07-07', time: '03:00', venue: 'Lumen Field, Seattle' },
+  { id: 95,  round: 'R16', matchNo: '95',  home: 'TBD', away: 'TBD', pairing: '86. maç galibi vs 88. maç galibi',     date: '2026-07-07', time: '19:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
+  { id: 96,  round: 'R16', matchNo: '96',  home: 'TBD', away: 'TBD', pairing: '85. maç galibi vs 87. maç galibi',     date: '2026-07-07', time: '23:00', venue: 'BC Place, Vancouver' },
+
+  // ----- ÇEYREK FİNAL — 4 maç -----
+  { id: 97,  round: 'QF',  matchNo: '97',  home: 'TBD', away: 'TBD', pairing: '89. maç galibi vs 90. maç galibi',     date: '2026-07-09', time: '23:00', venue: 'Gillette Stadium, Boston' },
+  { id: 98,  round: 'QF',  matchNo: '98',  home: 'TBD', away: 'TBD', pairing: '93. maç galibi vs 94. maç galibi',     date: '2026-07-10', time: '22:00', venue: 'SoFi Stadium, Los Angeles' },
+  { id: 99,  round: 'QF',  matchNo: '99',  home: 'TBD', away: 'TBD', pairing: '91. maç galibi vs 92. maç galibi',     date: '2026-07-12', time: '00:00', venue: 'Hard Rock Stadium, Miami' },
+  { id: 100, round: 'QF',  matchNo: '100', home: 'TBD', away: 'TBD', pairing: '95. maç galibi vs 96. maç galibi',     date: '2026-07-12', time: '04:00', venue: 'Arrowhead Stadium, Kansas City' },
+
+  // ----- YARI FİNAL — 2 maç -----
+  { id: 101, round: 'SF',  matchNo: '101', home: 'TBD', away: 'TBD', pairing: '97. maç galibi vs 98. maç galibi',     date: '2026-07-14', time: '22:00', venue: 'AT&T Stadium, Dallas' },
+  { id: 102, round: 'SF',  matchNo: '102', home: 'TBD', away: 'TBD', pairing: '99. maç galibi vs 100. maç galibi',    date: '2026-07-15', time: '22:00', venue: 'Mercedes-Benz Stadium, Atlanta' },
+
+  // ----- ÜÇÜNCÜLÜK -----
+  { id: 103, round: '3RD', matchNo: '103', home: 'TBD', away: 'TBD', pairing: 'Yarı final kaybedenleri',              date: '2026-07-19', time: '00:00', venue: 'Hard Rock Stadium, Miami' },
+
+  // ----- FİNAL -----
+  { id: 104, round: 'F',   matchNo: '104', home: 'TBD', away: 'TBD', pairing: 'Yarı final galibleri · Dünya Şampiyonu', date: '2026-07-19', time: '22:00', venue: 'MetLife Stadium, New York/NJ' }
+];
+
+/* Round meta bilgileri (görsel başlıklar için) */
+const ROUND_META = {
+  'R32':  { label: 'Son 32 (1/16 Finali)', short: 'R32',  icon: '⚔️' },
+  'R16':  { label: 'Son 16 (1/8 Finali)',  short: 'R16',  icon: '🛡️' },
+  'QF':   { label: 'Çeyrek Final',          short: 'ÇF',   icon: '🏟️' },
+  'SF':   { label: 'Yarı Final',            short: 'YF',   icon: '🎯' },
+  '3RD':  { label: 'Üçüncülük Maçı',        short: '3.',   icon: '🥉' },
+  'F':    { label: 'Final · Dünya Kupası',  short: 'F',    icon: '🏆' }
+};
+
+/* ============================================
+   FIFA 2026 WC Fixture — App Logic
+   ============================================ */
+
+(function () {
+  'use strict';
+
+  const state = {
+    view: 'timeline',        // timeline | groups | türkiye | knockout
+    group: 'ALL',
+    search: '',
+    matches: MATCHES,
+    liveScores: new Map(),   // id -> openfootball match
+    liveStatus: 'idle'       // idle | loading | ok | error
+  };
+
+  /* Takım adı normalleştirme: openfootball ↔ bizim map */
+  const TEAM_ALIAS = {
+    'Korea Republic': 'South Korea',
+    'Korea DPR': 'North Korea',
+    'USA': 'United States',
+    'Cote dIvoire': 'Ivory Coast',
+    'Cabo Verde': 'Cape Verde',
+    'DR Congo': 'Congo DR',
+    'Congo': 'Congo',
+    'Bosnia and Herzegovina': 'Bosnia-Herzegovina',
+    'Czechia': 'Czech Republic',
+    'Wales': 'Wales',
+    'Scotland': 'Scotland',
+    'England': 'England',
+    'Korea': 'South Korea'
+  };
+  const teamKey = (name) => {
+    if (!name) return '';
+    const aliased = TEAM_ALIAS[name] || name;
+    return aliased.toLowerCase().replace(/[^a-zçğıöşüâêîôûäëïöüàèìòùáéíóúñ]/g, '');
+  };
+
+  const isKnockout = (m) => m.round != null;
+  const flagFor = (team) => (team === 'TBD' ? TBD_FLAG : FLAGS[team] || TBD_FLAG);
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  /* ---------- Helpers ---------- */
+  const flagUrl = (team) => `${FLAGS_BASE}${FLAGS[team] || 'xx'}.png`;
+
+  const formatDateTR = (iso) => {
+    const d = new Date(iso + 'T00:00:00');
+    const days = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+    const months = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+    return {
+      day: d.getDate(),
+      month: months[d.getMonth()],
+      monthShort: months[d.getMonth()].slice(0, 3),
+      dow: days[d.getDay()],
+      dowShort: days[d.getDay()].slice(0, 3),
+      iso
+    };
+  };
+
+  const groupLabel = (g) => {
+    const map = {
+      'A': 'Meksika · Güney Afrika · Kore · Çekya',
+      'B': 'Kanada · Bosna · İsviçre · Katar',
+      'C': 'Brezilya · Fas · Haiti · İskoçya',
+      'D': 'ABD · Avustralya · Paraguay · Türkiye',
+      'E': 'Almanya · Curaçao · Fildişi · Ekvador',
+      'F': 'Hollanda · Japonya · Tunus · İsveç',
+      'G': 'Belçika · İran · Mısır · Yeni Zelanda',
+      'H': 'İspanya · Uruguay · S.Arabistan · Cabo Verde',
+      'I': 'Fransa · Senegal · Norveç · Irak',
+      'J': 'Arjantin · Avusturya · Cezayir · Ürdün',
+      'K': 'Portekiz · Kolombiya · Özbekistan · Kongo',
+      'L': 'İngiltere · Hırvatistan · Gana · Panama'
+    };
+    return map[g] || '';
+  };
+
+  const groupTeams = (g) => {
+    const m = MATCHES.filter(x => x.group === g);
+    const set = new Set();
+    m.forEach(x => { set.add(x.home); set.add(x.away); });
+    return Array.from(set);
+  };
+
+  /* ---------- Renderers ---------- */
+  function renderGroupTabs() {
+    const wrap = $('#groupTabs');
+    const groups = ['ALL', ...'ABCDEFGHIJKL'.split('')];
+    wrap.innerHTML = groups.map(g => `
+      <button class="group-tab ${state.group === g ? 'active' : ''}" data-group="${g}">
+        ${g === 'ALL' ? '🌍 Tümü' : g}
+      </button>
+    `).join('');
+    $$('.group-tab', wrap).forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.group = btn.dataset.group;
+        render();
+      });
+    });
+  }
+
+  function filterMatches() {
+    // Tüm maçlar: grup + eleme
+    let arr = [...MATCHES, ...KNOCKOUT_MATCHES];
+
+    if (state.view === 'türkiye') {
+      arr = arr.filter(m => !isKnockout(m) && (m.home === 'Türkiye' || m.away === 'Türkiye'));
+    } else if (state.view === 'knockout') {
+      arr = arr.filter(isKnockout);
+    } else if (state.group !== 'ALL') {
+      arr = arr.filter(m => !isKnockout(m) && m.group === state.group);
+    }
+
+    if (state.search.trim()) {
+      const q = state.search.trim().toLowerCase();
+      arr = arr.filter(m =>
+        (m.home || '').toLowerCase().includes(q) ||
+        (m.away || '').toLowerCase().includes(q) ||
+        (m.venue || '').toLowerCase().includes(q) ||
+        (m.group || '').toLowerCase() === q ||
+        (m.pairing || '').toLowerCase().includes(q) ||
+        (m.round || '').toLowerCase().includes(q)
+      );
+    }
+
+    return arr;
+  }
+
+  function findMatch(id) {
+    return MATCHES.find(x => x.id === id) || KNOCKOUT_MATCHES.find(x => x.id === id);
+  }
+
+  function render() {
+    renderGroupTabs();
+    const container = $('#matchesContainer');
+    const filtered = filterMatches();
+    $('#statShown').textContent = filtered.length;
+    $('#statTotal').textContent = MATCHES.length + KNOCKOUT_MATCHES.length;
+
+    if (state.view === 'timeline') {
+      container.innerHTML = renderTimeline(filtered);
+    } else if (state.view === 'türkiye') {
+      container.innerHTML = renderTürkiye(filtered);
+    } else if (state.view === 'knockout') {
+      container.innerHTML = renderKnockout(filtered);
+    } else {
+      container.innerHTML = renderGroups(filtered);
+    }
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">🔍</div>
+          <div class="empty-text">Aramayla eşleşen maç bulunamadı.</div>
+        </div>`;
+    }
+
+    bindMatchClicks();
+  }
+
+  function renderGroups(matches) {
+    const byGroup = {};
+    matches.forEach(m => {
+      if (!byGroup[m.group]) byGroup[m.group] = [];
+      byGroup[m.group].push(m);
+    });
+
+    const groupOrder = 'ABCDEFGHIJKL'.split('').filter(g => byGroup[g]);
+
+    if (groupOrder.length === 0) return '';
+
+    return groupOrder.map(g => {
+      const teams = groupTeams(g);
+      return `
+        <article class="group-card" data-group="${g}">
+          <header class="group-header">
+            <div>
+              <span class="group-letter">${g}</span>
+              <span class="group-name">${groupLabel(g)}</span>
+            </div>
+            <div class="group-teams">
+              ${teams.map(t => `
+                <span class="team-chip">
+                  <img src="${flagUrl(t)}" alt="${t}" loading="lazy" />
+                  <span>${t}</span>
+                </span>
+              `).join('')}
+            </div>
+          </header>
+          <div class="matches-list">
+            ${byGroup[g].map(renderMatch).join('')}
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function renderTimeline(matches) {
+    const byDate = {};
+    matches.forEach(m => {
+      if (!byDate[m.date]) byDate[m.date] = [];
+      byDate[m.date].push(m);
+    });
+    const dates = Object.keys(byDate).sort();
+    if (dates.length === 0) return '';
+    return dates.map(d => {
+      const f = formatDateTR(d);
+      const dayMatches = byDate[d].sort((a, b) => a.time.localeCompare(b.time));
+      return `
+        <article class="timeline-day" data-date="${d}">
+          <header class="timeline-day-header">
+            <div>
+              <div class="timeline-dow">${f.dow} · ${f.dowShort}</div>
+              <div class="timeline-date">${f.day} ${f.month} 2026</div>
+            </div>
+            <div class="timeline-count">${dayMatches.length} maç</div>
+          </header>
+          <div class="timeline-list">
+            ${dayMatches.map(renderMatch).join('')}
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function renderTürkiye(matches) {
+    if (matches.length === 0) return '';
+    const türkiyeMatches = matches.filter(m => m.home === 'Türkiye' || m.away === 'Türkiye');
+    const tInfo = TEAM_INFO['Türkiye'];
+
+    return `
+      <section class="türkiye-banner">
+        <img class="türkiye-banner-flag" src="${flagUrl('Türkiye')}" alt="Türkiye Bayrağı" />
+        <div style="flex:1; min-width: 220px;">
+          <div class="türkiye-banner-title">🇹🇷 A Milli Takım · D Grubu</div>
+          <div class="türkiye-banner-sub">
+            ${tInfo.nickname} · Teknik Direktör: <strong>${tInfo.coach}</strong> · Dünya Kupası tarihinde 2. kez (önceki: 2002, 3.'lük)
+          </div>
+        </div>
+      </section>
+      ${türkiyeMatches.map(renderMatch).join('')}
+    `;
+  }
+
+  function renderMatch(m) {
+    const f = formatDateTR(m.date);
+    const isTR = !isKnockout(m) && (m.home === 'Türkiye' || m.away === 'Türkiye');
+    const isKnock = isKnockout(m);
+    const roundMeta = isKnock ? ROUND_META[m.round] : null;
+    const stars = isTR ? `<span class="türkiye-stars"><span>⭐</span></span>` : '';
+
+    const live = lookupLive(m);
+    const hasScores = live && (live.goals1 || []).length > 0 || (live && (live.goals2 || []).length > 0);
+    const isFinal = !!hasScores;
+    const s1 = isFinal ? (live.goals1 || []).length : null;
+    const s2 = isFinal ? (live.goals2 || []).length : null;
+
+    const statusBadge = isFinal
+      ? `<span class="status-badge status-final">MS</span>`
+      : '';
+
+    return `
+      <div class="match ${isTR ? 'is-türkiye' : ''} ${isKnock ? 'is-knockout' : ''} ${isFinal ? 'is-final' : ''}" data-match-id="${m.id}">
+        <div class="match-date">
+          <div class="match-day">${isKnock ? (roundMeta.icon + ' ' + roundMeta.short) : (f.dowShort + ' ' + f.day + ' ' + f.monthShort)}</div>
+          <div class="match-time">${m.time}</div>
+          <div class="match-venue">${shortVenue(m.venue)}</div>
+        </div>
+        <div class="match-body">
+          <div class="team team-a">
+            <img class="team-flag" src="${flagFor(m.home)}" alt="${m.home}" loading="lazy" />
+            <div style="min-width:0;">
+              <div class="team-name">${m.home}${stars}</div>
+              <div class="team-rank">${isKnock ? (m.pairing ? m.pairing.split(' vs ')[0] : 'Belirlenecek') : (CONF[m.home] || '')}</div>
+            </div>
+          </div>
+          <div class="vs-block ${isFinal ? 'has-score' : ''}">${isFinal ? (s1 + ' - ' + s2) : 'VS'}</div>
+          <div class="team team-b">
+            <img class="team-flag" src="${flagFor(m.away)}" alt="${m.away}" loading="lazy" />
+            <div style="min-width:0;">
+              <div class="team-name">${m.away}${m.away === 'Türkiye' ? stars : ''}</div>
+              <div class="team-rank">${isKnock ? (m.pairing ? m.pairing.split(' vs ')[1] : 'Belirlenecek') : (CONF[m.away] || '')}</div>
+            </div>
+          </div>
+        </div>
+        <div class="match-arrow">${statusBadge}</div>
+      </div>
+    `;
+  }
+
+  function renderKnockout(matches) {
+    if (matches.length === 0) return '';
+    const byRound = {};
+    matches.forEach(m => {
+      if (!byRound[m.round]) byRound[m.round] = [];
+      byRound[m.round].push(m);
+    });
+    const order = ['R32', 'R16', 'QF', 'SF', '3RD', 'F'];
+    return order.filter(r => byRound[r]).map(r => {
+      const meta = ROUND_META[r];
+      const roundMatches = byRound[r].sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
+      return `
+        <article class="group-card knockout-round" data-round="${r}">
+          <header class="group-header">
+            <div>
+              <span class="group-letter" style="font-family: 'Oswald', sans-serif;">${meta.icon}</span>
+              <span class="group-name">${meta.label} · ${roundMatches.length} maç</span>
+            </div>
+          </header>
+          <div class="matches-list">
+            ${roundMatches.map(renderMatch).join('')}
+          </div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function shortVenue(v) {
+    // Stadyum adından sonraki şehir kısmını öne çıkar
+    const parts = v.split(',');
+    if (parts.length > 1) return parts.slice(1).join(',').trim();
+    return v;
+  }
+
+  function bindMatchClicks() {
+    $$('.match').forEach(el => {
+      el.addEventListener('click', () => {
+        const id = parseInt(el.dataset.matchId, 10);
+        const m = findMatch(id);
+        if (m) openModal(m);
+      });
+    });
+  }
+
+  /* ---------- Modal ---------- */
+  function openModal(m) {
+    const f = formatDateTR(m.date);
+    $('#mFlagA').src = flagFor(m.home);
+    $('#mFlagA').alt = m.home;
+    $('#mFlagB').src = flagFor(m.away);
+    $('#mFlagB').alt = m.away;
+
+    const isKnock = isKnockout(m);
+    const titleSuffix = isKnock && m.matchNo ? ` · Maç #${m.matchNo}` : '';
+    $('#modalTitle').textContent = `${m.home}  vs  ${m.away}${titleSuffix}`;
+    $('#modalMeta').innerHTML = `
+      <span>📅 ${f.day} ${f.month} 2026 · ${f.dow}</span>
+      <span>⏰ TSİ ${m.time}</span>
+      <span>🏟️ ${m.venue}</span>
+    `;
+
+    $('#modalBody').innerHTML = renderModalBody(m, f);
+
+    const bd = $('#modalBackdrop');
+    bd.classList.add('open');
+    bd.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const bd = $('#modalBackdrop');
+    bd.classList.remove('open');
+    bd.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function renderModalBody(m, f) {
+    const isKnock = isKnockout(m);
+    const roundMeta = isKnock ? ROUND_META[m.round] : null;
+
+    if (isKnock) {
+      // TBD/Knockout modalı: takım bilgisi yok, sadece tur, eşleşme, yer
+      return `
+        <div class="modal-vs">
+          ${renderTBDTeamSide(m.home)}
+          ${renderTBDTeamSide(m.away)}
+        </div>
+        <div style="margin-top:6px;">
+          <span style="background:linear-gradient(135deg, rgba(255,184,0,0.25), rgba(255,122,0,0.1)); color: var(--accent); padding: 6px 14px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; border: 1px solid rgba(255,184,0,0.4);">
+            ${roundMeta.icon} ${roundMeta.label} · Maç #${m.matchNo}
+          </span>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">📊 Eşleşme Detayları</div>
+          <ul class="modal-fact-list">
+            ${renderFactLi('Round', roundMeta.label)}
+            ${renderFactLi('Eşleşme Kuralı', m.pairing || '—')}
+            ${renderFactLi('Stadyum', m.venue)}
+            ${renderFactLi('Tarih', f.day + ' ' + f.month + ' 2026 ' + f.dow)}
+            ${renderFactLi('TSİ Başlangıç', m.time + ' (UTC+3)')}
+            ${renderFactLi('Maç No', '#' + m.matchNo)}
+          </ul>
+        </div>
+
+        <div class="modal-section">
+          <div class="modal-section-title">ℹ️ Notlar</div>
+          <div class="modal-fact">
+            Bu turda <strong>her iki takım da grup aşaması sonuçlarına göre belirlenecek</strong>.
+            ${m.pairing ? 'Eşleşme kuralı: <strong>' + m.pairing + '</strong>.' : ''}
+          </div>
+          <div class="modal-fact">
+            <strong>Format:</strong> 90 dakika · Beraberlik halinde <strong>30 dakika uzatma</strong> · Hâlâ berabere → <strong>penaltı atışları</strong>.
+          </div>
+          <div class="modal-fact">
+            <strong>Yayın:</strong> TRT 1 ve TRT Spor'dan şifresiz yayınlanır.
+          </div>
+        </div>
+      `;
+    }
+
+    // Normal grup maçı modalı
+    const home = TEAM_INFO[m.home] || {};
+    const away = TEAM_INFO[m.away] || {};
+    const isTR = m.home === 'Türkiye' || m.away === 'Türkiye';
+
+    const trBadge = isTR ? `<div style="margin-top:6px;"><span style="background:linear-gradient(90deg,#e30a17,#0046ad);color:#fff;padding:3px 10px;border-radius:999px;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;">🇹🇷 TÜRKİYE MAÇI</span></div>` : '';
+
+    return `
+      <div class="modal-vs">
+        ${renderTeamSide(m.home, home)}
+        ${renderTeamSide(m.away, away)}
+      </div>
+      ${trBadge}
+
+      <div class="modal-section">
+        <div class="modal-section-title">📊 Takım Bilgileri</div>
+        ${renderTeamInfoBlock(m.home, home, FLAGS[m.home])}
+        ${renderTeamInfoBlock(m.away, away, FLAGS[m.away])}
+      </div>
+
+      ${renderMatchResultSection(m)}
+
+      <div class="modal-section">
+        <div class="modal-section-title">✨ İlginç Bilgiler</div>
+        ${(home.funFacts || []).slice(0, 2).map(fact => `<div class="modal-fact"><strong>${m.home}:</strong> ${fact}</div>`).join('')}
+        ${(away.funFacts || []).slice(0, 2).map(fact => `<div class="modal-fact"><strong>${m.away}:</strong> ${fact}</div>`).join('')}
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">🎯 Maç Öncesi Notlar</div>
+        <div class="modal-fact">
+          <strong>Grup:</strong> ${m.group} Grubu · ${groupLabel(m.group)}
+        </div>
+        <div class="modal-fact">
+          <strong>Türkiye Saati:</strong> ${f.day} ${f.month} 2026, ${m.time} (UTC+3).
+          ${(parseInt(m.time.split(':')[0], 10) < 6)
+            ? '🌙 Gece maçı — kahve yanına alsan iyi olur.'
+            : '☀️ Gündüz kuşağında, izlemesi kolay.'}
+        </div>
+        <div class="modal-fact">
+          <strong>Yayın:</strong> TRT 1 ve TRT Spor'dan şifresiz yayınlanır.
+        </div>
+      </div>
+    `;
+  }
+
+  function renderTeamSide(name, info) {
+    return `
+      <div class="modal-vs-side">
+        <img class="flag" src="${flagFor(name)}" alt="${name}" />
+        <div class="name">${name}</div>
+        <div class="conf">${CONF[name] || ''}</div>
+      </div>
+    `;
+  }
+
+  function renderTBDTeamSide(name) {
+    return `
+      <div class="modal-vs-side tbd-side">
+        <img class="flag" src="${TBD_FLAG}" alt="Belirlenecek" />
+        <div class="name">${name}</div>
+        <div class="conf">Belirlenecek</div>
+      </div>
+    `;
+  }
+
+  function renderTeamInfoBlock(name, info, flag) {
+    return `
+      <div class="team-info-block">
+        <div class="team-info-head">
+          <img class="team-info-flag" src="${flag || TBD_FLAG}" alt="${name}" />
+          <div>
+            <div class="team-info-name">${name}</div>
+            <div class="team-info-conf">${CONF[name] || '—'}</div>
+          </div>
+        </div>
+        <ul class="modal-fact-list">
+          ${renderFactLi('FIFA Sıralama', '#' + (info.fifa || '—'))}
+          ${renderFactLi('Nüfus', info.pop || '—')}
+          ${renderFactLi('Başkent', info.capital || '—')}
+          ${renderFactLi('Lakap', info.nickname || '—')}
+        </ul>
+      </div>
+    `;
+  }
+
+  function renderFactLi(label, value) {
+    return `<li><span class="label">${label}</span><span class="value">${value}</span></li>`;
+  }
+
+  function renderMatchResultSection(m) {
+    const live = lookupLive(m);
+    if (!live) return '';
+    const g1 = live.goals1 || [];
+    const g2 = live.goals2 || [];
+    const hasScore = g1.length > 0 || g2.length > 0;
+    if (!hasScore) return '';
+
+    const goalRow = (goals) => goals.length === 0
+      ? '<em style="color:var(--text-mute)">—</em>'
+      : goals.map(g => `<div class="goal-line">⚽ ${g.name} <span class="goal-minute">${g.minute}'</span></div>`).join('');
+
+    return `
+      <div class="modal-section">
+        <div class="modal-section-title">🏆 Maç Sonucu</div>
+        <div class="result-card">
+          <div class="result-team">
+            <img class="result-flag" src="${flagFor(m.home)}" alt="${m.home}" />
+            <div class="result-name">${m.home}</div>
+            <div class="result-score">${g1.length}</div>
+          </div>
+          <div class="result-vs">-</div>
+          <div class="result-team">
+            <img class="result-flag" src="${flagFor(m.away)}" alt="${m.away}" />
+            <div class="result-name">${m.away}</div>
+            <div class="result-score">${g2.length}</div>
+          </div>
+        </div>
+        <div class="goals-grid">
+          <div class="goals-col">
+            <div class="goals-col-title">${m.home} Goller</div>
+            ${goalRow(g1)}
+          </div>
+          <div class="goals-col">
+            <div class="goals-col-title">${m.away} Goller</div>
+            ${goalRow(g2)}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  /* ---------- Events ---------- */
+  function bindEvents() {
+    // View tabs
+    $$('.seg-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        $$('.seg-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        state.view = btn.dataset.view;
+        // Reset group filter for non-default views (UX)
+        if (state.view !== 'groups') state.group = 'ALL';
+        render();
+      });
+    });
+
+    // Search
+    const search = $('#searchInput');
+    let timer;
+    search.addEventListener('input', (e) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        state.search = e.target.value;
+        render();
+      }, 150);
+    });
+
+    // Modal close
+    $('#modalClose').addEventListener('click', closeModal);
+    $('#modalBackdrop').addEventListener('click', (e) => {
+      if (e.target.id === 'modalBackdrop') closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  /* ---------- Live scores (openfootball) ---------- */
+  const LIVE_URL = 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+
+  async function loadLiveScores() {
+    state.liveStatus = 'loading';
+    try {
+      const r = await fetch(LIVE_URL, { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      const map = new Map();
+      (data.matches || []).forEach(m => {
+        const k1 = teamKey(m.team1);
+        const k2 = teamKey(m.team2);
+        const d = (m.date || '').trim();
+        // Çift yönlü eşleştirme: takımlar + tarih
+        const key = `${k1}|${k2}|${d}`;
+        map.set(key, m);
+        const keyR = `${k2}|${k1}|${d}`;
+        map.set(keyR, m);
+      });
+      state.liveScores = map;
+      state.liveStatus = 'ok';
+    } catch (e) {
+      console.warn('Canlı skor alınamadı:', e);
+      state.liveStatus = 'error';
+    }
+    render();
+  }
+
+  function lookupLive(m) {
+    // Önce manuel skorları kontrol et (güncel ve güvenilir)
+    if (typeof MANUAL_SCORES !== 'undefined' && MANUAL_SCORES[m.id]) {
+      const ms = MANUAL_SCORES[m.id];
+      return { team1: m.home, team2: m.away, goals1: ms.goals1, goals2: ms.goals2, source: 'manual' };
+    }
+    // Sonra API'ye düş (güncellenmiş olabilir)
+    if (state.liveStatus !== 'ok') return null;
+    const k1 = teamKey(m.home);
+    const k2 = teamKey(m.away);
+    const d = m.date || '';
+    return state.liveScores.get(`${k1}|${k2}|${d}`) || null;
+  }
+
+  function liveStatusOf(m) {
+    const live = lookupLive(m);
+    if (!live) return { status: 'scheduled', score: null, goals1: [], goals2: [] };
+    const s1 = (live.goals1 || []).length;
+    const s2 = (live.goals2 || []).length;
+    const hasGoals = s1 > 0 || s2 > 0;
+    if (hasGoals) return { status: 'final', score: [s1, s2], goals1: live.goals1 || [], goals2: live.goals2 || [] };
+    return { status: 'scheduled', score: null, goals1: [], goals2: [] };
+  }
+
+  /* ---------- Boot ---------- */
+  document.addEventListener('DOMContentLoaded', () => {
+    bindEvents();
+    render();
+    loadLiveScores();
+    // Her 5 dakikada bir tazele (canlı maçlar için)
+    setInterval(loadLiveScores, 5 * 60 * 1000);
+  });
+})();
+
+</script>
+</body>
+</html>
