@@ -2414,7 +2414,20 @@ const ROUND_META = {
     const k1 = teamKey(m.home);
     const k2 = teamKey(m.away);
     const d = m.date || '';
-    return state.liveScores.get(`${k1}|${k2}|${d}`) || null;
+    // Önce exact date, sonra ±1 gün (timezone farkı için)
+    const key = k1 + '|' + k2 + '|' + d;
+    if (state.liveScores.has(key)) return state.liveScores.get(key);
+    // YYYY-MM-DD → Date → ±1 gün
+    const [y, mo, day] = d.split('-').map(Number);
+    const base = new Date(y, mo - 1, day);
+    for (const offset of [-1, 1]) {
+      const alt = new Date(base);
+      alt.setDate(alt.getDate() + offset);
+      const altStr = alt.getFullYear() + '-' + String(alt.getMonth() + 1).padStart(2,'0') + '-' + String(alt.getDate()).padStart(2,'0');
+      const altKey = k1 + '|' + k2 + '|' + altStr;
+      if (state.liveScores.has(altKey)) return state.liveScores.get(altKey);
+    }
+    return null;
   }
 
   function liveStatusOf(m) {
